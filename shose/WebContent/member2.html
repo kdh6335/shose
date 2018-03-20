@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	#container2{
+		display: table-cell;
+   		padding: 0px 15px 20px 10px;
+    		width: 810px;
+	}
+	.tbl_wrap caption{
+		padding: 10px 0;
+    		font-weight: bold;
+   		text-align: left;
+	}
+	.mbskin .tbl_frm01 th {
+    		width: 85px;
+	}
+	.tbl_frm01 th {
+    		width: 120px;
+    		padding: 7px 13px;
+    		border: 1px solid #333;
+    		border-left: 0;
+    		/* background: #111; */
+    		text-align: left;
+	}
+	th {
+    		font-weight: bold;
+    		text-align: -internal-center;
+	}
+	.tbl_frm01 table {
+    		width: 100%;
+    		border-collapse: collapse;
+    		border-spacing: 0;
+	}
+	.tbl_wrap table {
+    		width: 100%;
+    		border-collapse: collapse;
+    		border-spacing: 0
+    	}
+    	label, input, button, select, img {
+    		vertical-align: middle;
+	}
+	label {
+    		cursor: default;
+	}
+	
+	.tbl_frm01 td {
+    		padding: 7px 10px;
+    		border-top: 1px solid #333;
+    		border-bottom: 1px solid #333;
+    		background: transparent;
+	}
+	td, th {
+    		display: table-cell;
+    		vertical-align: inherit;
+	}
+	.tbl_frm01 .frm_info {
+    		display: block;
+    		padding: 0 0 5px;
+    		line-height: 1.4em;
+	}
+	.required, textarea.required {
+    		color: #A5A5A5;
+	}
+	.frm_input {
+    		height: 22px;
+	}
+	.tbl_frm01 textarea, .frm_input {
+    		padding-left: 5px;
+    		border: 1px solid #333;
+    		background: white;
+    		color: #A0A0A0;
+    		vertical-align: mid
+    	}
+    	input, button {
+    		margin: 0;
+    		padding: 0;
+    		font-family: dotum;
+   		font-size: 1em;
+	}
+	
+</style>
+</head>
+<body>
+	<div class="tbl_frm01 tbl_wrap">
+        <table>
+        <caption>회원가입</caption>
+	        <tbody>
+		        <tr>
+		            <th scope="row"><label for="reg_mb_id">아이디</label></th>
+		            <td>
+		                <span class="frm_info">영문자, 숫자, _ 만 입력 가능. 최소 5자이상 입력하세요.</span>
+		                <input type="text" name="mb_id" value="" id="reg_mb_id" required  class="frm_input required " minlength="3" maxlength="20">
+		                <span id="msg_mb_id"></span>             </td>
+		        </tr>
+		        <tr>
+		            <th scope="row"><label for="reg_mb_password">비밀번호</label></th>
+		            <td><input type="password" name="mb_password" id="reg_mb_password" required class="frm_input required" minlength="3" maxlength="20"></td>
+		        </tr>
+		        <tr>
+		            <th scope="row"><label for="reg_mb_password_re">비밀번호 확인</label></th>
+		            <td><input type="password" name="mb_password_re" id="reg_mb_password_re" required class="frm_input required" minlength="3" maxlength="20"></td>
+		        </tr>
+	        </tbody>
+        </table>
+    </div>
+    <div class="tbl_frm01 tbl_wrap">
+        <table>
+        <caption>개인정보 입력</caption>
+        <tbody>
+        <tr>
+            <th scope="row"><label for="reg_mb_name">이름</label></th>
+            <td>
+		<input type="text" id="reg_mb_name" name="mb_name" value="" required readonly class="frm_input required " size="10">
+                
+            </td>
+        </tr>
+                <tr>
+            <th scope="row"><label for="reg_mb_nick">닉네임</label></th>
+            <td>
+                <span class="frm_info">
+                    공백없이 한글,영문,숫자만 입력 가능 (한글6자, 영문12자 )<br>
+                    닉네임을 바꾸시면 앞으로 15일 이내에는 변경 할 수 없습니다.
+                </span>
+                <input type="hidden" name="mb_nick_default" value="">
+                <input type="text" name="mb_nick" value="" id="reg_mb_nick" required class="frm_input required nospace" size="10" maxlength="20">
+                <span id="msg_mb_nick"></span>
+            </td>
+        </tr>
+        
+        <tr>
+            <th scope="row"><label for="reg_mb_email">E-mail</label></th>
+            <td>
+                                <input type="hidden" name="old_email" value="">
+                <input type="text" name="mb_email" value="" id="reg_mb_email" required class="frm_input email required" size="70" maxlength="100">
+            </td>
+        </tr>
+        
+        
+                <tr>
+            <th scope="row"><label for="reg_mb_hp">휴대폰번호</label></th>
+            <td>
+                <input type="text" name="mb_hp" value="" id="reg_mb_hp"  class="frm_input " maxlength="20">
+                                
+                
+                
+            </td>
+        </tr>
+         
+
+                <tr>
+            <th scope="row">
+                주소
+                            </th>
+            <td>
+                <label for="reg_mb_zip" class="sound_only">우편번호</label>
+                <input type="text" name="mb_zip" value="" id="reg_mb_zip"  class="frm_input " size="5" maxlength="6">
+                <button type="button" class="btn_frmline" onclick="win_zip('fregisterform', 'mb_zip', 'mb_addr1', 'mb_addr2', 'mb_addr3', 'mb_addr_jibeon');">주소 검색</button><br>
+                <input type="text" name="mb_addr1" value="" id="reg_mb_addr1"  class="frm_input frm_address " size="50">
+                <label for="reg_mb_addr1">기본주소</label><br>
+                <input type="text" name="mb_addr2" value="" id="reg_mb_addr2" class="frm_input frm_address" size="50">
+                <label for="reg_mb_addr2">상세주소</label>
+                <br>
+            </td>
+        </tr>
+        </tbody>
+        </table>
+        </div>
+</body>
+</html>

@@ -1,0 +1,215 @@
+@import url(http://fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+      body{
+            margin: 0;
+            padding: 0;
+            background-color: #f4f5f9;
+            min-width: 1200px;
+      
+      }
+      ul{
+            margin: 0;
+            padding: 0;
+      }
+      #header{
+      	width: 100%;
+      	position: relative;
+      	padding-bottom: 42px;
+      	clear : both;
+      }
+      /* 1번째 줄 */
+      
+      #inner1{
+            height: 26px;            
+            background-color: #f1404b;
+            box-sizing: border-box;
+            box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.2),/* y축간격, x축간격, 번짐크기, 그림자 크기  */
+            		0 6px 20px 0 rgba(0, 0, 0, 0.19); /* 두줄 쓰면 중첩으로 사용한다.  */
+            width: 100%;
+            position: fixed;
+            z-index: 10;
+      }
+      .inner{
+      	    padding: 0 90px;
+      }
+      .head_inner{
+            max-width: 1200px;
+            margin : 0 auto;
+            position: relative;
+      }
+      #link{
+            /* width: 120px; */
+            display: inline-block;
+      
+      }
+      #link > a{
+            color : #FFFFFF;
+            text-decoration: none;
+            font-weight: bold;
+            line-height: 26px;
+      }
+      #member{
+            float :right;
+            list-style-type: none;
+      }
+      #member li{
+            float : left;
+            /* color : #FFFFFF; */
+            font-size : 15px;
+            line-height: 26px;
+      }
+      #member a{
+            color : #FFFFFF;
+            text-decoration: none;
+            padding : 0px 10px;
+            font-weight: bold;
+            height: 26px;
+            display: inline-block;
+      }
+      #li_drop{
+            position: relative;
+      }
+      
+      #dropdown{
+      
+            width :118px;
+            position: absolute;
+            left : -3px;
+            display: none;
+            z-index: 10;
+      }
+      #li_drop:hover #dropdown {
+            display: block;
+      }
+      #dropdown a:hover{
+            text-decoration: underline;
+      }
+      #dropdown ul li{
+            display: inline-block;
+            width: 118px;
+            background-color: #f1404b;
+            /* list-style-type: none; */
+      }
+      /* 2번째 줄 */
+           #topArea{
+           height: 160px;
+           box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.2),
+           		 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+           
+          /*  position: relative; */
+                            
+      }
+      #main_logo{
+            width: 600px;
+            height: 130px;
+            display : block;
+            margin : 0 auto;   
+            padding-top: 20px;           
+      }
+      #line2_search{
+	   height: 34px;
+	   display: inline-block;
+	   float: right;
+	   position: absolute;
+	   right: 10px;
+	   bottom: 0px;
+      }
+      #line2_wrap{
+      	   height: 34px;
+      	   border : 2px solid #252c41;
+      	   box-sizing: border-box;
+      }
+      input#search_keyword{
+      	   width: 200px;
+      	   height: 30px;
+      	   font-size: 20px;
+      	   box-sizing: border-box;
+      	   display: block;
+      	   float: left;
+      	   border : 0px;
+      	   padding-left: 5px;
+      	   font-family : 'Nanum Pen Script', serif;
+      }
+      input#search_btn {
+      	    width: 55px;
+      	    height: 30px;
+      	    float : left;
+      	    background-color: #252c41;
+      	    color : white;
+      	    display: block;
+      	    border : 0px;
+      	    font-family : 'Nanum Pen Script', serif;
+      	    font-size: 24px;
+      	    
+      }
+      #search_btn:hover{
+      		color: black;
+      		font-size: 28px;
+      		
+      }
+      
+     
+      /* 3번째 줄 */
+     #category {
+            height: 40px;
+            background-color: #252c41;
+            padding: 0px 90px 0 70px;
+            box-sizing: border-box;
+            width: 100%;
+            margin : 0 auto;
+            box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.2),
+            		0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            position: absolute;
+           z-index: 1;
+           
+           
+      }
+      .line3_li {
+            float: left;
+            height: 40px;
+            list-style-type: none;
+      }
+      .line3_li > a {
+            height: 40px;
+            color: white;
+            text-decoration: none;
+            font-family : 'Nanum Pen Script', serif;
+            font-size: 30px;
+            line-height: 40px;
+            padding: 0 50px;
+            font-weight: bold;
+            display: inline-block;
+      }
+      .line3_li:hover {
+            border-top: 5px solid white;
+            background-color: #6E7783;
+            height: 35px;
+             
+      }
+      .line3_li:hover .category_drop {
+            display: block;
+      }
+      .line3_li:hover .category_a {
+            height: 35px;
+      }
+      #nav {
+            max-width: 1200px;
+            margin: 0 auto;
+      }
+      .category_drop {
+            display: none;
+            z-index: 10;
+      }
+      .category_drop > a {
+	        display: block;
+	        color: white;
+	        text-decoration: none;
+	        padding: 10px 0;
+	        text-align: center;
+	        font-size: 18px;
+	        font-weight: bold;
+	        background-color: #6E7783;    
+      }
+      .category_drop > a:hover {
+           	background-color: #252c41;
+           	font-size: 22px;
+      }

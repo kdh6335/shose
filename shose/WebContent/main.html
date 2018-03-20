@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>환영합니다.</title>
+<style type="text/css">
+      @import url(http://fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+      body{
+            margin: 0;
+            padding: 0;
+            background-color: #d8e6e7;
+      
+      }
+      ul{
+            margin: 0;
+            padding: 0;
+      }
+      
+      #inner{
+            height: 26px;
+            padding: 0 90px;
+            background-color: #77aaad;
+      }
+      .head_inner{
+            max-width: 1200px;
+            margin : 0 auto;
+      }
+      #link{
+            width: 120px;
+            display: inline-block;
+      
+      }
+      #link > a{
+            color : #FFFFFF;
+            text-decoration: none;
+            font-weight: bold;
+            line-height: 26px;
+      }
+      #member{
+            float :right;
+            list-style-type: none;
+      }
+      #member li{
+            float : left;
+            /* color : #FFFFFF; */
+            font-size : 15px;
+            line-height: 26px;
+      }
+      #member a{
+            color : #FFFFFF;
+            text-decoration: none;
+            padding : 0px 10px;
+            font-weight: bold;
+            height: 26px;
+            display: inline-block;
+      }
+      #li_drop{
+            position: relative;
+      }
+      
+      #dropdown{
+      
+            width :118px;
+            position: absolute;
+            left : -3px;
+            display: none;
+      }
+      #li_drop:hover #dropdown {
+            display: block;
+      }
+      #dropdown a:hover{
+            text-decoration: underline;
+      }
+      #dropdown ul li{
+            display: inline-block;
+            width: 118px;
+            background-color: #77AAAD;
+            /* list-style-type: none; */
+      }
+      /* 2번째 줄 */
+            #topArea{
+            height: 160px;
+                            
+      }
+      #main_logo{
+                  width: 450px;
+                  height: 150px;
+                  display : block;
+            margin : 0 auto;              
+      }
+     
+      /* 3번째 줄 */
+     #category {
+            height: 40px;
+            background-color: #9DC3C1;
+            padding: 0px 90px;
+            margin : 0 auto;
+      }
+      #category ul li {
+            float: left;
+            height: 40px;
+            list-style-type: none;
+      }
+      #category ul li > a {
+            height: 40px;
+            color: white;
+            text-decoration: none;
+            font-family : 'Nanum Pen Script', serif;
+            font-size: 30px;
+            line-height: 40px;
+            padding: 0 50px;
+            font-weight: bold;
+            display: inline-block;
+      }
+      #category ul > li:hover {
+            border-top: 5px solid white;
+            background-color: #6E7783;
+            height: 35px;
+      }
+      #category ul > li:hover .category_drop {
+            display: block;
+      }
+      #category ul > li:hover .category_a {
+            height: 35px;
+      }
+      #nav {
+            max-width: 1200px;
+            margin: 0 auto;
+      }
+      .category_drop {
+            display: none;
+      }
+      .category_drop > a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 10px 0;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            background-color: #6E7783;    
+      }
+      .category_drop > a:hover {
+            background-color: #ABD0CE;
+      }
+      
+</style>
+</head>
+<body>
+      
+      <div id="inner">
+            <div class="head_inner">
+                  <div id="link">
+                        <a href = "#">BOOKEMARK+</a>
+                  </div>
+                  <ul id="member">
+                        <li><a href="#"> 로그인</a></li>
+                        <li><a href="#"> 회원가입</a></li>
+                        <li id = "li_drop">
+                              <a href="#">마이페이지▼</a>
+                              <div id = "dropdown">
+                                    <ul>
+                                    <li><a href="#">주문/배송조회</a></li>
+                                    <li><a href="#">장바구니</a></li>
+                                    <li><a href="#">위시리스트</a></li>
+                                    <li><a href="#">쿠폰조회</a></li>
+                                    </ul>
+                              </div>                        
+                        </li>
+                        <li><a href="#">고객행복센터</a></li>
+                  
+                  </ul>
+            </div>
+      
+      </div>
+      <div id="topArea">
+            <img id="main_logo" src=image/main_logo.png>
+      </div>
+      <div id = "category">
+            <div class="head_inner">
+            <ul>
+                  <li><a href="#" class="category_a">운동화</a>
+                        <div class="category_drop">
+                                          <a href="#">런닝화/에어</a>
+                                          <a href="#">워킹슈즈</a>
+                                          <a href="#">캐주얼운동화</a>
+                                          <a href="#">트래킹운동화</a>
+                                          <a href="#">키높이운동화</a>                             
+                              </div>                        
+                  </li>
+                  <li><a href="#" class="category_a">구두</a>
+                        <div class="category_drop">
+                                          <a href="#">키높이 구두</a>
+                                          <a href="#">정장 구두</a>
+                             
+                              </div>                        
+                  </li>
+                  <li><a href="#" class="category_a">스니커즈</a></li>
+                  <li><a href="#" class="category_a">캐주얼 슈즈</a>
+                              <div class="category_drop">
+                                    <a href="#">보트화</a>
+                                    <a href="#">슬립온</a>
+                                    <a href="#">로퍼</a>
+                                    <a href="#">모카신</a>                   
+                              </div>                       
+                        </li>
+                  <li><a href="#" class="category_a">부츠/워커</a>
+                        <div class="category_drop">
+                            <a href="#">로우</a>
+                                    <a href="#">미들하이</a>
+                        </div>
+                  </li>
+                  <li><a href="#" class="category_a">슬리퍼</a>
+                        <div class="category_drop">
+                                    <a href="#">슬리퍼</a>
+                                    <a href="#">플립플랍</a>
+                                    <a href="#">스트랩샌들</a>
+                                    <a href="#">아쿠아슈즈</a>                           
+                              </div>                        
+                  </li>
+            </ul>
+            </div>
+      </div>
+</body>
+</html>
