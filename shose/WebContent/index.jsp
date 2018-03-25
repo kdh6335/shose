@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>   <!-- prefix는 표기법  -->
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
     
     <%@ include file="header.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -158,6 +160,11 @@ window.onscroll = function() {scrollFunction()};
 		transition : 0.5;
 		padding-top: 60px;
 	}
+	/* .pdt_item{
+		float : left;
+		margin : 0 10px;
+		position : relative;
+	} */
 	
 	
 </style>
@@ -527,6 +534,46 @@ window.onscroll = function() {scrollFunction()};
 <!-- ScrollToTop -->
 	<button onclick="topFunction()" id="myBtn">Top</button>
 		
+		
+		<div class="item_list">
+			<h3>New ITEM</h3>
+			
+			<hr>
+				<c:forEach items="${newProductlist}" var="pDto">
+			
+				<div class="pdt_item">
+					<a href="">
+						<img alt="신상품" src="${pDto.p_img}" width="200px" height="200px">
+						<div class="wrap_info">
+						<span>${pDto.p_name}</span><br>
+						<span>
+							  ${pDto.p_price2}
+						</span>
+						</div>
+					</a>
+				</div>
+				</c:forEach>
+		</div>
+		
+		<div class="item_list">
+			<h3>BEST ITEM</h3>
+			
+			<hr>
+				<c:forEach items="${newProductlist2}" var="pDto">
+			
+				<div class="pdt_item">
+					<a href="">
+						<img alt="신상품" src="${pDto.p_img}" width="200px" height="200px">
+						<div class="wrap_info">
+						<span>${pDto.p_name}</span><br>
+						<span>
+							  ${pDto.p_price2}
+						</span>
+						</div>
+					</a>
+				</div>
+				</c:forEach>
+		</div>
 		
 	
 </body>
