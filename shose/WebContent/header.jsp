@@ -121,8 +121,8 @@
                         <a href = "#"><i class="fa fa-twitch"></i></a>
                   </div>
                   <ul id="member">
-                        <li><a href="login.html"> 로그인</a></li>
-                        <li><a href="member.html"> 회원가입</a></li>
+                        <li><a href="login.bizpoll"> 로그인</a></li>
+                        <li><a href="Constract.bizpoll"> 회원가입</a></li>
                         <li id = "li_drop">
                               <a href="#">마이페이지▼</a>
                               <div id = "dropdown">
@@ -143,7 +143,7 @@
       <!-- 2번째 줄 -->
       <div id="topArea" class="inner">
       	    <div class="head_inner">
-            	<a href="index.html"><img src="image/logo2.png" id="main_logo" alt="로고" class="on -mov" onmouseover="this.src='image/logo.png'" onmouseout="this.src='image/logo2.png'" border="0"></a>
+            	<a href="index.bizpoll"><img src="image/logo2.png" id="main_logo" alt="로고" class="on -mov" onmouseover="this.src='image/logo.png'" onmouseout="this.src='image/logo2.png'" border="0"></a>
             	<div id ="line2_search">
             		<div id= "line2_wrap">
             			<input id="search_keyword" name="search_keyword" type="text" placeholder="검색어를 입력해 주세요.">
