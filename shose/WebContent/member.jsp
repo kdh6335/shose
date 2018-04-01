@@ -13,7 +13,7 @@
 <link rel="stylesheet" type="text/css" href="css/member.css">
 <script type="text/javascript">
 
-	$(document).on("click", "#idck_btn", function(){
+	/* $(document).on("click", "#idck_btn", function(){
 		
 		//새창의 크기
 		cw=550;
@@ -33,7 +33,7 @@
 		window.open(url, "_blank_1",
 					"toolbar=no, menubar=no, status=no, scrollbars=no, resizable=no, left="+px + ", top=" + py+ ", width="+cw +", height="+ch)
 	});
-	
+	 */
 	
 		$(document).ready(function(){
 		
@@ -47,7 +47,12 @@
           	 upwre = $('#reg_mb_password_re'),
           	 uphone = $('#reg_mb_hp'),
           	 uemail = $('#reg_mb_email'),
-          	 uemail2 = $("#reg_mb_email2") ;
+          	 uemail2 = $('#reg_mb_email2'),
+          	 ubrith = $('#reg_mb_month'),
+          	 ubrith2 = $('#user_birth_month'),
+          	 ubrith3 = $('#user_birth_day'),
+          	 ujuso = $('#sample6_postcode'),
+          	 ujuso2 = $('#sample6_address');
           	 
           	 var email2 = $("#reg_mb_email").val()+"@"+$("#reg_mb_email2").val();
           	 
@@ -64,6 +69,11 @@
                   	var email3 = $.trim(uemail2.val());
                     var phone = $.trim(uphone.val());
                     var checkPass =/^[a-z0-9_-]{6,18}$/;
+                    var brith = $.trim(ubrith.val());
+                    var brith2 = $.trim(ubrith2.val());
+                    var brith3 = $.trim(ubrith3.val());
+                    var juso = $.trim(ujuso.val());
+                    var juso2 = $.trim(ujuso2.val());
             
 
 
@@ -112,8 +122,28 @@
                      }
                    
                 
-                   var regEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i
+                   var regEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 
+                   	
+                	   if (brith == ""){
+                  		 
+                     		ubrith.focus();
+                    	 	$("#span_brith").css("display", "block");
+                    	 	return false;
+                    	 	
+                    	 }else if(brith2 == ""){
+                   		 
+                      		
+                     	 	$("#span_brith").css("display", "block");
+                     	 	return false;
+                     	 	
+                     	 }else if(brith3 == ""){
+                   		 
+                       		
+                      	 	$("#span_brith").css("display", "block");
+                      	 	return false;
+                      	 	
+                      	 }
                 	
                    if (email == "" ){
                 	   
@@ -130,7 +160,7 @@
                   	 } else if(!regEmail.test(email2)){
                   		 
                   		 $("#span_email").text("정확한 값을 입력해주세요.").css("display", "block");
-                  		uemail.focus();
+                  		 uemail.focus();
  	                   	 return false;
                   		 
                   	 } 
@@ -141,16 +171,17 @@
                   
                    if (phone == ""){
                    	
-                   	uphone.focus();
-                  	 $("#span_phone").css("display", "block");
-                  	 return false;
+                   		uphone.focus();
+                  	 	$("#span_phone").css("display", "block");
+                  	 	return false;
                   	 
                   	 } else if($.isNumeric(phone)==false){
                   		 
-	                   	 $("#span_phone").text("숫자만 입력해주세요").css("display", "block");
+	                   	$("#span_phone").text("숫자만 입력해주세요").css("display", "block");
 	                   	uphone.focus();
 	                   	uphone.val("");
-	                   	 return false;
+	                   	
+	                   	return false;
 	                   	 
                   	 }else if(!regPhone.test(phone)){
                   		 
@@ -159,7 +190,22 @@
 	                   	 return false;
 	                   	 
                   	 }
-                   	
+                   
+                   if (juso == ""){
+                      	
+                  		ujuso.focus();
+                 	 	$("#span_juso").css("display", "block");
+                 	 	return false;
+                 	 
+                 	 }else if(juso2 == ""){
+                       	
+                   		ujuso2.focus();
+                  	 	$("#span_juso").css("display", "block");
+                  	 	return false;
+                  	 
+                  	 }
+                   		
+                  
                    
                    
                    
@@ -188,7 +234,7 @@
 						url:"memajax.bizpoll",
 						type: "POST",
 						dataType :"json",
-						data : "id2= " + id2,
+						data : "id2=" + id2,
 						success :function(data){
 							
 							if(data.flag == 0 ){
@@ -235,6 +281,14 @@
      			}
              });
              
+             $("#reg_mb_month").blur(function(){
+              	var umonth = $('#reg_mb_month');
+              	var month = $.trim(umonth.val());
+      			if(month != ""){
+      				$("#span_brith").css("display", "none");
+      			}
+              });
+             
              $("#reg_mb_email").blur(function(){
              	var uemail = $('#reg_mb_email');
              	var email = $.trim(uemail.val());
@@ -258,6 +312,26 @@
      				$("#span_phone").css("display", "none");
      			}
              });
+             
+             $("#sample6_postcode").blur(function(){
+            	
+              	var ujuso = $('#sample6_postcode');
+              	var juso = $.trim(ujuso.val());
+      			if(juso != ""){
+      				$("#span_juso").css("display", "none");
+      			}
+            	 
+             });
+             
+             $("#sample6_address").blur(function(){
+             	
+               	var ujuso2 = $('#sample6_address');
+               	var juso2 = $.trim(ujuso2.val());
+       			if(juso2 != ""){
+       				$("#span_juso").css("display", "none");
+       			}
+             	 
+              });
 		
 	});
 		
@@ -267,6 +341,21 @@
 			return false;
 		});
 			
+	
+	$(document).on("change", "#selmail", function(){
+		var mail = $("#selmail").val();
+		
+		if (mail == "directval"){
+			$("#reg_mb_email2").val("");
+			$("#reg_mb_email2").focus();
+			
+		}else{
+			
+			$("#reg_mb_email2").val(mail);
+		}
+		
+		return false;
+	});
 	
 	
 	
@@ -343,13 +432,45 @@
        }#span_email{
        		color: red;
        		display: none;
-       		
+       }
+       #span_brith{
+       		color: red;
+       		display: none;
+       }
+       #span_juso{
+       		color: red;
+       		display: none;
        }
       
        #idck_btn{
        		float: left;
        		margin-left : 25px; 
        }
+       
+       #sample6_postcode{
+       		float: left;
+       }
+       
+       #sample6_address{
+       		float: left;
+       		margin-top: 10px;
+       }
+       #sample6_address2{
+       		float: left;
+       		margin-top: 10px;
+       		margin-left: 15px;
+       }
+      #sample6{
+      		float: left;
+      		margin-left: 15px;
+      }
+      #selmail{
+      		padding: 3px;
+      		width: 170px;
+      }
+      #sung{
+      		float: left;
+      }
 </style>
 </head>
 <body>
@@ -389,7 +510,7 @@
         <table>
         <caption>개인정보 입력</caption>
         <tbody>
-        <tr>
+         <tr>
             <th scope="row"><label for="reg_mb_name">이름</label>       
             </th>
              
@@ -398,7 +519,72 @@
 			<span id="span_name">이름을 입력해주세요</span>
             </td>
         </tr>
-          
+        <tr>
+            <th scope="row"><label for="reg_mb_sung">성별</label>       
+            </th>
+             
+            <td id="sung">
+            <input type="radio" id="reg_mb_sung" name="reg_mb_sung" value="남자" class="required" checked="checked" >남자</input>
+            <input type="radio" id="reg_mb_sung" name="reg_mb_sung" value="여자" class="required">여자</input>
+            </td>
+        </tr>
+          <tr>
+            <th scope="row"><label for="reg_mb_sung">생년월일</label>       
+            </th>
+             
+            <td id="sung">
+	            <input type="text" id="reg_mb_month" name="reg_mb_month" value="" class="required" maxlength="4" size="10">년
+	            <select name="user_birth_month" id= "user_birth_month">
+                     <option value="01">01</option>
+                     <option value="02">02</option>
+                     <option value="03">03</option>
+                     <option value="04">04</option>
+                     <option value="05">05</option>
+                     <option value="06">06</option>
+                     <option value="07">07</option>
+                     <option value="08">08</option>
+                     <option value="09">09</option>
+                     <option value="10">10</option>
+                     <option value="11">11</option>
+                     <option value="12">12</option>
+                  </select>월
+	              <select name="user_birth_day" id="user_birth_day">
+                        <option value="01">01</option>
+                        <option value="02">02</option>
+                        <option value="03">03</option>
+                        <option value="04">04</option>
+                        <option value="05">05</option>
+                        <option value="06">06</option>
+                        <option value="07">07</option>
+                        <option value="08">08</option>
+                        <option value="09">09</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                        <option value="21">21</option>
+                        <option value="22">22</option>
+                        <option value="23">23</option>
+                        <option value="24">24</option>
+                        <option value="25">25</option>
+                        <option value="26">26</option>
+                        <option value="27">27</option>
+                        <option value="28">28</option>
+                        <option value="29">29</option>
+                        <option value="30">30</option>
+                        <option value="31">31</option>
+                    </select>
+                    일     
+                    <span id="span_brith">생년월일을 입력해주세요.</span>
+            </td>
+        </tr>
 
         		<tr>
             <th scope="row"><label for="reg_mb_email">E-mail</label></th>
@@ -481,11 +667,12 @@
         }).open();
     }
 </script> 
-        <input type="text" id="sample4_postcode" placeholder="우편번호">
-		<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-		<input type="text" id="sample4_roadAddress" placeholder="도로명주소">
-		<input type="text" id="sample4_jibunAddress" placeholder="지번주소">
+        <input type="text" name ="sample6_postcode" id="sample6_postcode" placeholder="우편번호">
+		<input type="button" onclick="sample6_execDaumPostcode()" id="sample6" value="우편번호 찾기"><br>
+		<input type="text" name= "sample6_address" id="sample6_address" placeholder="도로명주소">
+		<input type="text" name = "sample6_address2" id="sample6_address2" placeholder="상세주소">
 		<span id="guide" style="color:#999"></span>
+		<span id="span_juso">주소를 입력해주세요.</span>
 
 		
             </td>
@@ -497,7 +684,7 @@
          <div>   
          
          		
-         		<button class="danger btn btn13">회원가입</button>
+         		<input type="button" class="danger btn btn13" value="회원가입">
          
          </div>
          </form>

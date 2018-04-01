@@ -21,6 +21,8 @@ public class MemberDAO {
 	
 	public int memIdCheck(String memberid) {
 		
+		ResultSet rs = null;
+		
 		try {
 			
 			conn = DBManager.getConnection();
@@ -31,21 +33,21 @@ public class MemberDAO {
 			
 			pstmt.setString(1, memberid);
 			
+			
 			rs = pstmt.executeQuery();
 			
-			System.out.println("mid333333 = " + memberid);
 			
-			
-			String mid = null;
+			/*String id = null;
 			
 				while(rs.next()) {
 					
-					mid = rs.getString("mid");
-					
-					
-				}
+				id = rs.getString("mid");
 				
-			System.out.println("데이터 아이디 " + mid);
+			    
+				}
+				System.out.println("데이터 아이디 " + id );
+				*/
+			
 		
 			
 			if(rs.next() == true) {
@@ -71,8 +73,6 @@ public class MemberDAO {
 	}
 	//아이디 체크
 	public int memLogin(String memberid, String mempw) {
-		
-		
 		
 		try {
 			
@@ -117,7 +117,7 @@ public class MemberDAO {
 		try {
 			
 			conn = DBManager.getConnection();
-			String sql = "INSERT INTO member (mid, mpw, mname, mphone, memail) VALUES ( ?, ?, ?, ?, ?) ";
+			String sql = "INSERT INTO member (mid, mpw, mname, mphone, mjuso,  memail, mbirth, mmen) VALUES ( ?, ?, ?, ?, ?, ?, ?, ? ) ";
 			
 			pstmt = conn.prepareStatement(sql);
 			
@@ -125,7 +125,10 @@ public class MemberDAO {
 			pstmt.setString(2, mDto.getMpw());
 			pstmt.setString(3, mDto.getMname());
 			pstmt.setString(4, mDto.getMphone());
-			pstmt.setString(5, mDto.getMemail());
+			pstmt.setString(5, mDto.getMjuso());
+			pstmt.setString(6, mDto.getMemail());
+			pstmt.setString(7, mDto.getMbirth());
+			pstmt.setString(8, mDto.getMmen());
 			
 			result = pstmt.executeUpdate();
 			
@@ -201,4 +204,12 @@ public MemberDTO sessionLogin(String memberid, String mempw) {
 		}
 		return mDto;
 	}
+
+
+
+
+
+	
+
+	
 }

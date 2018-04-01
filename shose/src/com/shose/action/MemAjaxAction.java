@@ -43,7 +43,7 @@ public class MemAjaxAction implements Action {
 			}
 		}
 		
-		ActionForward forward = new ActionForward();
+		//ActionForward forward = new ActionForward();
 		
 		
 		

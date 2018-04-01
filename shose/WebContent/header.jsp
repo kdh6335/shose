@@ -348,6 +348,10 @@
 	.link_kakao:hover{
 		text-decoration: underline;
 	}
+	#span_id{
+		display: none;
+		color: red;
+	}
 </style>
 
 
@@ -359,17 +363,16 @@
 		
 		$(".btn").on("click", function(){
 				 
-	     			var id2 =$(".loginid").val();
-	     			var pw = $(".loginpw").val();
-						alert(id2);
-						alert(pw);
+	     			var id2 =$("#loginid").val();
+	     			var pw = $("#loginpw").val();
+						
 					if(id2 == ""){
 						 $("#loginid").focus();
 	                 	 $("#span_id").text("아이디를 입력해주세요").css("display", "block");
 	                 	 return false;
 	                 	
 					}else if(pw == ""){
-						 $("#loginid").focus();
+						 $("#loginpw").focus();
 	                 	 $("#span_id").text("비밀번호를 입력해주세요").css("display", "block");
 	                 	 return false;
 	                 	
@@ -587,6 +590,7 @@
 											<input class="idpw loginpw" type="password" id="loginpw" name ="loginpw" placeholder="비밀번호(4~16자리)"></input>
 										</form> <!-- form 태그는  -->
 										<a href="#" id ="btn_login" class="btn">로그인</a>
+										<span id="span_id">ID 또는 비밀번호가 틀렸습니다.</span>
 										<div id="remember">
 											<input type="checkbox" name="remeber" id="remeber2">
 											<label for="remeber2">아이디 저장</label>
