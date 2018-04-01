@@ -24,7 +24,13 @@
 </style>
 <script type="text/javascript">
 	function closeOK(){
+		opener.document.frm_memeber.hidden.value="Y";
 		opener.document.frm_memeber.reg_mb_password.focus();
+		self.close();
+	}
+	function closeNG(){
+		opener.document.frm_memeber.hidden.value="N";
+		opener.document.frm_memeber.reg_mb_id.select();
 		self.close();
 	}
 

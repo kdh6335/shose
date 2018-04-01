@@ -10,8 +10,8 @@ public class DBManager {
                     private final static String URL = "jdbc:oracle:thin:@teno.homedns.tv:1521:XE";
                     private final static String USER = "java";
                     private final static String PASSWORD ="1234";
-
-
+                    //teno.homedns.tv
+                    //192.168.123.103
                     private DBManager(){
 
                     }

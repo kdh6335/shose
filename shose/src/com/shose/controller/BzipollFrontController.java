@@ -9,13 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.shose.action.Action;
-import com.shose.action.ActionForward;
-import com.shose.action.ConstractAction;
-import com.shose.action.IdolapckAction;
-import com.shose.action.IndexAction;
-import com.shose.action.LoginAction;
-import com.shose.action.memberAction;
+import com.shose.action.*;
+
 
 
 
@@ -87,6 +82,30 @@ public class BzipollFrontController extends HttpServlet {
 			}else if(command.equals("/id_olap_ck.bizpoll")) {
 				
 				action = new IdolapckAction();//action은 인터페이스: 다형성을 이용해서 해당 액션기능을 action에 넣는다
+				forward = action.excute(request, respnse); // 공통 분기작업에 보낼 forward
+				
+				
+			}else if(command.equals("/memberinsert.bizpoll")) {
+				
+				action = new MembeinsertAction();//action은 인터페이스: 다형성을 이용해서 해당 액션기능을 action에 넣는다
+				forward = action.excute(request, respnse); // 공통 분기작업에 보낼 forward
+				
+				
+			}else if(command.equals("/memajax.bizpoll")) {
+				
+				action = new MemAjaxAction();//action은 인터페이스: 다형성을 이용해서 해당 액션기능을 action에 넣는다
+				forward = action.excute(request, respnse); // 공통 분기작업에 보낼 forward
+				
+				
+			}else if(command.equals("/loginck.bizpoll")) {
+				
+				action = new LoginCkAction();//action은 인터페이스: 다형성을 이용해서 해당 액션기능을 action에 넣는다
+				forward = action.excute(request, respnse); // 공통 분기작업에 보낼 forward
+				
+				
+			}else if(command.equals("/sessionLogin.bizpoll")) {
+				
+				action = new SessionLoginAction();//action은 인터페이스: 다형성을 이용해서 해당 액션기능을 action에 넣는다
 				forward = action.excute(request, respnse); // 공통 분기작업에 보낼 forward
 				
 				

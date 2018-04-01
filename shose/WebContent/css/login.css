@@ -78,13 +78,12 @@
 	/*  */
 	#kakao_content{
 		margin: 10px auto;
-		height: 400px;
+		height: 600px;
 		text-align: center;
 	}
 	#login_content {
 		width: 270px;
 		height: 394px;
-		padding: 0 25px;
 		border: 1px solid #ddd;
 		text-align: left;
 		display: inline-block;
@@ -124,10 +123,12 @@
 		padding: 8px 12px;
 		margin-bottom: 15px;
 		outline: none; /* input을 클릭하면 파란색 테두리가 사라진다.  */
+		margin-left: 12px;
 		
 	}
 	#login_form{
 		position: relative;
+		padding: 10px;
 	}
 	#login_form > img{
 		display: inline-block;

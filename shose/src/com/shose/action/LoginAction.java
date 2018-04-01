@@ -11,6 +11,7 @@ public class LoginAction  implements Action {
 	@Override
 	public ActionForward excute(HttpServletRequest request, HttpServletResponse respnse)
 			throws ServletException, IOException {
+		
 			String url = "login.jsp";
 		
 		ActionForward forward = new ActionForward();

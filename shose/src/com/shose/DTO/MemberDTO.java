@@ -30,6 +30,16 @@ public class MemberDTO {
 	}
 
 
+	public MemberDTO(String mid, String mpw, String mname, String mphone, String memail) {
+		super();
+		this.mid = mid;
+		this.mpw = mpw;
+		this.mname = mname;
+		this.mphone = mphone;
+		this.memail = memail;
+	}
+
+
 	public String getMid() {
 		return mid;
 	}
