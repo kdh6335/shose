@@ -2,14 +2,18 @@ package com.shose.common;
 
 import java.sql.*;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
 public class DBManager {
 
                     private static Connection conn;
 
-                    private final static String DRIVER = "oracle.jdbc.driver.OracleDriver";
-                    private final static String URL = "jdbc:oracle:thin:@teno.homedns.tv:1521:XE";
-                    private final static String USER = "java";
-                    private final static String PASSWORD ="1234";
+                  //  private final static String DRIVER = "oracle.jdbc.driver.OracleDriver";
+                   // private final static String URL = "jdbc:oracle:thin:@teno.homedns.tv:1521:XE";
+                  //  private final static String USER = "java";
+                  //  private final static String PASSWORD ="1234";
                     //teno.homedns.tv
                     //192.168.123.103
                     private DBManager(){
@@ -21,8 +25,16 @@ public class DBManager {
 
                                  if(conn == null){
                                         try{
-                                               Class.forName(DRIVER);
-                                               conn = DriverManager.getConnection(URL , USER , PASSWORD);
+                                        	
+                                        	
+                                        		Context initContext = new InitialContext();
+                                        		Context envContext = (Context)initContext.lookup("java://comp/env"); // lookup방식이라 Context로 형변환
+                                        		DataSource ds = (DataSource)envContext.lookup("jdbc/myoracle");// Server.xml의 이름을 적어줌
+                                        	
+                                        	
+                                        	
+                                               //Class.forName(DRIVER); <- 필요가 없어짐
+                                               conn = ds.getConnection();
                                         }catch (Exception e){
                                                e.printStackTrace();
 

@@ -5,6 +5,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>   <!-- prefix는 표기법  -->
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
+<%
+	response.setHeader("Cache-Control", "no-store");
+	response.setHeader("Pragma", "no-cache");
+
+%>
+
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -256,6 +262,7 @@
 		font-size: 30px;
 		font-weight: bold;
 		color: white;
+		
 		}
 	#login_help{
 		width: 270px;
@@ -408,6 +415,10 @@
 							}
 						});
 					}
+					
+					
+					
+					
 			});
 					
 		
@@ -430,7 +441,45 @@
          });
 		
 	
+	$("#logout").on("click", function(){
+		
+		$.ajax({
+			url:"logout.bizpoll",
+			type: "POST",
+			dataType :"JSON",
+			success : function(data){				
+				if(data.flag == "0" ){
+					
+					alert("로그아웃 실패");
+					
+					
+				}else{
+					
+					alert("로그아웃 성공");
+					location.href = "index.bizpoll";
+					//$("#frm_memeber").submit();
+					//location.reload();
+				} 
+			},
+			
+			error : function(){
+				alert("System Error!!!");
+				
+				}
+			});
+		
+		
+		
+		
+		});
+		
+		
+	
+	
+	
+	
 	});
+	
 		
 
 </script>
@@ -476,15 +525,15 @@
                         <a href = "#"><i class="fa fa-twitch"></i></a>
                   </div>
                   <ul id="member">
-                        <c:choose>
+                        <c:choose> 
 	                        <c:when test="${empty sessionScope.loginUser}">
-	                        		<li><a onclick="document.getElementById('id01').style.display='block'"> 로그인 </a>
+	                        		<li><a onclick="document.getElementById('id01').style.display='block'" style="cursor : pointer"> 로그인 </a>
 			                        	<!-- <a href="login.bizpoll" > 로그인 </a> --></li>
 			                        <li><a href="Constract.bizpoll"> 회원가입</a></li>
 	                        </c:when>
 		                    <c:otherwise>
 		                    	<li>${sessionScope.loginUser.mname }(${sessionScope.loginUser.mid })</li>
-		                    	<li><a href="#">로그아웃</a></li>
+		                    	<li><a href="#" id="logout">로그아웃</a></li>
 		                    </c:otherwise>
                         </c:choose>
                         <li id = "li_drop">

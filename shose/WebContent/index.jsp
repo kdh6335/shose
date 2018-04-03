@@ -1,9 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>   <!-- prefix는 표기법  -->
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
     
     <%@ include file="header.jsp" %>
+    
+    <%@ page import="java.util.Date" %>
+    <c:set var="date" value="<%=new Date() %>"/>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -535,11 +540,11 @@ window.onscroll = function() {scrollFunction()};
 	<button onclick="topFunction()" id="myBtn">Top</button>
 		
 <!-- 데이터베이스에서 값을 가져오기  -->		
+				<c:forEach items="${newProductlist}" var="pDto">
 		<div class="item_list">
 			<h3>New ITEM</h3>
 			
 			<hr>
-				<c:forEach items="${newProductlist}" var="pDto">
 			
 				<div class="pdt_item">
 					<a href="">
@@ -547,19 +552,27 @@ window.onscroll = function() {scrollFunction()};
 						<div class="wrap_info">
 						<span>${pDto.p_name}</span><br>
 						<span>
-							  ${pDto.p_price2}
+						 	 <fmt:setLocale value="ko_kr"/>
+							  <!-- currency = 접속하는 현지의 화폐단위  -->
+							 <fmt:formatNumber value="${pDto.p_price2}" type ="currency"/>
+							 <fmt:formatNumber value="0.15" type="percent"/>
+							 <fmt:formatNumber value="553654789834" pattern = "###,###,###,###"/>
+							 
+							 <fmt:formatDate value="${date}" type="time"/>
+							 <fmt:formatDate value="${date}" type="time" timeStyle="full"/>
+							  
 						</span>
 						</div>
 					</a>
 				</div>
-				</c:forEach>
 		</div>
+				</c:forEach>
 		
+				<c:forEach items="${newProductlist2}" var="pDto">
 		<div class="item_list">
 			<h3>BEST ITEM</h3>
 			
 			<hr>
-				<c:forEach items="${newProductlist2}" var="pDto">
 			
 				<div class="pdt_item">
 					<a href="">
@@ -567,13 +580,20 @@ window.onscroll = function() {scrollFunction()};
 						<div class="wrap_info">
 						<span>${pDto.p_name}</span><br>
 						<span>
-							  ${pDto.p_price2}
+							  <fmt:setLocale value="ko_kr"/>
+							  <!-- currency = 접속하는 현지의 화폐단위  -->
+							 <fmt:formatNumber value="${pDto.p_price2}" type="currency" />
+							 <fmt:formatNumber value="0.15" type="percent"/>
+							 <fmt:formatNumber value="553654789834" pattern = "###,###,###,###"/>
+							 
+							 <fmt:formatDate value="${date}" type="time"/>
+							 <fmt:formatDate value="${date}" type="time" timeStyle="full"/>
 						</span>
 						</div>
 					</a>
 				</div>
-				</c:forEach>
 		</div>
+				</c:forEach>
 		
 		
 		
@@ -583,221 +603,7 @@ window.onscroll = function() {scrollFunction()};
 		
 		
 		
-<script type="text/javascript">
- 
-// jsData 
-function gvisDataComboChartID1f8c5c703f48 () {
-var data = new google.visualization.DataTable();
-var datajson =
-[
- [
-"도산동",
-284000000,
-56000000,
-128246376.8
-],
-[
-"도천동",
-103000000,
-80000000,
-90571428.57
-],
-[
-"동선택",
-98000000,
-98000000,
-98000000
-],
-[
-"비아동",
-177000000,
-74000000,
-119317948.7
-],
-[
-"산월동",
-275000000,
-195000000,
-225706060.6
-],
-[
-"산정동",
-590000000,
-53000000,
-287683673.5
-],
-[
-"선암동",
-350000000,
-240000000,
-288627907
-],
-[
-"소촌동",
-240000000,
-61000000,
-144970370.4
-],
-[
-"송정동",
-236000000,
-69000000,
-144581081.1
-],
-[
-"수완동",
-890000000,
-320000000,
-541109090.9
-],
-[
-"신가동",
-620000000,
-115000000,
-311184357.5
-],
-[
-"신창동",
-410000000,
-85000000,
-226669807.7
-],
-[
-"신촌동",
-205000000,
-88000000,
-169086956.5
-],
-[
-"우산동",
-273000000,
-58000000,
-107371900.8
-],
-[
-"운남동",
-258000000,
-85000000,
-146582125.6
-],
-[
-"운수동",
-116000000,
-103000000,
-107818181.8
-],
-[
-"월계동",
-320000000,
-102000000,
-170994252.9
-],
-[
-"월곡동",
-253000000,
-70000000,
-161122449
-],
-[
-"장덕동",
-800000000,
-215000000,
-372185567
-],
-[
-"하남동",
-177000000,
-121000000,
-154461538.5
-],
-[
-"흑석동",
-420000000,
-240000000,
-326933333.3
-] 
-];
-data.addColumn('string','DONGNAME');
-data.addColumn('number','최대가격');
-data.addColumn('number','최소가격');
-data.addColumn('number','평균가격');
-data.addRows(datajson);
-return(data);
-}
- 
-// jsDrawChart
-function drawChartComboChartID1f8c5c703f48() {
-var data = gvisDataComboChartID1f8c5c703f48();
-var options = {};
-options["allowHtml"] = true;
-options["seriesType"] = "bars";
-options["series"] = {2:{type:'line'}};
 
-
-    var chart = new google.visualization.ComboChart(
-    document.getElementById('ComboChartID1f8c5c703f48')
-    );
-    chart.draw(data,options);
-    
-
-}
-  
- 
-// jsDisplayChart
-(function() {
-var pkgs = window.__gvisPackages = window.__gvisPackages || [];
-var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
-var chartid = "corechart";
-  
-// Manually see if chartid is in pkgs (not all browsers support Array.indexOf)
-var i, newPackage = true;
-for (i = 0; newPackage && i < pkgs.length; i++) {
-if (pkgs[i] === chartid)
-newPackage = false;
-}
-if (newPackage)
-  pkgs.push(chartid);
-  
-// Add the drawChart function to the global list of callbacks
-callbacks.push(drawChartComboChartID1f8c5c703f48);
-})();
-function displayChartComboChartID1f8c5c703f48() {
-  var pkgs = window.__gvisPackages = window.__gvisPackages || [];
-  var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
-  window.clearTimeout(window.__gvisLoad);
-  // The timeout is set to 100 because otherwise the container div we are
-  // targeting might not be part of the document yet
-  window.__gvisLoad = setTimeout(function() {
-  var pkgCount = pkgs.length;
-  google.load("visualization", "1", { packages:pkgs, callback: function() {
-  if (pkgCount != pkgs.length) {
-  // Race condition where another setTimeout call snuck in after us; if
-  // that call added a package, we must not shift its callback
-  return;
-}
-while (callbacks.length > 0)
-callbacks.shift()();
-} });
-}, 100);
-}
- 
-// jsFooter
-</script>
- 
-<!-- jsChart -->  
-<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartComboChartID1f8c5c703f48"></script>
- 
-<!-- divChart -->
-  
-<div id="ComboChartID1f8c5c703f48" 
-  style="width: 500; height: automatic;">
-</div>
- <div><span>Data: data &#8226; Chart ID: <a href="Chart_ComboChartID1f8c5c703f48.html">ComboChartID1f8c5c703f48</a> &#8226; <a href="https://github.com/mages/googleVis">googleVis-0.6.2</a></span><br /> 
-<!-- htmlFooter -->
-<span> 
-  R version 3.4.4 (2018-03-15) 
-  &#8226; <a href="https://developers.google.com/terms/">Google Terms of Use</a> &#8226; <a href="https://google-developers.appspot.com/chart/interactive/docs/gallery/combochart">Documentation and Data Policy</a>
-</span></div>
 
 		
 		
