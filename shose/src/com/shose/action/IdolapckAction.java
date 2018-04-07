@@ -18,7 +18,7 @@ public class IdolapckAction implements Action{
 		String memberid = request.getParameter("memberid");
 		System.out.println("ID = " + memberid);
 		
-		MemberDAO mDao = new MemberDAO();
+		MemberDAO mDao = MemberDAO.getInstance();
 		
 		int flag = mDao.memIdCheck(memberid);
 		

@@ -402,9 +402,10 @@
 									
 								}else{
 									
+									location.href = "sessionLogin.bizpoll";
 									alert("로그인성공");
-									//location.href = "index.bizpoll";
-									//$("#frm_memeber").submit();
+									//alert($("#frm_memeber"));
+									$("#frm_memeber").submit();
 									location.reload();
 								} 
 							},
@@ -624,6 +625,7 @@
   					<div class="w3-container">
      					<span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
      					<div id="kakao_content">
+								<form name="frm_memeber" action="sessionLogin.bizpoll" id="frm_memeber" method="post">
 		
 							<div id="login_content">
 							
@@ -634,10 +636,8 @@
 										<!-- <img src="image/kakao_logo.png"> -->
 									</div> 
 									<div id="container">
-										<form method="post" id="login_form">
 											<input class="idpw loginid" type="text" id="loginid" name ="loginid" placeholder="아이디(이메일)"></input>
 											<input class="idpw loginpw" type="password" id="loginpw" name ="loginpw" placeholder="비밀번호(4~16자리)"></input>
-										</form> <!-- form 태그는  -->
 										<a href="#" id ="btn_login" class="btn">로그인</a>
 										<span id="span_id">ID 또는 비밀번호가 틀렸습니다.</span>
 										<div id="remember">
@@ -662,6 +662,7 @@
 							
 								</div>
 							</div>
+								</form> <!-- form 태그는  -->
 						</div>
      				
      				</div>

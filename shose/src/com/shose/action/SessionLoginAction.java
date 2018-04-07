@@ -29,7 +29,7 @@ public class SessionLoginAction implements Action {
 		MemberDAO mDao = new MemberDAO();
 		
 		
-		MemberDTO mDto = mDao.sessionLogin(mid, mpw);
+		/*//MemberDTO mDto = mDao.sessionLogin(mid, mpw);
 		
 		System.out.println("mDto " + mDto.getMname() + " , " + mDto.getMid());
 		
@@ -38,7 +38,7 @@ public class SessionLoginAction implements Action {
 		session.removeAttribute("loginUsr"); // 세션초기화(혹시 모'르 남아있는 값)
 		session.setAttribute("loginUser", mDto); //세션 값 담기
 		
-		}
+		}*/
 		
 		
 		//ActionForward forward = new ActionForward();

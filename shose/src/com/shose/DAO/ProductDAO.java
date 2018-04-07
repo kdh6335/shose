@@ -1,79 +1,77 @@
 package com.shose.DAO;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+
 import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+
 
 import com.shose.DTO.ProductDTO;
-import com.shose.common.DBManager;
+
+
+import com.shose.mybatis.SqlMapConfig;
 
 
 
 public class ProductDAO {
-	 	Connection conn = null;
-	    PreparedStatement pstmt = null;
-	    ResultSet rs = null;
-	    int result =0;
-	   // ArrayList<ProductDTO> list = new ArrayList<>();
-	 
-	    
+	
+		// MyBatis 세팅값 호출
+		SqlSessionFactory sqlSessionFactory = SqlMapConfig.getSqlSession();
+	
+		//mapper에 접근하기 위한 SqlSession
+		SqlSession sqlSession;
 	    //신상품 조회
-	    public ArrayList<ProductDTO> imagelist() {
+		
+	    public List<ProductDTO> imagelist() {
 	    	
-	    	ArrayList<ProductDTO> list = new ArrayList<>();
+	    	List<ProductDTO> list = new ArrayList<>();
+	    	
+	    	sqlSession = sqlSessionFactory.openSession();
 	    	try {
-	    		conn = DBManager.getConnection();
-	    		String sql = "SELECT * FROM new_pro_view ";
-	    		pstmt = conn.prepareStatement(sql);
 	    		
-	    		rs = pstmt.executeQuery();
+	    		list = sqlSession.selectList("newpdtview");
 	    		
-	    		while(rs.next()) {
-	    			String p_code = rs.getString("p_code");
-	    			String  p_name =rs.getString("p_name");
-	    			String  p_price2 = rs.getString("p_price2");
-	    			String  p_img = rs.getString("p_img");
-	    			
-	    			ProductDTO pDto = new ProductDTO(p_code, p_name, p_price2, p_img);
-	    			list.add(pDto);
-	    		}
 				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}finally {
-				DBManager.close(conn, pstmt, rs);
+				sqlSession.close();
 			}
 	    	
 	    	return list;
 	    }
 	    
-	    public ArrayList<ProductDTO> bestlist() {
-	    	ArrayList<ProductDTO> list = new ArrayList<>();
+	    public List<ProductDTO> bestlist() {
+	    	List<ProductDTO> list = new ArrayList<>();
+	    	
+	    	sqlSession = sqlSessionFactory.openSession();
+	    	
 	    	try {
-	    		conn = DBManager.getConnection();
-	    		String sql = "SELECT * FROM best_pro_view ";
-	    		pstmt = conn.prepareStatement(sql);
 	    		
-	    		rs = pstmt.executeQuery();
+	    		list = sqlSession.selectList("bestview");
 	    		
-	    		while(rs.next()) {
-	    			String p_code = rs.getString("p_code");
-	    			String  p_name =rs.getString("p_name");
-	    			String  p_price2 = rs.getString("p_price2");
-	    			String  p_img = rs.getString("p_img");
-	    			
-	    			ProductDTO pDto = new ProductDTO(p_code, p_name, p_price2, p_img);
-	    			list.add(pDto);
-	    		}
+	    		
+	    		
 				
 			} catch (Exception e) {
+				
 				e.printStackTrace();
+				
 			}finally {
-				DBManager.close(conn, pstmt, rs);
+				
+				sqlSession.close();
 			}
 	    	
 	    	return list;
 	    }
+	    
+	    private static ProductDAO instance = new ProductDAO();
+		public static ProductDAO getInstance() {
+			return instance;
+		}
+
+		
 
 }

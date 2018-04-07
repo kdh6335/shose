@@ -14,7 +14,16 @@ public class MemberDTO {
 	private String mmen;
     private Date regdate;
     
+ 
     
+    
+	public MemberDTO(String mid, String mpw) {
+		super();
+		this.mid = mid;
+		this.mpw = mpw;
+	}
+
+
 	public MemberDTO(String mid, String mpw, String mname, String mphone, String mjuso, String memail, String mbirth,
 			String mmen, Date regdate) {
 		super();

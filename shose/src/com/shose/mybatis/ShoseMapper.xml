@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com/shose/mybatis/ShoseMapper.xml">
+
+  <select id="newpdtview" resultType="pDTO" parameterType="String">
+   			SELECT * FROM new_pro_view
+  </select>
+  
+  <select id="bestview" resultType="pDTO" parameterType="String">
+   			SELECT * FROM best_pro_view
+  </select>
+  
+  <select id="memlogin" resultType="java.util.HashMap" parameterType="String">
+
+  			SELECT * FROM member WHERE mid = #{id} and mpw = #{pw}
+  			
+  </select>
+  
+  <select id="memIdCheck" resultType="mDto" parameterType="String">
+  
+  			SELECT * FROM member WHERE mid = #{mid}
+  			
+  </select>
+  
+  
+  <select id="sessionLogin" resultType="java.util.HashMap" parameterType="String">
+  
+  		SELECT * FROM member WHERE mid = #{id} AND mpw = #{pw}
+  		
+  </select>
+  
+  <insert id="memIsert" >
+  		INSERT INTO member (mid, mpw, mname, mphone, mjuso,  memail, mbirth, mmen) VALUES ( #{mid}, #{mpw}, #{mname}, #{mphone}, #{mjuso}, #{memail}, #{mbirth}, #{mmen} )
+  
+  </insert>
+  
+ 
+  
+</mapper>

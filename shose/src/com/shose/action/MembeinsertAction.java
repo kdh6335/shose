@@ -36,7 +36,7 @@ public class MembeinsertAction  implements Action {
 		
 		System.out.println(mid + " , " + mpw+ " , " + mname+ " , " + mphone+ " , " + totalemail+ " , " + totalbirth+ " , " +sung + " , " + totaljuso);
 		
-		MemberDAO mDAO = new MemberDAO();
+		MemberDAO mDAO = MemberDAO.getInstance();
 		MemberDTO mDto = new MemberDTO(mid, mpw, mname, mphone, totaljuso ,totalemail , totalbirth, sung);
 		int result = mDAO.memIsert(mDto);
 		

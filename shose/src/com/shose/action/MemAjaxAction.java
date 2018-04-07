@@ -27,7 +27,7 @@ public class MemAjaxAction implements Action {
 			
 			if(mid.trim().equals("") == false) {
 				
-				MemberDAO mDao = new MemberDAO();
+				MemberDAO mDao = MemberDAO.getInstance();
 				int flag = mDao.memIdCheck(mid);
 				
 				System.out.println("flag = " + flag);

@@ -4,9 +4,18 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 
 import com.shose.DTO.MemberDTO;
 import com.shose.common.DBManager;
+import com.shose.mybatis.SqlMapConfig;
 
 
 public class MemberDAO {
@@ -15,50 +24,50 @@ public class MemberDAO {
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 	int result, flag;
-
+	
+	// MyBatis 세팅값 호출
+			SqlSessionFactory sqlSessionFactory = SqlMapConfig.getSqlSession();
+		
+			//mapper에 접근하기 위한 SqlSession
+			SqlSession sqlSession;
+		    //신상품 조회
 	
 	// ID 중복 체크
 	
-	public int memIdCheck(String memberid) {
+	private static MemberDAO instance = new MemberDAO();
+	public static MemberDAO getInstance() {
+		return instance;
+	}
+
+	
+	public int memIdCheck(String mid) {
 		
-		ResultSet rs = null;
+		sqlSession = sqlSessionFactory.openSession();
+		
+		List<MemberDTO> list = new ArrayList<>();
+	
 		
 		try {
 			
-			conn = DBManager.getConnection();
+			list = sqlSession.selectList("memIdCheck", mid);
 			
-			String sql = "SELECT * FROM member WHERE mid = ? ";
-			
-			pstmt = conn.prepareStatement(sql);
-			
-			pstmt.setString(1, memberid);
-			
-			
-			rs = pstmt.executeQuery();
-			
-			
-			/*String id = null;
-			
-				while(rs.next()) {
+				System.out.println(list.size());
+				if(list.size() > 0) {
 					
-				id = rs.getString("mid");
-				
-			    
+					System.out.println("중복된 ID 입니다.");
+					flag = 0;
+					
+				}else {
+					
+					System.out.println("사용가능한 ID 입니다.");
+					flag = 1;
+					
 				}
-				System.out.println("데이터 아이디 " + id );
-				*/
+			
 			
 		
 			
-			if(rs.next() == true) {
-				
-				System.out.println("중복된 ID 입니다.");
-				flag = 0;
-				
-			}else {
-				System.out.println("사용가능한 ID 입니다.");
-				flag = 1;
-			}
+			
 			
 		} catch (Exception e) {
 			
@@ -66,34 +75,45 @@ public class MemberDAO {
 			
 		}finally {
 			
-			DBManager.close(conn, pstmt, rs);
+			sqlSession.close();
 			
 		}
 		return flag;
 	}
 	//아이디 체크
-	public int memLogin(String memberid, String mempw) {
+	public int memLogin(MemberDTO mDto) {
+		
+		sqlSession = sqlSessionFactory.openSession();
+		
+		List<MemberDTO> list = null;
 		
 		try {
+			String id = mDto.getMid();
+			String pw = mDto.getMpw();
 			
-			conn = DBManager.getConnection();
+			Map map = new HashMap();
+			map.put("id", id);
+			map.put("pw", pw);
 			
-			String sql = "SELECT * FROM member WHERE mid = ? AND mpw = ? ";
+			list = sqlSession.selectList("memlogin", map);
 			
-			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setString(1, memberid);
-			pstmt.setString(2, mempw);
 			
-			rs = pstmt.executeQuery();
 			
-			if (rs.next() == false) {
+			
+			System.out.println(list.size());
+			
+			if(list.size() > 0) {
 				
-				flag = 0;
+				System.out.println("로그인 성공");
+				
+				flag = 1;
 				
 			}else {
 				
-				flag = 1;
+				System.out.println("로그인 실패");
+				
+				flag = 0;
 			}
 			
 			
@@ -105,7 +125,7 @@ public class MemberDAO {
 			
 		}finally {
 			
-			DBManager.close(conn, pstmt, rs);
+			sqlSession.close();
 			
 		}
 		return flag;
@@ -114,23 +134,13 @@ public class MemberDAO {
 	
 	public int memIsert(MemberDTO mDto) {
 		
+			sqlSession = sqlSessionFactory.openSession();
+		
 		try {
 			
-			conn = DBManager.getConnection();
-			String sql = "INSERT INTO member (mid, mpw, mname, mphone, mjuso,  memail, mbirth, mmen) VALUES ( ?, ?, ?, ?, ?, ?, ?, ? ) ";
+			result = sqlSession.insert("memIsert", mDto);
 			
-			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setString(1, mDto.getMid());
-			pstmt.setString(2, mDto.getMpw());
-			pstmt.setString(3, mDto.getMname());
-			pstmt.setString(4, mDto.getMphone());
-			pstmt.setString(5, mDto.getMjuso());
-			pstmt.setString(6, mDto.getMemail());
-			pstmt.setString(7, mDto.getMbirth());
-			pstmt.setString(8, mDto.getMmen());
-			
-			result = pstmt.executeUpdate();
 			
 			if(result > 0 ) {
 				
@@ -142,13 +152,16 @@ public class MemberDAO {
 			
 			}
 			
-					
+			sqlSession.commit();
 			
 			
 		} catch (Exception e) {
+			
 			e.printStackTrace();
+			
 		}finally {
-			DBManager.close(conn, pstmt);
+			
+			sqlSession.close();
 		}
 		return result;
 	}
@@ -157,38 +170,74 @@ public class MemberDAO {
 	
 	
 	
-public MemberDTO sessionLogin(String memberid, String mempw) {
+public MemberDTO sessionLogin(MemberDTO mDto) {
 		
-		MemberDTO mDto = null;
+		List<HashMap> list = null;
+		
+		sqlSession = sqlSessionFactory.openSession();
+		
 		
 		try {
 			
-			conn = DBManager.getConnection();
+			String id = mDto.getMid();
+			String pw = mDto.getMpw();
 			
-			String sql = "SELECT * FROM member WHERE mid = ? AND mpw = ? ";
+			System.out.println(id + " , " + pw);
 			
-			pstmt = conn.prepareStatement(sql);
+			Map map = new HashMap();
+			map.put("id", id);
+			map.put("pw", pw);
 			
-			pstmt.setString(1, memberid);
-			pstmt.setString(2, mempw);
 			
-			rs = pstmt.executeQuery();
+			list = sqlSession.selectList("sessionLogin", map);
 			
-			while(rs.next()) {
+			System.out.println(list.size());
+			
+			for (int i = 0; i < list.size(); i++) {
 				
-				String id = rs.getString("mid");
-				String pw = rs.getString("mpw");
-				String mname = rs.getString("mname");
-				String mphone = rs.getString("mphone") ;
-				String mjuso = rs.getString("mjuso");
-				String memail = rs.getString("memail");
-				String mbirth = rs.getString("mbirth");
-				String mmen = rs.getString("mmen");
-			    Date regdate = rs.getDate("regdate");
-			    
-			    mDto = new MemberDTO(id, pw, mname, mphone, mjuso, memail, mbirth, mmen, regdate);
+				map = (HashMap)list.get(i);
 				
+				String mid = (String)map.get("MID");
+				String mpw = (String)map.get("MPW");
+				String mname = (String)map.get("MNAME");
+				String memail = (String)map.get("MEMAIL");
+				String mbirth = (String)map.get("MBIRTH");
+				String mjuso = (String)map.get("MJSUO");
+				String mphone = (String)map.get("MPHONE");
+				String mmen = (String)map.get("MMEN");
+				//Date regdate = (Date)map.get("REGDATE");
+				
+				mDto = new MemberDTO(mid, mpw, mname, mphone, mjuso, memail, mbirth, mmen);
+				
+				System.out.println(mid+ " , " + mpw+ " , " + mname+ " , " + memail+ " , " + mjuso+ " , " + mphone+ " , " + mbirth+ " , " + mmen );
 			}
+			
+			/*for (MemberDTO memberDTO : list) {
+				
+				String mid = (String)memberDTO.getMid();
+				String mpw = (String)memberDTO.getMpw();
+				String mname = (String)memberDTO.getMname();
+				String memail = (String)memberDTO.getMemail();
+				String mbirth = (String)memberDTO.getMbirth();
+				String mjuso = (String)memberDTO.getMjuso();
+				String mphone = (String)memberDTO.getMphone();
+				Date regdate = (Date)memberDTO.getRegdate();
+				String mmen = (String)memberDTO.getMmen();
+				
+				mDto = new MemberDTO(mid, mpw, mname, mphone, mjuso, memail, mbirth, mmen, regdate);
+				
+			}*/
+			
+		
+			/*Iterator<String> iterator = map.keySet().iterator();
+		    while (iterator.hasNext()) {
+		        String key = (String) iterator.next();
+		        System.out.print("key="+key);
+		        System.out.println(" value="+map.get(key));
+		    }*/
+			
+			
+		
 			
 			
 			
@@ -199,7 +248,7 @@ public MemberDTO sessionLogin(String memberid, String mempw) {
 			
 		}finally {
 			
-			DBManager.close(conn, pstmt, rs);
+			sqlSession.close();
 			
 		}
 		return mDto;

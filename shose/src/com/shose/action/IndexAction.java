@@ -2,6 +2,7 @@ package com.shose.action;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -19,16 +20,16 @@ public class IndexAction implements Action{
 		String url = "index.jsp";
 		
 		
-		ProductDAO pDao = new ProductDAO();
+		ProductDAO pDao = ProductDAO.getInstance();
 		
-		ArrayList<ProductDTO> newProductlist = new ArrayList<>();
+		List<ProductDTO> newProductlist = new ArrayList<>();
 
 		newProductlist = pDao.imagelist();
 		
 		request.setAttribute("newProductlist", newProductlist);
 	
 		
-		ArrayList<ProductDTO> newProductlist2 = new ArrayList<>();
+		List<ProductDTO> newProductlist2 = new ArrayList<>();
 		
 		newProductlist2 = pDao.bestlist();
 		
