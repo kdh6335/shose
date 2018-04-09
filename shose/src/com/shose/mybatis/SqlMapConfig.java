@@ -14,6 +14,7 @@ public class SqlMapConfig {
 		String resource = "com/shose/mybatis/Configuration.xml";
 		
 		try {
+			
 			Reader reader = Resources.getResourceAsReader(resource);// resource를 읽어오는 함수이다.
 			
 			if(sqlSessionFactory == null) {

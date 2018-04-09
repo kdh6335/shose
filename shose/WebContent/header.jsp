@@ -402,10 +402,10 @@
 									
 								}else{
 									
-									location.href = "sessionLogin.bizpoll";
+									//location.href = "sessionLogin.bizpoll";
 									alert("로그인성공");
 									//alert($("#frm_memeber"));
-									$("#frm_memeber").submit();
+									//$("#frm_memeber").submit();
 									location.reload();
 								} 
 							},

@@ -29,6 +29,7 @@ public class ProductDAO {
 	    	List<ProductDTO> list = new ArrayList<>();
 	    	
 	    	sqlSession = sqlSessionFactory.openSession();
+	    	
 	    	try {
 	    		
 	    		list = sqlSession.selectList("newpdtview");
@@ -42,6 +43,9 @@ public class ProductDAO {
 	    	
 	    	return list;
 	    }
+	    
+	    
+	    
 	    
 	    public List<ProductDTO> bestlist() {
 	    	List<ProductDTO> list = new ArrayList<>();
