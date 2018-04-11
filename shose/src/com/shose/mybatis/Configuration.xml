@@ -12,6 +12,7 @@
 	<typeAliases>
 		<typeAlias type="com.shose.DTO.MemberDTO" alias="mDto"/>
 		<typeAlias type="com.shose.DTO.ProductDTO" alias="pDTO"/>
+		<typeAlias type="com.shose.DTO.BoardDTO" alias="boardDTO"/>
 	</typeAliases>
 	
 	<!-- DB접속 정보 셋팅 -->

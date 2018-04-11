@@ -53,7 +53,7 @@
 		z-index: 1;
 		top :0;
 		left: 0;
-		background-color: #111;
+		background-color: #f1404b;
 		overflow: hidden;
 		transition : 0.5;
 		padding-top: 60px;
@@ -496,7 +496,7 @@
 			x
 		</a>
 		<a href="#">About</a>
-		<a href="#">services</a>
+		<a href="Fboardlist.jsp">Free Board</a>
 		<a href="#">Clients</a>
 		<a href="#">Contact</a>
 	</div>
@@ -548,7 +548,7 @@
                                     </ul>
                               </div>                        
                         </li>
-                        <li><a href="#">고객행복센터</a></li>
+                        <li><a href="boardlist.bizpoll">고객행복센터</a></li>
                   
                   </ul>
             </div>

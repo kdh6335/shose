@@ -46,11 +46,12 @@ window.onscroll = function() {scrollFunction()};
     		
       }
 	.prdList{
-		display: table;
-   		width: 100%;
+			display: table;
+   			width: 100%;
     		min-width: 756px;
     		font-size: 0;
-   		line-height: 0;
+   			line-height: 0;
+   			margin-left: 100px;
 	}
 	.item{
 		position: relative;
@@ -153,25 +154,28 @@ window.onscroll = function() {scrollFunction()};
 		background-color: #252c41;
 	}
 	
-	.sidenav{
-		height: 100%;
-		width: 0;
-		position: fixed;
-		z-index: 1;
-		top :0;
-		left: 0;
-		background-color: #111;
-		overflow: hidden;
-		transition : 0.5;
-		padding-top: 60px;
-	}
+	
 	/* .pdt_item{
 		float : left;
 		margin : 0 10px;
 		position : relative;
 	} */
-	
-	
+	.pdt_item{
+		display: inline-block;
+	}
+	.item_list{
+		display: :inline-block;
+	}
+	#itemname{
+		margin-top: 50px;
+	}
+	.total{
+		width: 100%;
+	}
+	.total2{
+		width: 70%;
+		margin: 0 auto;
+	}
 </style>
 </head>
 <body>
@@ -181,7 +185,7 @@ window.onscroll = function() {scrollFunction()};
 
 <div class="xans-element">
 	<div id="main">
-		<img src="image/Webp.net-gifmaker.gif" style="height: 400px;">
+		<img src="image/Webp.net-gifmaker.gif" style="height: 400px; margin-left: 100px">
 	<ul class="prdList">
 		<li id="anchorBoxId" class="item xans-record">
 			<div class="thumbnail">
@@ -539,10 +543,12 @@ window.onscroll = function() {scrollFunction()};
 <!-- ScrollToTop -->
 	<button onclick="topFunction()" id="myBtn">Top</button>
 		
-<!-- 데이터베이스에서 값을 가져오기  -->		
+<!-- 데이터베이스에서 값을 가져오기  -->	
+<div class="total">	
+  <div class="total2">
+			<h3 id="itemname">New ITEM</h3>
 				<c:forEach items="${newProductlist}" var="pDto">
-		<div class="item_list">
-			<h3>New ITEM</h3>
+		<div class="item_list" style="display: inline-block;">
 			
 			<hr>
 			
@@ -558,8 +564,8 @@ window.onscroll = function() {scrollFunction()};
 							 <fmt:formatNumber value="0.15" type="percent"/>
 							 <fmt:formatNumber value="553654789834" pattern = "###,###,###,###"/>
 							 
-							 <fmt:formatDate value="${date}" type="time"/>
-							 <fmt:formatDate value="${date}" type="time" timeStyle="full"/>
+							<%--  <fmt:formatDate value="${date}" type="time"/>
+							 <fmt:formatDate value="${date}" type="time" timeStyle="full"/> --%>
 							  
 						</span>
 						</div>
@@ -567,10 +573,15 @@ window.onscroll = function() {scrollFunction()};
 				</div>
 		</div>
 				</c:forEach>
-		
+	</div>
+</div>
+				
+				
+	<div class="total">
+		<div class="total2">
+			<h3 id="itemname">BEST ITEM</h3>
 				<c:forEach items="${newProductlist2}" var="pDto">
-		<div class="item_list">
-			<h3>BEST ITEM</h3>
+		<div class="item_list" style="display: inline-block;">
 			
 			<hr>
 			
@@ -586,27 +597,15 @@ window.onscroll = function() {scrollFunction()};
 							 <fmt:formatNumber value="0.15" type="percent"/>
 							 <fmt:formatNumber value="553654789834" pattern = "###,###,###,###"/>
 							 
-							 <fmt:formatDate value="${date}" type="time"/>
-							 <fmt:formatDate value="${date}" type="time" timeStyle="full"/>
+							 <%-- <fmt:formatDate value="${date}" type="time"/>
+							 <fmt:formatDate value="${date}" type="time" timeStyle="full"/> --%>
 						</span>
 						</div>
 					</a>
 				</div>
 		</div>
 				</c:forEach>
-		
-		
-		
-		
-		
-		
-		
-		
-		
-
-
-		
-		
-	
+		</div>
+	</div>
 </body>
 </html>

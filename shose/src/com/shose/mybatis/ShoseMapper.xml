@@ -33,11 +33,22 @@
   		
   </select>
   
+
+  
   <insert id="memIsert" >
   		INSERT INTO member (mid, mpw, mname, mphone, mjuso,  memail, mbirth, mmen) VALUES ( #{mid}, #{mpw}, #{mname}, #{mphone}, #{mjuso}, #{memail}, #{mbirth}, #{mmen} )
   
   </insert>
   
- 
+   <select id="boardlistAll" resultType="com.shose.DTO.BoardDTO">
+  
+  		SELECT * FROM tblboard ORDER by bno desc
+  		
+  	</select>
+  	
+  	<insert id="insertBoard" >
+  		INSERT INTO tblboard (bno, title, content, writer) 
+  		VALUES(seq_tblboard_bno.NEXTVAL, #{title} , #{content} ,#{writer})
+  	</insert>
   
 </mapper>

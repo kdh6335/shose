@@ -163,7 +163,21 @@
     	padding: 0 4px 0 3px;
     	vertical-align: middle;
 	}
+	#btn_submit{
+		float: right;
+		margin: 20px;
+	}
 </style>
+<script type="text/javascript">
+$(document).ready(function() {
+	
+	
+	// 게시글 등록 버튼을 클릭하면 이벤트 처리
+	$(".btn_submit").on("click", function() {
+		location.href = "boardInsertView.bizpoll";
+	});	
+});
+</script>
 </head>
 <body>
 
@@ -171,9 +185,12 @@
 	<div id="bo_list">
 		<div class="bo_fx">
 			<div id="bo_list_total">
-				<span>Total</span>
-				페이지
+				<span>날짜순 정렬</span>
+				<span>번호 정렬</span>
+				<span>번호 정렬</span>
+				
 			</div>
+			
 		</div>
 			<form name="fboardlist" id="fboardlist" method="post">
 				<div class="tbl_head01 tbl_wrap">
@@ -189,71 +206,17 @@
 							</tr>
 						</thead>
 						<tbody>
+								<c:forEach items="${boardlist}" var="bDto">
 							<tr>
-								<td class="td_num">1</td>
-								<td class="td_subject"><a href="#">순정네비를 달았는데 도와주세요</a></td>
-								<td class="td_name sv_use">인천||떵둔</td>
-								<td class="td_date">2018.04.09</td>
-								<td class="td_hit">200</td>
+								<td class="td_num">${bDto.bno}</td>
+								<td class="td_subject"><a href="/board/read?bno=${bDto.bno}">${bDto.title}</a></td>
+								<td class="td_name sv_use">${bDto.writer}</td>
+								<td class="td_date"><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${bDto.regdate}"/></td>
+								<td class="td_hit">${bDto.viewont}</td>
 								<td class="td_vote">1</td>
 							</tr>
-							<tr>
-								<td class="td_num">2</td>
-								<td class="td_subject"><a href="#">nf소나타 트랜스폼라이트질문</a></td>
-								<td class="td_name sv_use">전라ll윤석곤</td>
-								<td class="td_date">2018.04.09</td>
-								<td class="td_hit">250</td>
-								<td class="td_vote">3</td>
-							</tr>
-							<tr>
-								<td class="td_num">3</td>
-								<td class="td_subject"><a href="#">	사고치고 왔습니다.</a></td>
-								<td class="td_name sv_use">경기ll타자니</td>
-								<td class="td_date">2018.04.09</td>
-								<td class="td_hit">852</td>
-								<td class="td_vote">2</td>
-							</tr>
-							<tr>
-								<td class="td_num">4</td>
-								<td class="td_subject"><a href="#">	09년식 택부 소나타 판매합니다.</a></td>
-								<td class="td_name sv_use">경상ll히야짜야호이짜</td>
-								<td class="td_date">2018.04.09</td>
-								<td class="td_hit">530</td>
-								<td class="td_vote">1</td>
-							</tr>
-							<tr>
-								<td class="td_num">5</td>
-								<td class="td_subject"><a href="#">순정네비를 달았는데 도와주세요</a></td>
-								<td class="td_name sv_use">인천||떵둔</td>
-								<td class="td_date">2018.04.09</td>
-								<td class="td_hit">200</td>
-								<td class="td_vote">1</td>
-							</tr>
-							<tr>
-								<td class="td_num">6</td>
-								<td class="td_subject"><a href="#">날씨가 너무좋아서 신발좀딲아줬네요 </a></td>
-								<td class="td_name sv_use">경기ll사이버수사팀</td>
-								<td class="td_date">2018.04.09</td>
-								<td class="td_hit">854</td>
-								<td class="td_vote">9</td>
-							</tr>
-							<tr>
-								<td class="td_num">7</td>
-								<td class="td_subject"><a href="#">	조수석쪽 앞바퀴 요철에서 소음 해결</a></td>
-								<td class="td_name sv_use">전남ll신덕</td>
-								<td class="td_date">2018.04.09</td>
-								<td class="td_hit">952</td>
-								<td class="td_vote">3</td>
-							</tr>
-							<tr>
-								<td class="td_num">8</td>
-								<td class="td_subject"><a href="#">코일매트 했네요~~</a></td>
-								<td class="td_name sv_use">경기ll묻어가자</td>
-								<td class="td_date">2018.04.09</td>
-								<td class="td_hit">295</td>
-								<td class="td_vote">2</td>
-							</tr>
-						</tbody>
+								</c:forEach>
+							</tbody>
 					</table>
 				
 				</div>
@@ -271,6 +234,7 @@
 						<li><a href="#">10</a></li>
 						<li><a href="#"><span>다음</span><span class="ico">▶</span></a></li>
 					</ul>
+						<input type="button" value="글쓰기" class="btn_submit" id="btn_submit">
 				</div>
 			</form>
 			
