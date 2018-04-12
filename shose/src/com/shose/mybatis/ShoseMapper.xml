@@ -50,5 +50,30 @@
   		INSERT INTO tblboard (bno, title, content, writer) 
   		VALUES(seq_tblboard_bno.NEXTVAL, #{title} , #{content} ,#{writer})
   	</insert>
+  	
+  	
+  	<select id="bodylist" resultType="boardDTO" >
+  
+  		SELECT * FROM tblboard WHERE bno = #{bno}
+  		
+  	</select>
+  	
+  	<select id="modfiyList" resultType="boardDTO" >
+  
+  		SELECT * FROM tblboard WHERE bno = #{bno}
+  		
+  	</select>
+  	
+  	<update id="modfiyUpdate">
+  	
+  		UPDATE tblboard SET title = #{title}, content= #{content}, writer = #{writer} WHERE bno = #{bno}
+  		
+  	</update>
+  	
+  	<delete id="modifDelete" parameterType="Integer">
+  	
+  		DELETE FROM tblboard WHERE bno = #{bno}
+  	
+  	</delete>
   
 </mapper>

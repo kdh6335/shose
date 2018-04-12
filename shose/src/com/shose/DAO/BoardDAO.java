@@ -95,4 +95,130 @@ public class BoardDAO {
 					}
 					return ruselt;
 				}
+				
+				
+				public List<BoardDTO> bodylist(int bno) {
+					
+					sqlSession = sqlSessionFactory.openSession();
+					
+					List<BoardDTO> list = new ArrayList<>();
+				
+					
+					try {
+						
+						list = sqlSession.selectList("bodylist", bno);
+						
+						for (BoardDTO boardDTO : list) {
+							System.out.print(boardDTO.getBno()+" , ");
+							System.out.print(boardDTO.getTitle()+" , ");
+							System.out.print(boardDTO.getContent()+" , ");
+							System.out.print(boardDTO.getWriter()+" , ");
+							System.out.print(boardDTO.getRegdate()+" , ");
+							System.out.print(boardDTO.getViewont()+" , ");
+							System.out.println();
+							
+						}
+						
+						
+					} catch (Exception e) {
+						
+						e.printStackTrace();
+						
+					}finally {
+						
+						sqlSession.close();
+						
+					}
+					return list;
+				}
+				
+				public List<BoardDTO> modifyList(int bno) {
+					
+					sqlSession = sqlSessionFactory.openSession();
+					
+					List<BoardDTO> list = new ArrayList<>();
+				
+					
+					try {
+						
+						list = sqlSession.selectList("modfiyList", bno);
+						
+						for (BoardDTO boardDTO : list) {
+							System.out.print(boardDTO.getBno()+" , ");
+							System.out.print(boardDTO.getTitle()+" , ");
+							System.out.print(boardDTO.getContent()+" , ");
+							System.out.print(boardDTO.getWriter()+" , ");
+							System.out.print(boardDTO.getRegdate()+" , ");
+							System.out.print(boardDTO.getViewont()+" , ");
+							System.out.println();
+							
+						}
+						
+						
+					} catch (Exception e) {
+						
+						e.printStackTrace();
+						
+					}finally {
+						
+						sqlSession.close();
+						
+					}
+					return list;
+				}
+				
+				
+				public int modifUpdate(BoardDTO bDto) {
+					
+					sqlSession = sqlSessionFactory.openSession();
+					
+					int rusult = 0;
+				
+					
+					try {
+						
+						rusult = sqlSession.update("modfiyUpdate", bDto);
+						sqlSession.commit();
+						
+						
+						
+						
+					} catch (Exception e) {
+						
+						e.printStackTrace();
+						
+					}finally {
+						
+						sqlSession.close();
+						
+					}
+					return rusult;
+				}
+				
+				public int modifDelete(Integer bno) {
+					
+					sqlSession = sqlSessionFactory.openSession();
+					
+					int rusult = 0;
+				
+					
+					try {
+						
+						rusult = sqlSession.delete("modifDelete", bno);
+						sqlSession.commit();
+						
+						
+						
+						
+					} catch (Exception e) {
+						
+						e.printStackTrace();
+						
+					}finally {
+						
+						sqlSession.close();
+						
+					}
+					return rusult;
+				}
 }

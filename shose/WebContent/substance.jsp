@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
+        <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>   <!-- prefix는 표기법  -->
+		<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+    
        <%@ include file="header.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -31,6 +34,7 @@ ul, ol, dl, li, dd, dt, p, form, div {
 	    width: 743px;
 	    margin: 14px;
 	    _zoom: 1;
+	   padding-top: 20px;
 	}
 .list-blog .tit-box {
 	    clear: both;
@@ -84,10 +88,10 @@ a:visited {
 	    color: #666;
 	    word-wrap: break-word;
 	}
-#main-area .board-box-line-dashed {
+.board-box-line-dashed {
 	    border-color: #595752;
 	}
-#main-area .board-box-line-dashed {
+.board-box-line-dashed {
 	    border-bottom-style: dashed;
 	    border-bottom-width: 1px;
 	    -ms-filter: "alpha(opacity=30)";
@@ -152,6 +156,9 @@ body, div, li, dd, dt, td, select, textarea, input {
 	    font-size: 12px;
 	    font-family: '돋움',dotum,Helvetica,sans-serif;
 	}
+.u_likeit_list_module{
+		float: right;
+}
 
 .box-reply2 {
 	    zoom: 1;
@@ -326,17 +333,19 @@ body, div, li, dd, dt, td, select, textarea, input {
 <body>
 	<div class="list-blog border-sub" id="post_164839">
 		<div class="inbox">
+		  <div>
+		  	<c:forEach items="${bodylist}" var="bDto">
 			<div class="tit-box">
 				<div class="fl">
 					<table cellspacing ="0" cellpadding="0" border="0">
 						<tbody>
 							<tr valign="top">
 								<td>
-									<span class="b m-tcol-c">카페스티커 도 안나왔습니다.</span>
+									<span class="b m-tcol-c">${bDto.title}</span>
 								</td>
 								<td nowrap class="m-tcol-c filter-30">|</td>
 								<td nowrap class="m-tcol-c">
-									<a href="#">공지사항</a>
+									<a href="boardlist.bizpoll">자유게시판</a>
 								</td>
 							</tr>
 						</tbody>
@@ -347,7 +356,7 @@ body, div, li, dd, dt, td, select, textarea, input {
 						<tbody>
 							<tr>
 								<td></td>
-								<td class="m-tcol-c date">2018.02.22. 20:00</td>
+								<td class="m-tcol-c date"><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${bDto.regdate}"/></td>
 							</tr>
 						</tbody>
 					</table>
@@ -361,7 +370,7 @@ body, div, li, dd, dt, td, select, textarea, input {
                        
                         <td class="m-tcol-c step">
                         <span >작성자 : </span>
-                        <span class="filter-50">카페스탭</span>
+                        <span class="filter-50">${bDto.writer}</span>
                       
                         
                         </td>
@@ -375,26 +384,26 @@ body, div, li, dd, dt, td, select, textarea, input {
                         <table cellspacing="0" cellpadding="0" border="0">
                             <tbody><tr>
                                 <td valign="top" class="url" align="right">
-                                    <span class="filter-50"><a id="linkUrl" href="http://cafe.naver.com/nfsonatatransform/164839" target="_top" class="m-tcol-c url-txt">http://cafe.naver.com/nfsonatatransform/164839</a></span>
-                                    
+                                    <span class="filter-50"><a href="#" target="_top" class="m-tcol-c url-txt">${bDto.bno}</a></span>
+                                    <span class="filter-50"><a href="modify.bizpoll?bno=${bDto.bno}" class="m-tcol-c url-txt">수정</a></span>
+                                    <span class="filter-50"><a href="modifydelete.bizpoll?bno=${bDto.bno}" class="m-tcol-c url-txt">삭제</a></span>
+                                    <span class="filter-50"><a href="boardlist.bizpoll" class="m-tcol-c url-txt">목록</a></span>
                                 </td>
                             </tr>
                             <tr>
                                 <td id="sendPost_164839" class="m-tcol-c" align="right"></td>
                             </tr>
-                        </tbody></table>
+                        </tbody>
+                      </table>
                     </div>              
                 </div>
                 
                 
-                <div class="tbody m-tcol-c" id="tbody">
-					
-						
-						<p>여러 회원님께서 문의하시던<br>카페스티커 도안이 나왔습니다.<br><br>회원님들의 의견을 수렴해서<br>예전도안에서 꽃을빼고<br>차량라인도 NF답게 수정후<br>가운데&amp;도 넣었습니다.<br><br>더이상의 수정은 없습니다!<br><br>회원님들의 결정을 기다리겠습니다.<br><br>* 판매는 제가 하는게 아닙니다.<br>부매니저님이 하실겁니다.<br><br>* 도안결정후 스티커는 1~2주안에<br>발송가능하게 부.매.니.저님께 <br>건의하겠습니다.</p>
-					
-				</div>
-				
-				
+                	<div class="tbody m-tcol-c" id="tbody">
+					${bDto.content}
+				 	</div>
+				 </c:forEach>
+		</div>
 				<div class="reply-box" id="cmtMenu">
                     <div class="fl reply_sort">
                         <table cellspacing="0" cellpadding="0" border="0">
@@ -420,11 +429,11 @@ body, div, li, dd, dt, td, select, textarea, input {
 						
                             <td class="m-tcol-c filter-30">|</td>
 	                        <td>
-                                <a href="#" class="b m-tcol-c like like_lst_btn _click(LikeItMember|LikeItMember|14773330|164839) _stopDefault" id="likeItMemberBtn" onclick="clickcr(this, '', '', ''); return false;">좋아요<span id="cafe-menu"><span class="cafe-menu-tit" style="background:none; width:13px; height:13px; margin:0;"><span id="likeItArrow" class="down-btn" style="background-position:0 0; *background-position:0 0; background-repeat:no-repeat; vertical-align:top"><img height="13" width="13" alt="" src="https://cafe.pstatic.net/cafe4/hidden.gif"></span></span></span></a>
+                                <a href="#" id="likeItMemberBtn">좋아요<span id="cafe-menu"></span></a>
                                 
                                     
-                                        <div class="u_likeit_list_module _reactionModule" data-sid="CAFE" data-cid="14773330_nfsonatatransform_164839" data-did="CAFE" data-catgid="14773330" data-loaded="1" data-facetype="0" style="visibility: visible;">
-                                            <a href="#" class="u_likeit_list_btn _button off" data-type="like" data-log="art.like|art.unlike" aria-pressed="false">
+                                        <div class="u_likeit_list_module _reactionModule" ">
+                                            <a href="#" class="u_likeit_list_btn _button off" >
                                                 <span class="u_ico _icon"></span>
                                                 <em class="u_cnt _count">8</em>
                                             </a>
@@ -444,12 +453,11 @@ body, div, li, dd, dt, td, select, textarea, input {
                         <tbody>
                         <tr>
 	                        <td>
-				            <td class="m-tcol-c filter-30">|</td>
 				            <td>
 				            <a href="#" class="m-tcol-c" onclick="boardPrint();">인쇄</a>
 				            </td>
                            <td class="m-tcol-c filter-30">|</td>
-                           <td><span onclick="checkLogin('badReport');" style="cursor:pointer;cursor:hand;margin-left:2px" class="m-tcol-c">신고</span></td>
+                           <td><span >신고</span></td>
                         </tr>
                         </tbody></table>
                     </div>

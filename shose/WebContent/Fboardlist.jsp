@@ -209,7 +209,7 @@ $(document).ready(function() {
 								<c:forEach items="${boardlist}" var="bDto">
 							<tr>
 								<td class="td_num">${bDto.bno}</td>
-								<td class="td_subject"><a href="/board/read?bno=${bDto.bno}">${bDto.title}</a></td>
+								<td class="td_subject"><a href="boardbody.bizpoll?bno=${bDto.bno}">${bDto.title}</a></td>
 								<td class="td_name sv_use">${bDto.writer}</td>
 								<td class="td_date"><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${bDto.regdate}"/></td>
 								<td class="td_hit">${bDto.viewont}</td>
