@@ -167,6 +167,10 @@
 		float: right;
 		margin: 20px;
 	}
+	.active{
+		color: blue;
+		font-weight: bold;
+	}
 </style>
 <script type="text/javascript">
 $(document).ready(function() {
@@ -174,7 +178,20 @@ $(document).ready(function() {
 	
 	// 게시글 등록 버튼을 클릭하면 이벤트 처리
 	$(".btn_submit").on("click", function() {
-		location.href = "boardInsertView.bizpoll";
+		
+		var dd =  "<%=session.getAttribute("loginUser")%>"
+		alert(dd);
+		
+		if(dd != "null"){
+			
+			location.href = "boardInsertView.bizpoll";
+			
+			
+		}else {
+			
+			$("#id01").css("display  ","block");
+			
+			} 
 	});	
 });
 </script>
@@ -213,7 +230,7 @@ $(document).ready(function() {
 								<td class="td_name sv_use">${bDto.writer}</td>
 								<td class="td_date"><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${bDto.regdate}"/></td>
 								<td class="td_hit">${bDto.viewont}</td>
-								<td class="td_vote">1</td>
+								<td class="td_vote">${bDto.sweet}</td>
 							</tr>
 								</c:forEach>
 							</tbody>
@@ -222,19 +239,25 @@ $(document).ready(function() {
 				</div>
 				<div>
 					<ul id = "num_list">
-						<li><a href="#">1</a></li>
-						<li><a href="#">2</a></li>
-						<li><a href="#">3</a></li>
-						<li><a href="#">4</a></li>
-						<li><a href="#">5</a></li>
-						<li><a href="#">6</a></li>
-						<li><a href="#">7</a></li>
-						<li><a href="#">8</a></li>
-						<li><a href="#">9</a></li>
-						<li><a href="#">10</a></li>
-						<li><a href="#"><span>다음</span><span class="ico">▶</span></a></li>
+						<c:if test="${pageMaker.prev }">
+						<li><a href="boardlist.bizpoll?page=${pageMaker.startPage -1 }"><span>이전</span><span class="ico">◀</span></a></li>
+						</c:if>
+						
+						<!-- <li><a href="#">&laquo;</a></li> -->
+						<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
+						<li <c:out value="${pageMaker.criDto.page == idx? 'class=active':''}"/>>
+							<a href="boardlist.bizpoll?page=${idx}">${idx}</a></li>
+						</c:forEach>
+						<!-- <li><a href="#">&raquo;</a></li> -->
+						
+						<c:if test="${pageMaker.next }">
+						<li><a href="boardlist.bizpoll?page=${pageMaker.endPage+1}"><span>다음</span><span class="ico">▶</span></a></li>
+						</c:if>
 					</ul>
-						<input type="button" value="글쓰기" class="btn_submit" id="btn_submit">
+						
+							<input type="button" value="글쓰기" class="btn_submit" id="btn_submit">
+						
+						
 				</div>
 			</form>
 			

@@ -38,7 +38,7 @@ public class ModifyUpdateAction implements Action{
 			url = "boardbody.bizpoll";
 		}else {
 			System.out.println("수정 실패");
-			url = "modify.bizpoll";
+			url = "boardbody.bizpoll";
 		}
 		
 		

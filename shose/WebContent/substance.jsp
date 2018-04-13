@@ -329,6 +329,29 @@ body, div, li, dd, dt, td, select, textarea, input {
 		margin: 0 auto;
 	}
 </style>
+<script type="text/javascript">
+
+function delUrl() {
+	
+    var Del = confirm("삭제 하시겠습니까?")
+        if (Del == true)
+        {
+        	
+        alert("삭제 되었습니다.")
+        $("#delete").submit();
+            
+        } else {
+        	
+            alert("취소 되었습니다.")
+            return false;
+            //location.href = "sessionLogin.bizpoll";
+			//alert($("#frm_memeber"));
+			//$("#frm_memeber").submit();
+                }
+}
+
+
+</script>
 </head>
 <body>
 	<div class="list-blog border-sub" id="post_164839">
@@ -386,7 +409,10 @@ body, div, li, dd, dt, td, select, textarea, input {
                                 <td valign="top" class="url" align="right">
                                     <span class="filter-50"><a href="#" target="_top" class="m-tcol-c url-txt">${bDto.bno}</a></span>
                                     <span class="filter-50"><a href="modify.bizpoll?bno=${bDto.bno}" class="m-tcol-c url-txt">수정</a></span>
-                                    <span class="filter-50"><a href="modifydelete.bizpoll?bno=${bDto.bno}" class="m-tcol-c url-txt">삭제</a></span>
+                                    <span class="filter-50"><a onclick="delUrl();" href="#"class="m-tcol-c url-txt">삭제</a></span>
+                                    <form action="modifydelete.bizpoll" id="delete" name="delete">
+                                    <input type="hidden" value="${bDto.bno}" id="hidden" name="hidden"><%-- modifydelete.bizpoll?bno=${bDto.bno}" --%>
+                                    </form>
                                     <span class="filter-50"><a href="boardlist.bizpoll" class="m-tcol-c url-txt">목록</a></span>
                                 </td>
                             </tr>
@@ -397,54 +423,53 @@ body, div, li, dd, dt, td, select, textarea, input {
                       </table>
                     </div>              
                 </div>
-                
-                
-                	<div class="tbody m-tcol-c" id="tbody">
-					${bDto.content}
-				 	</div>
+                	<div class="tbody m-tcol-c" id="tbody">${bDto.content}</div>
 				 </c:forEach>
 		</div>
+		<!-- 본문 끝 -->
+		
+		<!-- 댓글 시작 -->
 				<div class="reply-box" id="cmtMenu">
                     <div class="fl reply_sort">
                         <table cellspacing="0" cellpadding="0" border="0">
-                        <tbody><tr style="vertical-align:top">
+                        <tbody>
+                        <c:forEach items="${bodylist}" var="bDto"> 
+                        <tr style="vertical-align:top">
                         
-                        <td class="reply">
-                        	<a href="javascript:;" class="reply_btn b m-tcol-c m-tcol-p _totalCnt" id="comment">댓글 25</a>
-						</td>
-						<td class="m-tcol-c filter-30">|</td>
-						<td class="_sortList" style="padding:0;">
-							<div style="position:relative;_top:3px;"><a href="#" class="b m-tcol-c"><span>등록순</span><span style="display:none">최신순</span><span id="cafe-menu"><span class="cafe-menu-tit" style="background:none; width:13px; height:13px; margin:0;"><span class="down-btn" style="background-position:0 0; background-repeat:no-repeat; vertical-align:top"><img height="13" width="13" alt="" src="https://cafe.pstatic.net/cafe4/hidden.gif"></span></span></span></a>
-						       <div class="perid-layer2" style="display:none;">
-						       <ul>
-							       <li class="asc"><a href="#"><span>등록순</span></a></li>
-								   <li class="desc"><a href="#"><span>최신순</span></a></li>
-						       </ul>
-						       </div>
-						   </div>
-					    </td>
-						<td class="m-tcol-c filter-30">|</td>
+	                        <td class="reply">
+	                        	<a href="javascript:;" class="reply_btn b m-tcol-c m-tcol-p _totalCnt" id="comment">댓글 25</a>
+							</td>
+							<td class="m-tcol-c filter-30">|</td>
+							<td class="_sortList" style="padding:0;">
+								<div style="position:relative;_top:3px;"><a href="#" class="b m-tcol-c"><span>등록순</span><span style="display:none">최신순</span><span id="cafe-menu"><span class="cafe-menu-tit" style="background:none; width:13px; height:13px; margin:0;"><span class="down-btn" style="background-position:0 0; background-repeat:no-repeat; vertical-align:top"><img height="13" width="13" alt="" src="https://cafe.pstatic.net/cafe4/hidden.gif"></span></span></span></a>
+							       <div class="perid-layer2" style="display:none;">
+							       <ul>
+								       <li class="asc"><a href="#"><span>등록순</span></a></li>
+									   <li class="desc"><a href="#"><span>최신순</span></a></li>
+							       </ul>
+							       </div>
+							   </div>
+						    </td>
+							<td class="m-tcol-c filter-30">|</td>
 						
-						<td><span class="b m-tcol-c reply ">조회수 </span><span class="b m-tcol-c reply">806</span></td>
-						
+							<td>
+								<span class="b m-tcol-c reply ">조회수 </span>
+								<span class="b m-tcol-c reply">${bDto.viewont}</span>
+							</td>
                             <td class="m-tcol-c filter-30">|</td>
 	                        <td>
-                                <a href="#" id="likeItMemberBtn">좋아요<span id="cafe-menu"></span></a>
-                                
-                                    
+                                <a href="sweetadd.bizpoll?bno=${bDto.bno}" id="likeItMemberBtn">좋아요<span id="cafe-menu"></span></a>
                                         <div class="u_likeit_list_module _reactionModule" ">
                                             <a href="#" class="u_likeit_list_btn _button off" >
                                                 <span class="u_ico _icon"></span>
-                                                <em class="u_cnt _count">8</em>
+                                                <em class="u_cnt _count">${bDto.sweet}</em>
                                             </a>
                                         </div>
-                                    
-                                    
-                                
                             </td>
-                		
                         </tr>
+                        </c:forEach>
                         </tbody>
+                        
                         </table>
                     </div>
                     
@@ -454,7 +479,7 @@ body, div, li, dd, dt, td, select, textarea, input {
                         <tr>
 	                        <td>
 				            <td>
-				            <a href="#" class="m-tcol-c" onclick="boardPrint();">인쇄</a>
+				            <a href="#" class="m-tcol-c" >인쇄</a>
 				            </td>
                            <td class="m-tcol-c filter-30">|</td>
                            <td><span >신고</span></td>

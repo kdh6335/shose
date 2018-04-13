@@ -18,7 +18,7 @@ public class ModifyDeleteAction implements Action{
 		
 		String url = null; //"boardlist.bizpoll";
 		
-		String bno = request.getParameter("bno");
+		String bno = request.getParameter("hidden");
 		Integer num = Integer.parseInt(bno);
 		
 		System.out.println(num);

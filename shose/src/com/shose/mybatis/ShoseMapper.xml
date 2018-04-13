@@ -64,16 +64,54 @@
   		
   	</select>
   	
-  	<update id="modfiyUpdate">
+ <update id="modfiyUpdate">
   	
   		UPDATE tblboard SET title = #{title}, content= #{content}, writer = #{writer} WHERE bno = #{bno}
   		
-  	</update>
+ </update>
   	
-  	<delete id="modifDelete" parameterType="Integer">
+ <delete id="modifDelete" parameterType="Integer">
   	
   		DELETE FROM tblboard WHERE bno = #{bno}
   	
-  	</delete>
+ </delete>
+ 
+ <update id="bodylistRead">
+  	
+   UPDATE tblboard SET viewont = viewont + 1 WHERE bno = #{bno}
+  		
+ </update>
+ 
+  <update id="bodyseetadd">
+  	
+   UPDATE tblboard SET sweet = sweet + 1 WHERE bno = #{bno}
+  		
+ </update>
+ 
+ <!-- <![CDATA[]]> 쓰는 이유는 ">" 를 텍스트 파일로 인식하는 것을 방지 하기 위해서 사용 한다.  -->
+ <select id="countPaging" resultType="int">
+ 	<![CDATA[
+ 		SELECT count(bno)
+ 		FROM tblboard
+ 		WHERE bno > 0
+ 	]]>
+ </select>
+ 
+ <select id="listCriteria" resultType="boardDTO">
+ 	<![CDATA[
+ 		SELECT * 
+ 		FROM (
+ 			SELECT rownum rnum,
+ 			a.*
+ 			FROM( 
+ 				SELECT * 
+ 				FROM tblboard
+ 				WHERE bno > 0
+ 				ORDER BY bno desc
+ 				) a
+ 		)
+ 		WHERE rnum BETWEEN #{pageStart} AND #{perPageNum}
+ 	]]>
+ </select>
   
 </mapper>

@@ -528,7 +528,7 @@
                   <ul id="member">
                         <c:choose> 
 	                        <c:when test="${empty sessionScope.loginUser}">
-	                        		<li><a onclick="document.getElementById('id01').style.display='block'" style="cursor : pointer"> 로그인 </a>
+	                        		<li><a id="id02" onclick="document.getElementById('id01').style.display='block'" style="cursor : pointer"> 로그인 </a>
 			                        	<!-- <a href="login.bizpoll" > 로그인 </a> --></li>
 			                        <li><a href="Constract.bizpoll"> 회원가입</a></li>
 	                        </c:when>

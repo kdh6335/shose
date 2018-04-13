@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import com.shose.DTO.BoardDTO;
+import com.shose.DTO.CriteriaDTO;
 import com.shose.mybatis.SqlMapConfig;
 
 public class BoardDAO {
@@ -23,7 +24,7 @@ public class BoardDAO {
 				}
 				
 
-				public List<BoardDTO> listAll() {
+				public List<BoardDTO> listAll(CriteriaDTO criDto) {
 					
 					sqlSession = sqlSessionFactory.openSession();
 					
@@ -32,12 +33,11 @@ public class BoardDAO {
 					
 					try {
 						
-						list = sqlSession.selectList("boardlistAll");
+						list = sqlSession.selectList("listCriteria", criDto);
 						
 						for (BoardDTO boardDTO : list) {
 							System.out.print(boardDTO.getBno()+" , ");
 							System.out.print(boardDTO.getTitle()+" , ");
-							System.out.print(boardDTO.getContent()+" , ");
 							System.out.print(boardDTO.getWriter()+" , ");
 							System.out.print(boardDTO.getRegdate()+" , ");
 							System.out.print(boardDTO.getViewont()+" , ");
@@ -57,6 +57,35 @@ public class BoardDAO {
 					}
 					return list;
 				}
+				
+				
+				public int totalCount(CriteriaDTO criDto) {
+					
+					sqlSession = sqlSessionFactory.openSession();
+					
+					List<BoardDTO> list = new ArrayList<>();
+					
+					int result = 0;
+					
+					try {
+						
+						result = sqlSession.selectOne("countPaging",criDto);
+						
+						
+					} catch (Exception e) {
+						
+						e.printStackTrace();
+						
+					}finally {
+						
+						sqlSession.close();
+						
+					}
+					
+					return result;
+					
+				}
+				
 				
 				public int insertBoard(BoardDTO bDto) {
 					
@@ -221,4 +250,65 @@ public class BoardDAO {
 					}
 					return rusult;
 				}
+				
+				
+				public int bodylistRead(int bno) {
+					
+					sqlSession = sqlSessionFactory.openSession();
+						
+					int result = 0;
+					
+				
+					
+					try {
+						
+						result = sqlSession.update("bodylistRead", bno);
+						
+						sqlSession.commit();
+						
+					
+						
+						
+					} catch (Exception e) {
+						
+						e.printStackTrace();
+						
+					}finally {
+						
+						sqlSession.close();
+						
+					}
+					return result;
+				}
+				
+				public int bodySweetAdd(int bno) {
+					
+					sqlSession = sqlSessionFactory.openSession();
+						
+					int result = 0;
+					
+				
+					
+					try {
+						
+						result = sqlSession.update("bodyseetadd", bno);
+						
+						sqlSession.commit();
+						
+					
+						
+						
+					} catch (Exception e) {
+						
+						e.printStackTrace();
+						
+					}finally {
+						
+						sqlSession.close();
+						
+					}
+					return result;
+				}
+				
+				
 }

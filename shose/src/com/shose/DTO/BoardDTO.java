@@ -10,6 +10,7 @@ public class BoardDTO {
 	private String  writer;
 	private Date regdate;
 	private int viewont;
+	private int sweet;
 	
 	
 	
@@ -104,6 +105,16 @@ public class BoardDTO {
 	public void setViewont(int viewont) {
 		this.viewont = viewont;
 	}
+
+	public int getSweet() {
+		return sweet;
+	}
+
+	public void setSweet(int sweet) {
+		this.sweet = sweet;
+	}
+	
+	
 	
 	
 	
