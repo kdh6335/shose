@@ -18,7 +18,9 @@ public class ModifyAction implements Action{
 		
 		List<BoardDTO> list = null;
 		
-		String url = "board/modify.jsp"; 
+		String url = "modifyboard.jsp";
+		
+		System.out.println(url);
 		
 		String bno = request.getParameter("bno");
 		

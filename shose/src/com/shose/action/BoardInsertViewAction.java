@@ -17,11 +17,15 @@ public class BoardInsertViewAction implements Action{
 	public ActionForward excute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		HttpSession session = request.getSession();
-		
-		String url = "board/register.jsp";
 		
 		
+		String url = "newboard.jsp";
+		
+		String id = request.getParameter("hidden_id");
+		
+		System.out.println(id);
+		
+		request.setAttribute("id", id);
 		
 		
 		

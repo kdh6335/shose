@@ -180,16 +180,16 @@ $(document).ready(function() {
 	$(".btn_submit").on("click", function() {
 		
 		var dd =  "<%=session.getAttribute("loginUser")%>"
-		alert(dd);
+		
 		
 		if(dd != "null"){
 			
-			location.href = "boardInsertView.bizpoll";
+			$("#insert").submit();
 			
 			
 		}else {
-			
-			$("#id01").css("display  ","block");
+			alert("로그인 해주세요!!!!!!")
+			$("#id01").css("display", "block");
 			
 			} 
 	});	
@@ -209,7 +209,7 @@ $(document).ready(function() {
 			</div>
 			
 		</div>
-			<form name="fboardlist" id="fboardlist" method="post">
+			<!-- <form name="fboardlist" id="fboardlist" method="post"> -->
 				<div class="tbl_head01 tbl_wrap">
 					<table>
 						<thead>
@@ -254,12 +254,13 @@ $(document).ready(function() {
 						<li><a href="boardlist.bizpoll?page=${pageMaker.endPage+1}"><span>다음</span><span class="ico">▶</span></a></li>
 						</c:if>
 					</ul>
-						
-							<input type="button" value="글쓰기" class="btn_submit" id="btn_submit">
-						
-						
+					
+							<form id="insert" name="insert" action="boardInsertView.bizpoll"  method="post">
+								<input type="button" value="글쓰기" class="btn_submit" id="btn_submit">
+								<input type="hidden" value="${sessionScope.loginUser.mid }" name="hidden_id">
+							</form>
 				</div>
-			</form>
+			<!-- </form> -->
 			
 			<form name="fsearch" method="get">
 				<select name ="sfl" id="sfl" class="select_s">
