@@ -370,101 +370,20 @@
                         $(".ckboxs").prop("checked",false);
                   }
             });
-            
-            
-            
-            
-            
-            
-                  /* $("#li1box").on("click", function(){ // 클릭 이벤트 발생
+                              
+            $(".ckboxs").on("click", function(){
                   
-                  var ind = $("#li1box").is("#li1box:checked"); //체크 되어있으면 true, 해제되어있으면 flase 값을 반환 시켜준다.
-                  var ind2 = $("#li2box").is("#li2box:checked");
-                  var ind3 = $("#li3box").is("#li3box:checked");
-                  var ind4 = $("#li4box").is("#li4box:checked");
-
-                  if(ind==false ){
-                        $("#cbox").prop("checked",false); //.prop("checked",true) <- true는 체크를 해준다 false는 체크를 풀어준다.
-                                                
-                  }else if(ind2 == true && ind2 == true && ind3 == true && ind4 == true){
+                  var chLeng = $(".ckboxs:checkbox:checked").length; // 체크 되는대로 갯수로 반환 시켜준다. 4개 체크 되면 4로 표현
+                  
+                  
+                  
+                  if(chLeng == 4){
                         $("#cbox").prop("checked",true);
-                        $("#li1box").prop("checked",true);
-                        $("#li2box").prop("checked",true);
-                        $("#li3box").prop("checked",true);
-                        $("#li4box").prop("checked",true);
-                        }
-                  });
-                  $("#li2box").on("click", function(){ // 클릭 이벤트 발생
-                              
-                        var ind = $("#li1box").is("#li1box:checked"); //체크 되어있으면 true, 해제되어있으면 flase 값을 반환 시켜준다.
-                        var ind2 = $("#li2box").is("#li2box:checked");
-                        var ind3 = $("#li3box").is("#li3box:checked");
-                        var ind4 = $("#li4box").is("#li4box:checked");
-
-                        if(ind2==false ){
-                              $("#cbox").prop("checked",false); //.prop("checked",true) <- true는 체크를 해준다 false는 체크를 풀어준다.
-                              
-                        }else if(ind == true && ind2 == true && ind3 == true && ind4 == true){
-                              $("#cbox").prop("checked",true);
-                              $("#li1box").prop("checked",true);
-                              $("#li2box").prop("checked",true);
-                              $("#li3box").prop("checked",true);
-                              $("#li4box").prop("checked",true);
-                              }
-                        });
-                        $("#li3box").on("click", function(){ // 클릭 이벤트 발생
-                              
-                              var ind = $("#li1box").is("#li1box:checked"); //체크 되어있으면 true, 해제되어있으면 flase 값을 반환 시켜준다.
-                              var ind2 = $("#li2box").is("#li2box:checked");
-                              var ind3 = $("#li3box").is("#li3box:checked");
-                              var ind4 = $("#li4box").is("#li4box:checked");
-
-                              if(ind3==false ){
-                                    $("#cbox").prop("checked",false); //.prop("checked",true) <- true는 체크를 해준다 false는 체크를 풀어준다.
-                                                            
-                              }else if(ind == true && ind2 == true && ind3 == true && ind4 == true){
-                                    $("#cbox").prop("checked",true);
-                                    $("#li1box").prop("checked",true);
-                                    $("#li2box").prop("checked",true);
-                                    $("#li3box").prop("checked",true);
-                                    $("#li4box").prop("checked",true);
-                                    }
-                              });
-                        $("#li4box").on("click", function(){ // 클릭 이벤트 발생
-                              
-                              var ind = $("#li1box").is("#li1box:checked"); //체크 되어있으면 true, 해제되어있으면 flase 값을 반환 시켜준다.
-                              var ind2 = $("#li2box").is("#li2box:checked");
-                              var ind3 = $("#li3box").is("#li3box:checked");
-                              var ind4 = $("#li4box").is("#li4box:checked");
-                              
-
-                              if(ind4==false ){
-                                    $("#cbox").prop("checked",false); //.prop("checked",true) <- true는 체크를 해준다 false는 체크를 풀어준다.
-                                                            
-                              }else if(ind == true && ind2 == true && ind3 == true && ind4 == true){
-                                    $("#cbox").prop("checked",true);
-                                    $("#li1box").prop("checked",true);
-                                    $("#li2box").prop("checked",true);
-                                    $("#li3box").prop("checked",true);
-                                    $("#li4box").prop("checked",true);
-                                    }
-                              }); */
-                              
-                              
-                              
-                              $(".ckboxs").on("click", function(){
-                                    
-                                    var chLeng = $(".ckboxs:checkbox:checked").length; // 체크 되는대로 갯수로 반환 시켜준다. 4개 체크 되면 4로 표현
-                                    
-                                    
-                                    
-                                    if(chLeng == 4){
-                                          $("#cbox").prop("checked",true);
-                                    }else{
-                                          $("#cbox").prop("checked",false);
-                                    }
-                              });
-                  });
+                  }else{
+                        $("#cbox").prop("checked",false);
+                  }
+            });
+   		});
 </script>
 </head>
 <body>

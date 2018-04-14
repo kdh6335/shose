@@ -2,14 +2,20 @@
     pageEncoding="UTF-8"%>
     
     <!-- JSTL 라이브러리를 사용하기 위한 선언문 -->
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>   <!-- prefix는 표기법  -->
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+		<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>   <!-- prefix는 표기법  -->
+		<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+		<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%> 
 
-<%
-	response.setHeader("Cache-Control", "no-store");
-	response.setHeader("Pragma", "no-cache");
+		<%
+			response.setHeader("Cache-Control", "no-store");
+			response.setHeader("Pragma", "no-cache");
+		%>
 
-%>
+		<%
+    	// 줄바꿈을 위한 코딩
+    	pageContext.setAttribute("br", "<br/>");
+    	pageContext.setAttribute("cn", "\n");
+		%> 
 
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">

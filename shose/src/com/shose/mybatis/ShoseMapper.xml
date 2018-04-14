@@ -7,11 +7,15 @@
 <mapper namespace="com/shose/mybatis/ShoseMapper.xml">
 
   <select id="newpdtview" resultType="pDTO" parameterType="String">
+  
    			SELECT * FROM new_pro_view
+   			
   </select>
   
   <select id="bestview" resultType="pDTO" parameterType="String">
+  
    			SELECT * FROM best_pro_view
+   			
   </select>
   
   <select id="memlogin" resultType="java.util.HashMap" parameterType="String">
@@ -29,73 +33,76 @@
   
   <select id="sessionLogin" resultType="java.util.HashMap" parameterType="String">
   
-  		SELECT * FROM member WHERE mid = #{id} AND mpw = #{pw}
+  			SELECT * FROM member WHERE mid = #{id} AND mpw = #{pw}
   		
   </select>
   
 
   
   <insert id="memIsert" >
-  		INSERT INTO member (mid, mpw, mname, mphone, mjuso,  memail, mbirth, mmen) VALUES ( #{mid}, #{mpw}, #{mname}, #{mphone}, #{mjuso}, #{memail}, #{mbirth}, #{mmen} )
+  		
+  			INSERT INTO member (mid, mpw, mname, mphone, mjuso,  memail, mbirth, mmen) VALUES ( #{mid}, #{mpw}, #{mname}, #{mphone}, #{mjuso}, #{memail}, #{mbirth}, #{mmen} )
   
   </insert>
   
    <select id="boardlistAll" resultType="com.shose.DTO.BoardDTO">
   
-  		SELECT * FROM tblboard ORDER by bno desc
+  			SELECT * FROM tblboard ORDER by bno desc
   		
   	</select>
   	
   	<insert id="insertBoard" >
-  		INSERT INTO tblboard (bno, title, content, writer) 
-  		VALUES(seq_tblboard_bno.NEXTVAL, #{title} , #{content} ,#{writer})
+  	
+	  		INSERT INTO tblboard (bno, title, content, writer) 
+	  		VALUES(seq_tblboard_bno.NEXTVAL, #{title} , #{content} ,#{writer})
+	  		
   	</insert>
   	
   	
   	<select id="bodylist" resultType="boardDTO" >
   
-  		SELECT * FROM tblboard WHERE bno = #{bno}
+  			SELECT * FROM tblboard WHERE bno = #{bno}
   		
   	</select>
   	
   	<select id="modfiyList" resultType="boardDTO" >
   
-  		SELECT * FROM tblboard WHERE bno = #{bno}
+  			SELECT * FROM tblboard WHERE bno = #{bno}
   		
   	</select>
   	
- <update id="modfiyUpdate">
+	 <update id="modfiyUpdate">
+	  	
+	  		UPDATE tblboard SET title = #{title}, content= #{content}, writer = #{writer} WHERE bno = #{bno}
+	  		
+	 </update>
   	
-  		UPDATE tblboard SET title = #{title}, content= #{content}, writer = #{writer} WHERE bno = #{bno}
-  		
- </update>
-  	
- <delete id="modifDelete" parameterType="Integer">
-  	
-  		DELETE FROM tblboard WHERE bno = #{bno}
-  	
- </delete>
+	 <delete id="modifDelete" parameterType="Integer">
+	  	
+	  		DELETE FROM tblboard WHERE bno = #{bno}
+	  	
+	 </delete>
  
- <update id="bodylistRead">
-  	
-   UPDATE tblboard SET viewont = viewont + 1 WHERE bno = #{bno}
-  		
- </update>
+	 <update id="bodylistRead">
+	  	
+	   		UPDATE tblboard SET viewont = viewont + 1 WHERE bno = #{bno}
+	  		
+	 </update>
+	 
+	  <update id="bodyseetadd">
+	  	
+	   		UPDATE tblboard SET sweet = sweet + 1 WHERE bno = #{bno}
+	  		
+	 </update>
  
-  <update id="bodyseetadd">
-  	
-   UPDATE tblboard SET sweet = sweet + 1 WHERE bno = #{bno}
-  		
- </update>
- 
- <!-- <![CDATA[]]> 쓰는 이유는 ">" 를 텍스트 파일로 인식하는 것을 방지 하기 위해서 사용 한다.  -->
- <select id="countPaging" resultType="int">
- 	<![CDATA[
- 		SELECT count(bno)
- 		FROM tblboard
- 		WHERE bno > 0
- 	]]>
- </select>
+	 <!-- <![CDATA[]]> 쓰는 이유는 ">" 를 텍스트 파일로 인식하는 것을 방지 하기 위해서 사용 한다.  -->
+	 <select id="countPaging" resultType="int">
+	 	<![CDATA[
+	 		SELECT count(bno)
+	 		FROM tblboard
+	 		WHERE bno > 0
+	 	]]>
+	 </select>
  
  <select id="listCriteria" resultType="boardDTO">
  	<![CDATA[

@@ -1,10 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-        <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>   <!-- prefix는 표기법  -->
-		<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
     
        <%@ include file="header.jsp" %>
+       
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -328,8 +327,32 @@ body, div, li, dd, dt, td, select, textarea, input {
 #post_164839{
 		margin: 0 auto;
 	}
+	#list{
+		float: right;
+		background-color: #f1404b;
+    	border: none;
+    	color: white;
+   		text-align: center;
+    	text-decoration: none;
+    	display: inline-block;
+    	cursor: pointer;
+	}
+	#list:hover {
+    	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+	}
+	.url a:hover{
+		text-decoration: underline;
+	}
 </style>
 <script type="text/javascript">
+
+$(document).ready(function(){
+	
+	$("#list").on("click", function(){
+		
+		$("#boardlist").submit();
+	});
+});
 
 function delUrl() {
 	
@@ -357,6 +380,9 @@ function delUrl() {
 	<div class="list-blog border-sub" id="post_164839">
 		<div class="inbox">
 		  <div>
+		  <form action="boardlist.bizpoll" id="boardlist" name="boardlist">
+		  <input type="button" id="list" value="목록">
+		  </form>
 		  	<c:forEach items="${bodylist}" var="bDto">
 			<div class="tit-box">
 				<div class="fl">
@@ -405,25 +431,26 @@ function delUrl() {
                     </div>
                     <div class="fr">
                         <table cellspacing="0" cellpadding="0" border="0">
-                            <tbody><tr>
-                                <td valign="top" class="url" align="right">
-                                    <span class="filter-50"><a href="#" target="_top" class="m-tcol-c url-txt">${bDto.bno}</a></span>
-                                    <span class="filter-50"><a href="modify.bizpoll?bno=${bDto.bno}" class="m-tcol-c url-txt">수정</a></span>
-                                    <span class="filter-50"><a onclick="delUrl();" href="#"class="m-tcol-c url-txt">삭제</a></span>
-                                    <form action="modifydelete.bizpoll" id="delete" name="delete">
-                                    <input type="hidden" value="${bDto.bno}" id="hidden" name="hidden"><%-- modifydelete.bizpoll?bno=${bDto.bno}" --%>
-                                    </form>
-                                    <span class="filter-50"><a href="boardlist.bizpoll" class="m-tcol-c url-txt">목록</a></span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td id="sendPost_164839" class="m-tcol-c" align="right"></td>
-                            </tr>
-                        </tbody>
+                            <tbody>
+	                            <tr>
+	                                <td valign="top" class="url" align="right">
+	                                    <span class="filter-50"><a href="#" target="_top" class="m-tcol-c url-txt">${bDto.bno}</a></span>
+	                                    <span class="filter-50">| <a href="modify.bizpoll?bno=${bDto.bno}" class="m-tcol-c url-txt">수정</a></span>
+	                                    <span class="filter-50">| <a onclick="delUrl();" href="#"class="m-tcol-c url-txt">삭제</a></span>
+	                                    <!-- <span class="filter-50"><a href="boardlist.bizpoll" class="m-tcol-c url-txt">목록</a></span> -->
+	                                    <form action="modifydelete.bizpoll" id="delete" name="delete">
+	                                    <input type="hidden" value="${bDto.bno}"  id="hidden" name="hidden">
+	                                    </form>
+	                                </td>
+	                            </tr>
+	                            <tr>
+	                                <td id="sendPost_164839" class="m-tcol-c" align="right"></td>
+	                            </tr>
+                          </tbody>
                       </table>
                     </div>              
                 </div>
-                	<div class="tbody m-tcol-c" id="tbody">${bDto.content}</div>
+                	<div class="tbody m-tcol-c" id="tbody">${fn:replace(bDto.content, cn, br)}</div>
 				 </c:forEach>
 		</div>
 		<!-- 본문 끝 -->
