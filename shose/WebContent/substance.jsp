@@ -348,6 +348,7 @@ body, div, li, dd, dt, td, select, textarea, input {
 
 $(document).ready(function(){
 	
+	
 	$("#list").on("click", function(){
 		
 		$("#boardlist").submit();
@@ -434,9 +435,12 @@ function delUrl() {
                             <tbody>
 	                            <tr>
 	                                <td valign="top" class="url" align="right">
+	                                	
 	                                    <span class="filter-50"><a href="#" target="_top" class="m-tcol-c url-txt">${bDto.bno}</a></span>
-	                                    <span class="filter-50">| <a href="modify.bizpoll?bno=${bDto.bno}" class="m-tcol-c url-txt">수정</a></span>
-	                                    <span class="filter-50">| <a onclick="delUrl();" href="#"class="m-tcol-c url-txt">삭제</a></span>
+	                                    <c:if test="${fn:trim(sessionScope.loginUser.mid) eq fn:trim(bDto.writer) || fn:trim(sessionScope.loginUser.mid) eq 'chakim6' }">
+	                                    	<span class="filter-50">| <a href="modify.bizpoll?bno=${bDto.bno}" class="m-tcol-c url-txt">수정</a></span>
+	                                    	<span class="filter-50">| <a onclick="delUrl();" href="#"class="m-tcol-c url-txt">삭제</a></span>
+	                                    </c:if>
 	                                    <!-- <span class="filter-50"><a href="boardlist.bizpoll" class="m-tcol-c url-txt">목록</a></span> -->
 	                                    <form action="modifydelete.bizpoll" id="delete" name="delete">
 	                                    <input type="hidden" value="${bDto.bno}"  id="hidden" name="hidden">
