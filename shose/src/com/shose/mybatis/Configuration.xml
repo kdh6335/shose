@@ -13,6 +13,7 @@
 		<typeAlias type="com.shose.DTO.MemberDTO" alias="mDto"/>
 		<typeAlias type="com.shose.DTO.ProductDTO" alias="pDTO"/>
 		<typeAlias type="com.shose.DTO.BoardDTO" alias="boardDTO"/>
+		<typeAlias type="com.shose.DTO.NextPreDTO" alias="nDTO"/>
 	</typeAliases>
 	
 	<!-- DB접속 정보 셋팅 -->

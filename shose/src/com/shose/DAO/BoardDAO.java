@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 
 import com.shose.DTO.BoardDTO;
 import com.shose.DTO.CriteriaDTO;
+import com.shose.DTO.NextPreDTO;
 import com.shose.mybatis.SqlMapConfig;
 
 public class BoardDAO {
@@ -308,6 +309,30 @@ public class BoardDAO {
 						
 					}
 					return result;
+				}
+				
+				
+				public List<NextPreDTO> bodyNextBody(int bno) {
+					
+					sqlSession = sqlSessionFactory.openSession();
+						
+					List<NextPreDTO> list = new ArrayList<>();
+					
+					try {
+						
+						list = sqlSession.selectList("bodynext", bno);
+						
+						
+					} catch (Exception e) {
+						
+						e.printStackTrace();
+						
+					}finally {
+						
+						sqlSession.close();
+						
+					}
+					return list;
 				}
 				
 				

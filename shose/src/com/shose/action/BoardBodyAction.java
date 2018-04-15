@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.shose.DAO.BoardDAO;
 import com.shose.DTO.BoardDTO;
+import com.shose.DTO.NextPreDTO;
 
 public class BoardBodyAction implements Action{
 
@@ -17,6 +18,7 @@ public class BoardBodyAction implements Action{
 			throws ServletException, IOException {
 		
 		List<BoardDTO> list = null;
+		List<NextPreDTO> list2 = null;
 		String url = "substance.jsp";
 		
 		String bno = request.getParameter("bno");
@@ -32,7 +34,10 @@ public class BoardBodyAction implements Action{
 		
 		list = bDao.bodylist(num);
 		bDao.bodylistRead(num);
+		list2 = bDao.bodyNextBody(num);
+		
 		request.setAttribute("bodylist", list);
+		request.setAttribute("bodynext", list2);
 		
 		
 		//등록된 게시글을 본문에 출력하기

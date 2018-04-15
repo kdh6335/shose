@@ -340,8 +340,53 @@ body, div, li, dd, dt, td, select, textarea, input {
 	#list:hover {
     	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 	}
+	#next{
+		float: left;
+		background-color: #f1404b;
+    	border: none;
+    	color: white;
+   		text-align: center;
+    	text-decoration: none;
+    	display: inline-block;
+    	cursor: pointer;
+    	margin-left: 5px;
+    	padding: 1px 8px 1px 8px;
+	}
+	#prev{
+		float: left;
+		background-color: #f1404b;
+    	border: none;
+    	color: white;
+   		text-align: center;
+    	text-decoration: none;
+    	display: inline-block;
+    	cursor: pointer;
+    	padding: 1px 8px 1px 8px;
+	}
 	.url a:hover{
 		text-decoration: underline;
+	}
+	#nextpage{
+		margin-bottom: 50px;
+	}
+	.all_writer{
+		
+	}
+	.all_regdate{
+		float : right;
+		margin-right: 15px;
+	}
+	#nextprvtable{
+		width: 100%;
+	}
+	.all_tile{
+		width: 500px;
+	}
+	#nextprvtable a:hover{
+		text-decoration: underline;
+	}
+	img{
+	    margin: 0px 4px 2px 0px;
 	}
 </style>
 <script type="text/javascript">
@@ -373,7 +418,7 @@ function delUrl() {
 			//$("#frm_memeber").submit();
                 }
 }
-
+	
 
 </script>
 </head>
@@ -384,7 +429,14 @@ function delUrl() {
 		  <form action="boardlist.bizpoll" id="boardlist" name="boardlist">
 		  <input type="button" id="list" value="목록">
 		  </form>
+		  
 		  	<c:forEach items="${bodylist}" var="bDto">
+		<!--  <input type="button" id="prev" value="이전"> -->
+				<c:if test="${pageMaker.prev }">
+		  			<a href="boardbody.bizpoll?bno=${bDto.bno+1}" id="prev">이전</a>
+		  		</c:if>
+		  <!-- <input type="button" id="next" value="다음"> -->
+		  			<a href="boardbody.bizpoll?bno=${bDto.bno-1}" id="next">다음</a>
 			<div class="tit-box">
 				<div class="fl">
 					<table cellspacing ="0" cellpadding="0" border="0">
@@ -573,6 +625,28 @@ function delUrl() {
 		</div>
 		
 		
+	<div id ="nextpage">
+	<table id="nextprvtable">
+	 <c:forEach items="${bodynext}" var="bDto">
+		<tr>
+			<c:if test="${fn:trim(bDto.pre_title) ne '이전글없음'}">
+				<td><img src="image/nextprv/ico-btn-pre2_.gif" alt=""><a href="boardbody.bizpoll?bno=${bDto.pre_article_bno} " id=""> 이전글</a></td>
+				<td class = "all_tile"><a href="boardbody.bizpoll?bno=${bDto.pre_article_bno} " id=""> ${bDto.pre_title}</a></td>
+				<td class = "all_writer">${bDto.pre_writer}</td>
+				<td class = "all_regdate"><fmt:formatDate pattern="yyyy-MM-dd" value="${bDto.pre_regdate}"/></td>
+			</c:if>
+		</tr>
+		<tr>
+			<c:if test="${fn:trim(bDto.next_title) ne '다음글 없음'}">
+				<td><img src="image/nextprv/ico-btn-net2_.gif" alt=""><a href="boardbody.bizpoll?bno=${bDto.next_article_bno} " id=""> 다음글</a></td>
+				<td class = "all_tile"><a href="boardbody.bizpoll?bno=${bDto.next_article_bno} " id="">${bDto.next_title}</a></td>
+				<td class = "all_writer">${bDto.next_writer}</td>
+				<td class = "all_regdate"><fmt:formatDate pattern="yyyy-MM-dd" value="${bDto.next_regdate}"/></td>
+			</c:if>
+		</tr>
+		</c:forEach>
+	</table>
+	</div>
 	</div>
 
 </body>

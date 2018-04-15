@@ -120,5 +120,27 @@
  		WHERE rnum BETWEEN #{pageStart} AND #{perPageNum}
  	]]>
  </select>
+ 
+  <select id="bodynext" resultType="nDTO" >
+  <![CDATA[
+  SELECT * FROM (
+					SELECT
+						bno
+					    , TITLE
+					    , writer
+					    , regdate 
+					    , LEAD(bno, 1 ) OVER (ORDER BY bno DESC) AS next_article_bno
+					    , LEAD(TITLE, 1 , '다음글 없음') OVER (ORDER BY bno DESC) AS next_title
+					    , LEAD(writer, 1 , '') OVER (ORDER BY bno DESC) AS next_writer
+					    , LEAD(regdate, 1 , '') OVER (ORDER BY bno DESC) AS next_regdate
+					    , LAG(bno, 1) OVER (ORDER BY bno DESC ) AS  pre_article_bno
+					    , LAG(TITLE, 1 , '이전글없음') OVER (ORDER BY bno DESC ) pre_title
+					    , LAG(writer, 1) OVER (ORDER BY bno DESC ) AS  pre_writer
+					    , LAG(regdate, 1) OVER (ORDER BY bno DESC ) AS pre_regdate
+					FROM
+					tblboard
+				) WHERE bno= #{bno}
+	]]>
+ </select>
   
 </mapper>
