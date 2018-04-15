@@ -336,6 +336,7 @@ body, div, li, dd, dt, td, select, textarea, input {
     	text-decoration: none;
     	display: inline-block;
     	cursor: pointer;
+    	margin-top: 5px;
 	}
 	#list:hover {
     	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
@@ -351,6 +352,7 @@ body, div, li, dd, dt, td, select, textarea, input {
     	cursor: pointer;
     	margin-left: 5px;
     	padding: 1px 8px 1px 8px;
+    	margin-top: 5px;
 	}
 	#prev{
 		float: left;
@@ -362,6 +364,7 @@ body, div, li, dd, dt, td, select, textarea, input {
     	display: inline-block;
     	cursor: pointer;
     	padding: 1px 8px 1px 8px;
+    	margin-top: 5px;
 	}
 	.url a:hover{
 		text-decoration: underline;
@@ -424,20 +427,25 @@ function delUrl() {
 </head>
 <body>
 	<div class="list-blog border-sub" id="post_164839">
-		<div class="inbox">
-		  <div>
 		  <form action="boardlist.bizpoll" id="boardlist" name="boardlist">
 		  <input type="button" id="list" value="목록">
 		  </form>
 		  
-		  	<c:forEach items="${bodylist}" var="bDto">
+		  	<c:forEach items="${bodynext}" var="bDto">
 		<!--  <input type="button" id="prev" value="이전"> -->
-				<c:if test="${pageMaker.prev }">
-		  			<a href="boardbody.bizpoll?bno=${bDto.bno+1}" id="prev">이전</a>
+				<c:if test="${fn:trim(bDto.pre_title) ne '이전글없음'}">
+		  			<a href="boardbody.bizpoll?bno=${bDto.pre_article_bno}" id="prev">이전</a>
 		  		</c:if>
 		  <!-- <input type="button" id="next" value="다음"> -->
-		  			<a href="boardbody.bizpoll?bno=${bDto.bno-1}" id="next">다음</a>
+		  		<c:if test="${fn:trim(bDto.next_title) ne '다음글 없음'}">
+		  			<a href="boardbody.bizpoll?bno=${bDto.next_article_bno}" id="next">다음</a>
+		  		</c:if>
+		  	</c:forEach>
+		<div class="inbox">
+		 
+			<c:forEach items="${bodylist}" var="bDto">
 			<div class="tit-box">
+			
 				<div class="fl">
 					<table cellspacing ="0" cellpadding="0" border="0">
 						<tbody>
@@ -468,19 +476,15 @@ function delUrl() {
 			<div class="etc-box">
                     <div class="fl" id="nickname">
                         <table cellspacing="0" cellpadding="0" border="0">
-                        <tbody><tr>
-                       
-                        <td class="m-tcol-c step">
-                        <span >작성자 : </span>
-                        <span class="filter-50">${bDto.writer}</span>
-                      
-                        
-                        </td>
-						
-                        
-						
-                        </tr>
-                        </tbody></table>
+	                        <tbody>
+		                        <tr>
+			                        <td class="m-tcol-c step">
+			                        <span >작성자 : </span>
+			                        <span class="filter-50">${bDto.writer}</span>
+			                        </td>
+		                        </tr>
+	                        </tbody>
+	                    </table>
                     </div>
                     <div class="fr">
                         <table cellspacing="0" cellpadding="0" border="0">
@@ -506,11 +510,10 @@ function delUrl() {
                       </table>
                     </div>              
                 </div>
-                	<div class="tbody m-tcol-c" id="tbody">${fn:replace(bDto.content, cn, br)}</div>
 				 </c:forEach>
+                	<div class="tbody m-tcol-c" id="tbody">${fn:replace(bDto.content, cn, br)}</div>
 		</div>
 		<!-- 본문 끝 -->
-		
 		<!-- 댓글 시작 -->
 				<div class="reply-box" id="cmtMenu">
                     <div class="fl reply_sort">
@@ -555,7 +558,6 @@ function delUrl() {
                         
                         </table>
                     </div>
-                    
                     <div class="fr cafe_spi">
                         <table cellspacing="0" cellpadding="0" border="0">
                         <tbody>
@@ -571,7 +573,6 @@ function delUrl() {
                     </div>
                     
                 </div>
-                
                 <div class="box-reply2 bg-color u_cbox" id="B9Jjf">
                 	<ul class="cmlist" id="cmt_list">
                 		<li class="">		
@@ -621,33 +622,33 @@ function delUrl() {
 				</tr>
 				</tbody>
 			</table>
-                </div>
+        </div>
+		<div id ="nextpage">
+			<table id="nextprvtable">
+			 <c:forEach items="${bodynext}" var="bDto">
+				<tr>
+					<c:if test="${fn:trim(bDto.pre_title) ne '이전글없음'}">
+						<td><img src="image/nextprv/ico-btn-pre2_.gif" alt=""><a href="boardbody.bizpoll?bno=${bDto.pre_article_bno} " id=""> 이전글</a></td>
+						<td class = "all_tile"><a href="boardbody.bizpoll?bno=${bDto.pre_article_bno} " id=""> ${bDto.pre_title}</a></td>
+						<td class = "all_writer">${bDto.pre_writer}</td>
+						<td class = "all_regdate"><fmt:formatDate pattern="yyyy-MM-dd" value="${bDto.pre_regdate}"/></td>
+					</c:if>
+				</tr>
+				<tr>
+					<c:if test="${fn:trim(bDto.next_title) ne '다음글 없음'}">
+						<td><img src="image/nextprv/ico-btn-net2_.gif" alt=""><a href="boardbody.bizpoll?bno=${bDto.next_article_bno} " id=""> 다음글</a></td>
+						<td class = "all_tile"><a href="boardbody.bizpoll?bno=${bDto.next_article_bno} " id="">${bDto.next_title}</a></td>
+						<td class = "all_writer">${bDto.next_writer}</td>
+						<td class = "all_regdate"><fmt:formatDate pattern="yyyy-MM-dd" value="${bDto.next_regdate}"/></td>
+					</c:if>
+				</tr>
+				</c:forEach>
+			</table>
 		</div>
+</div>
 		
 		
-	<div id ="nextpage">
-	<table id="nextprvtable">
-	 <c:forEach items="${bodynext}" var="bDto">
-		<tr>
-			<c:if test="${fn:trim(bDto.pre_title) ne '이전글없음'}">
-				<td><img src="image/nextprv/ico-btn-pre2_.gif" alt=""><a href="boardbody.bizpoll?bno=${bDto.pre_article_bno} " id=""> 이전글</a></td>
-				<td class = "all_tile"><a href="boardbody.bizpoll?bno=${bDto.pre_article_bno} " id=""> ${bDto.pre_title}</a></td>
-				<td class = "all_writer">${bDto.pre_writer}</td>
-				<td class = "all_regdate"><fmt:formatDate pattern="yyyy-MM-dd" value="${bDto.pre_regdate}"/></td>
-			</c:if>
-		</tr>
-		<tr>
-			<c:if test="${fn:trim(bDto.next_title) ne '다음글 없음'}">
-				<td><img src="image/nextprv/ico-btn-net2_.gif" alt=""><a href="boardbody.bizpoll?bno=${bDto.next_article_bno} " id=""> 다음글</a></td>
-				<td class = "all_tile"><a href="boardbody.bizpoll?bno=${bDto.next_article_bno} " id="">${bDto.next_title}</a></td>
-				<td class = "all_writer">${bDto.next_writer}</td>
-				<td class = "all_regdate"><fmt:formatDate pattern="yyyy-MM-dd" value="${bDto.next_regdate}"/></td>
-			</c:if>
-		</tr>
-		</c:forEach>
-	</table>
-	</div>
-	</div>
+	
 
 </body>
 </html>
