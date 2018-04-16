@@ -8,8 +8,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.shose.DAO.BoardDAO;
+import com.shose.DAO.ReplyDAO;
 import com.shose.DTO.BoardDTO;
 import com.shose.DTO.NextPreDTO;
+import com.shose.DTO.ReplyDTO;
 
 public class BoardBodyAction implements Action{
 
@@ -32,8 +34,8 @@ public class BoardBodyAction implements Action{
 		
 		BoardDAO bDao = BoardDAO.getInstance();
 		
-		list = bDao.bodylist(num);
 		bDao.bodylistRead(num);
+		list = bDao.bodylist(num);
 		list2 = bDao.bodyNextBody(num);
 		
 		request.setAttribute("bodylist", list);
@@ -42,6 +44,17 @@ public class BoardBodyAction implements Action{
 		
 		//등록된 게시글을 본문에 출력하기
 		
+		//상세페이지 댓글 출력하기
+		
+		List<ReplyDTO> list3 = null;
+		ReplyDAO rDao = ReplyDAO.getInstance();
+		int count = rDao.replyCount(num);
+		list3 = rDao.replyList(num);
+		request.setAttribute("replylist", list3);
+		request.setAttribute("count", count);
+		
+		BoardDTO bDto = new BoardDTO(num, count);
+		bDao.countUpdate(bDto);
 		
 		
 	

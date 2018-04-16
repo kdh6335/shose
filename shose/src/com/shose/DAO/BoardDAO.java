@@ -336,4 +336,31 @@ public class BoardDAO {
 				}
 				
 				
+				public int countUpdate(BoardDTO bDto) {
+					
+					sqlSession = sqlSessionFactory.openSession();
+					
+					int rusult = 0;
+				
+					
+					try {
+						
+						rusult = sqlSession.update("countUpdate", bDto);
+						sqlSession.commit();
+						
+						
+						
+						
+					} catch (Exception e) {
+						
+						e.printStackTrace();
+						
+					}finally {
+						
+						sqlSession.close();
+						
+					}
+					return rusult;
+				}
+				
 }

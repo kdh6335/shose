@@ -11,13 +11,14 @@ public class BoardDTO {
 	private Date regdate;
 	private int viewont;
 	private int sweet;
+	private int count;
 	
 	
 	
 	
 	public BoardDTO() {}
 	
-	public BoardDTO(int bno, String title, String content, String writer, Date regdate, int viewont) {
+	public BoardDTO(int bno, String title, String content, String writer, Date regdate, int viewont, int count) {
 		super();
 		this.bno = bno;
 		this.title = title;
@@ -25,10 +26,14 @@ public class BoardDTO {
 		this.writer = writer;
 		this.regdate = regdate;
 		this.viewont = viewont;
+		this.count = count;
 	}
 	
-	
-
+	public BoardDTO(int bno, int count) {
+		super();
+		this.bno = bno;
+		this.count = count;
+	}
 
 	public BoardDTO(String title, String content, String writer) {
 		super();
@@ -45,6 +50,15 @@ public class BoardDTO {
 		this.title = title;
 		this.content = content;
 		this.writer = writer;
+	}
+	
+
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
 	}
 
 	public int getBno() {
@@ -113,10 +127,4 @@ public class BoardDTO {
 	public void setSweet(int sweet) {
 		this.sweet = sweet;
 	}
-	
-	
-	
-	
-	
-	
 }

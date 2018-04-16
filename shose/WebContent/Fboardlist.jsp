@@ -171,6 +171,9 @@
 		color: blue;
 		font-weight: bold;
 	}
+	#detgl_count{
+		color: #ff050f;
+	}
 </style>
 <script type="text/javascript">
 $(document).ready(function() {
@@ -226,7 +229,11 @@ $(document).ready(function() {
 								<c:forEach items="${boardlist}" var="bDto">
 							<tr>
 								<td class="td_num">${bDto.bno}</td>
-								<td class="td_subject"><a href="boardbody.bizpoll?bno=${bDto.bno}">${bDto.title}</a></td>
+								<td class="td_subject"><a href="boardbody.bizpoll?bno=${bDto.bno}">${bDto.title}</a>  
+									<c:if test="${bDto.count ne 0}">
+										<span id="detgl_count">[${bDto.count}]</span>
+									</c:if>
+								</td>
 								<td class="td_name sv_use">${bDto.writer}</td>
 								<td class="td_date"><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${bDto.regdate}"/></td>
 								<td class="td_hit">${bDto.viewont}</td>
@@ -262,7 +269,7 @@ $(document).ready(function() {
 				</div>
 			<!-- </form> -->
 			
-			<form name="fsearch" method="get">
+			<form name="fsearch" action="search.bizpoll" method="get">
 				<select name ="sfl" id="sfl" class="select_s">
 					<option value="wr_subject">제목</option>
 					<option value="wr_content">내용</option>
@@ -270,7 +277,7 @@ $(document).ready(function() {
 					<option value="mb_id">회원아이디</option>
 				</select>
 				<input type="text" name="stx" value required id="stx" class="frm_input required" size="15" maxlength="20">
-				<input type="submit" value="검색" class="btn_submit">
+				<input type="submit" value="검색" class="btn_submit2">
 			</form>
 		</div>	
 	

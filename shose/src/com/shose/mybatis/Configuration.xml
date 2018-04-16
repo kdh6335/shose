@@ -14,6 +14,7 @@
 		<typeAlias type="com.shose.DTO.ProductDTO" alias="pDTO"/>
 		<typeAlias type="com.shose.DTO.BoardDTO" alias="boardDTO"/>
 		<typeAlias type="com.shose.DTO.NextPreDTO" alias="nDTO"/>
+		<typeAlias type="com.shose.DTO.ReplyDTO" alias="rDTO"/>
 	</typeAliases>
 	
 	<!-- DB접속 정보 셋팅 -->

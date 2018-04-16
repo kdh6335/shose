@@ -1,39 +1,27 @@
 package com.shose.action;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import com.shose.DAO.BoardDAO;
-import com.shose.DTO.BoardDTO;
+import com.shose.DAO.ReplyDAO;
+import com.shose.DTO.ReplyDTO;
 
-public class BoardInsertViewAction implements Action{
+public class SearchAction implements Action{
 
 	@Override
 	public ActionForward excute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		
-		
-		String url = "newboard.jsp";
-		
-		String id = request.getParameter("hidden_id");
-
-		
-		System.out.println(id);
-		
-		request.setAttribute("id", id);
+		String url = "boardbody.bizpoll";
 		
 		
 		
 		
-	
 		ActionForward forward = new ActionForward();
-	
+		
 		forward.setPath(url);
 		forward.setRedirect(false); 
 	

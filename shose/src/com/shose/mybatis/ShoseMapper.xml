@@ -142,5 +142,27 @@
 				) WHERE bno= #{bno}
 	]]>
  </select>
+ 
+ 
+ 	<select id="replyList" resultType="rDTO">
+ 		SELECT * FROM tblreply WHERE bno=#{bno}
+ 	</select>
+ 	
+ 	<select id="replycount" resultType="rDTO">
+ 		SELECT count(*) AS count FROM tblreply WHERE bno=#{bno}
+ 	</select>
+ 	
+ 	<insert id="replyinsert" >
+ 		 INSERT INTO tblreply (rno, content, writer, bno)
+ 		VALUES (seq_tblreply_rno.NEXTVAL, #{content}, #{writer} , #{bno})
+ 	</insert>
+ 	
+ 	<delete id="replydelete">
+ 		DELETE FROM tblreply WHERE rno = #{rno}
+ 	</delete>
+ 	
+ 	<update id="countUpdate">
+ 		UPDATE tblboard SET count = #{count}  WHERE bno = #{bno}
+ 	</update>
   
 </mapper>

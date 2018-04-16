@@ -42,6 +42,8 @@ public class BoardListAction implements Action{
 			pageMaker.setTotalCount(bDao.totalCount(criDto));
 			
 			request.setAttribute("pageMaker", pageMaker);
+			
+			
 		
 		ActionForward forward = new ActionForward();
 		
