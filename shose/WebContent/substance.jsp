@@ -438,6 +438,7 @@ $(document).ready(function(){
 			} 
 	});	
 	
+	// 댓글 등록하기 위한 이벤트
 	$("#_submitCmt").on("click",function() {
 		
 		//alert("클릭");
@@ -461,6 +462,47 @@ $(document).ready(function(){
             return false;
             
         }
+		
+	});
+	
+	
+		$(".delUrl2").on("click", function(){
+		
+		
+		var Del = confirm("삭제 하시겠습니까?")
+		
+        if (Del == true)
+        {
+        	
+        	var rno = $(this).attr("data_num");
+    		
+    		$.ajax({
+    			url:"replydel.bizpoll",
+    			type: "POST",
+    			dataType :"json",
+    			data : "rno=" + rno,
+    			success : function(data){
+    				
+    				alert("댓글 삭제 성공");
+    				location.reload();
+    				
+    			},
+    			
+    			error : function(){
+    				alert("System Error!!!");
+    				
+    			}
+    		}); 
+    		
+    		
+        } else {
+        	
+            alert("취소 되었습니다.")
+            return false;
+            
+        }
+		
+		
 		
 	});
 });
@@ -557,7 +599,7 @@ function delUrl() {
 	                                    <span class="filter-50"><a href="#" target="_top" class="m-tcol-c url-txt">${bDto.bno}</a></span>
 	                                    <c:if test="${fn:trim(sessionScope.loginUser.mid) eq fn:trim(bDto.writer) || fn:trim(sessionScope.loginUser.mid) eq 'chakim6' }">
 	                                    	<span class="filter-50">| <a href="modify.bizpoll?bno=${bDto.bno}" class="m-tcol-c url-txt">수정</a></span>
-	                                    	<span class="filter-50">| <a onclick="delUrl();" href="#"class="m-tcol-c url-txt">삭제</a></span>
+	                                    	<span class="filter-50">| <a onclick="delUrl();" href="#" class="m-tcol-c url-txt">삭제</a></span>
 	                                    </c:if>
 	                                    <!-- <span class="filter-50"><a href="boardlist.bizpoll" class="m-tcol-c url-txt">목록</a></span> -->
 	                                    <form action="modifydelete.bizpoll" id="delete" name="delete">
@@ -645,13 +687,12 @@ function delUrl() {
 					                		</tr>
 					                		</tbody>
 				                		</table>				
-			                		</div>				
+			                		</div>		
 			                		<span class="date m-tcol-c filter-50"><fmt:formatDate pattern="yyyy-MM-dd" value="${bDto.regdata}"/></span>
 			                		<c:if test="${fn:trim(sessionScope.loginUser.mid) eq fn:trim(bDto.writer) || fn:trim(sessionScope.loginUser.mid) eq 'chakim6' }">			
-			                			<p class="btn_edit m-tcol-c"> |  <a href="modify.bizpoll?bno=${bDto.bno}" class="filter-70 m-tcol-c _btnNoti">수정</a></p>
-	                                	<p class="btn_edit m-tcol-c"> |  <a id="delUrl" href="replydel.bizpoll?rno=${bDto.rno }&bno=${bDto.bno}" class="filter-70 m-tcol-c _btnNoti">삭제</a></p>
-			                		
-			                		
+	                                	<p class="btn_edit m-tcol-c"> |  <a class="delUrl2" href="#" data_num="${bDto.rno }">삭제</a></p>
+	                                	<%-- <p class="btn_edit m-tcol-c"> | <input type="button" value="삭제" class="rno" name ="rno" data_num="${bDto.rno }"> --%>
+	                                	<%-- <p class="btn_edit m-tcol-c"> |  <a id="delUrl" href="replydel.bizpoll?rno=${bDto.rno }&bno=${bDto.bno}" class="filter-70 m-tcol-c _btnNoti">삭제</a></p> --%>
 			                		</c:if>
 			                					                		<p class="btn_edit m-tcol-c"><a href="#" class="filter-70 m-tcol-c _btnNoti">신고</a></p>			
 		                		</div>			

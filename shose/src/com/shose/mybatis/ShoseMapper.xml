@@ -164,5 +164,11 @@
  	<update id="countUpdate">
  		UPDATE tblboard SET count = #{count}  WHERE bno = #{bno}
  	</update>
+ 	
+ 	<select id="searchTitle" resultType="boardDTO">
+ 	
+ 		SELECT * FROM tblboard WHERE title LIKE '%#{title}%'
+ 		
+ 	</select>
   
 </mapper>

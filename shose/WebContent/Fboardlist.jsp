@@ -196,6 +196,9 @@ $(document).ready(function() {
 			
 			} 
 	});	
+	$(".btn_submit2").on("click", function(){
+		$("#fsearch").submit();
+	});
 });
 </script>
 </head>
@@ -269,15 +272,15 @@ $(document).ready(function() {
 				</div>
 			<!-- </form> -->
 			
-			<form name="fsearch" action="search.bizpoll" method="get">
+			<form name="fsearch" id ="fsearch" action="search.bizpoll" method="get">
 				<select name ="sfl" id="sfl" class="select_s">
-					<option value="wr_subject">제목</option>
-					<option value="wr_content">내용</option>
-					<option value="wr_subject||wr_content">제목+내용</option>
-					<option value="mb_id">회원아이디</option>
+					<option value="제목">제목</option>
+					<option value="내용">내용</option>
+					<option value="제목+내용">제목+내용</option>
+					<option value="아이디">회원아이디</option>
 				</select>
-				<input type="text" name="stx" value required id="stx" class="frm_input required" size="15" maxlength="20">
-				<input type="submit" value="검색" class="btn_submit2">
+				<input type="text" name="stx" id="stx" class="frm_input required" size="15" maxlength="20">
+				<input type="button" value="검색" class="btn_submit2">
 			</form>
 		</div>	
 	

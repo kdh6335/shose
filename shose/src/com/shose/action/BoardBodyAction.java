@@ -31,7 +31,7 @@ public class BoardBodyAction implements Action{
 		int num =  Integer.parseInt(bno);
 		
 		
-		
+		//등록된 게시글을 본문에 출력하기
 		BoardDAO bDao = BoardDAO.getInstance();
 		
 		bDao.bodylistRead(num);
@@ -42,7 +42,7 @@ public class BoardBodyAction implements Action{
 		request.setAttribute("bodynext", list2);
 		
 		
-		//등록된 게시글을 본문에 출력하기
+		
 		
 		//상세페이지 댓글 출력하기
 		
@@ -53,6 +53,8 @@ public class BoardBodyAction implements Action{
 		request.setAttribute("replylist", list3);
 		request.setAttribute("count", count);
 		
+		
+		// 상세페이지에서 댓글 갯수 구하기
 		BoardDTO bDto = new BoardDTO(num, count);
 		bDao.countUpdate(bDto);
 		
