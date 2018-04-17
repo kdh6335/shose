@@ -8,12 +8,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.shose.DAO.BoardDAO;
-import com.shose.DAO.ReplyDAO;
 import com.shose.DAO.SearchDAO;
 import com.shose.DTO.BoardDTO;
 import com.shose.DTO.CriteriaDTO;
 import com.shose.DTO.PageMakerDTO;
-import com.shose.DTO.ReplyDTO;
 
 public class SearchAction implements Action{
 
@@ -29,12 +27,6 @@ public class SearchAction implements Action{
 		
 		System.out.println(select + " , " + search);
 		
-		if(select.equals("제목")) {
-			
-			list = sDao.searchTitle(search);
-			
-		}
-		
 		
 		
 		String url = "Fboardlist.jsp";
@@ -47,12 +39,31 @@ public class SearchAction implements Action{
 		}
 		
 		System.out.println("페이지 번호" + page);
-		criDto.setPage(page);		BoardDAO bDao = BoardDAO.getInstance();
-		//List<BoardDTO> list = null;
-		list = bDao.listAll(criDto); // = list (게시글 목록)
+		criDto.setPage(page);
 		
+		if(select.equals("제목")){
+			
+			criDto.setSearch(search);
+			list = sDao.searchTitle(criDto); // = list (게시글 목록)
 		
+		}else if(select.equals("내용")) {
+			
+			criDto.setSearch(search);
+			list = sDao.searchContent(criDto); // = list (게시글 목록)
+			
+		}else if(select.equals("제목+내용")) {
+			
+			criDto.setSearch(search);
+			list = sDao.searchTitleContent(criDto); // = list (게시글 목록)
+			
+		}else if(select.equals("아이디")) {
+			
+			criDto.setSearch(search);
+			list = sDao.searchWriter(criDto); // = list (게시글 목록)
+			
+		}
 		
+		BoardDAO bDao = BoardDAO.getInstance();
 		request.setAttribute("boardlist", list);
 		
 		PageMakerDTO pageMaker = new PageMakerDTO();
@@ -61,16 +72,12 @@ public class SearchAction implements Action{
 		
 		request.setAttribute("pageMaker", pageMaker);
 		
-		
-		
-		
-		
 		ActionForward forward = new ActionForward();
 		
 		forward.setPath(url);
 		forward.setRedirect(false); 
 	
-		return null;
+		return forward;
 	}
 
 }

@@ -554,7 +554,7 @@
                                     </ul>
                               </div>                        
                         </li>
-                        <li><a href="boardlist.bizpoll">고객행복센터</a></li>
+                        <li><a href="boardlist.bizpoll">고객지원센터</a></li>
                   
                   </ul>
             </div>
@@ -616,6 +616,7 @@
                                     <a href="#">아쿠아슈즈</a>                           
                               </div>                        
                   </li>
+                  <li class="line3_li"><a href="boardlist.bizpoll" class="category_a">자유게시판</a></li>
             </ul>
             </div>
 </div>

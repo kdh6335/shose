@@ -44,14 +44,14 @@ public class MemberDAO {
 		
 		sqlSession = sqlSessionFactory.openSession();
 		
-		List<MemberDTO> list = new ArrayList<>();
+		List<MemberDTO> list = null;
 	
 		
 		try {
 			
 			list = sqlSession.selectList("memIdCheck", mid);
 			
-				System.out.println(list.size());
+				
 				if(list.size() > 0) {
 					
 					System.out.println("중복된 ID 입니다.");

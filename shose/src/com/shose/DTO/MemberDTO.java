@@ -14,7 +14,7 @@ public class MemberDTO {
 	private String mmen;
     private Date regdate;
     
- 
+    public MemberDTO() {}
     
     
 	public MemberDTO(String mid, String mpw) {

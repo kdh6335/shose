@@ -24,7 +24,7 @@
   			
   </select>
   
-  <select id="memIdCheck" resultType="mDto" parameterType="String">
+  <select id="memIdCheck" resultType="mDto">
   
   			SELECT * FROM member WHERE mid = #{mid}
   			
@@ -158,16 +158,90 @@
  	</insert>
  	
  	<delete id="replydelete">
+ 	
  		DELETE FROM tblreply WHERE rno = #{rno}
+ 		
  	</delete>
  	
  	<update id="countUpdate">
+ 	
  		UPDATE tblboard SET count = #{count}  WHERE bno = #{bno}
+ 		
  	</update>
  	
- 	<select id="searchTitle" resultType="boardDTO">
+ 	<select id="searchTitle" resultType="boardDTO" >
+ 		
+ 		<![CDATA[
+ 		SELECT * 
+ 		FROM (
+ 			SELECT rownum rnum,
+ 			a.*
+ 			FROM( 
+ 				SELECT * 
+ 				FROM tblboard
+ 				WHERE bno > 0 AND title LIKE '%'||#{search}||'%'
+ 				ORDER BY bno desc
+ 				) a
+ 		)
+ 		WHERE rnum BETWEEN #{pageStart} AND #{perPageNum}
+ 	]]>
+ 		
+ 	</select>
  	
- 		SELECT * FROM tblboard WHERE title LIKE '%#{title}%'
+ 	<select id="searchContent" resultType="boardDTO" >
+ 		
+ 		<![CDATA[
+ 		SELECT * 
+ 		FROM (
+ 			SELECT rownum rnum,
+ 			a.*
+ 			FROM( 
+ 				SELECT * 
+ 				FROM tblboard
+ 				WHERE bno > 0 AND content LIKE '%'||#{search}||'%'
+ 				ORDER BY bno desc
+ 				) a
+ 		)
+ 		WHERE rnum BETWEEN #{pageStart} AND #{perPageNum}
+ 	]]>
+ 		
+ 	</select>
+ 	
+ 	<select id="searchTitleContent" resultType="boardDTO" >
+ 		
+ 		<![CDATA[
+ 		SELECT * 
+ 		FROM (
+ 			SELECT rownum rnum,
+ 			a.*
+ 			FROM( 
+ 				SELECT * 
+ 				FROM tblboard
+ 				WHERE bno > 0 AND content LIKE '%'||#{search}||'%' OR title LIKE '%'||#{search}||'%'
+ 				ORDER BY bno desc
+ 				) a
+ 		)
+ 		WHERE rnum BETWEEN #{pageStart} AND #{perPageNum}
+ 	]]>
+ 		
+ 	</select>
+ 	
+ 	 	<select id="searchWriter" resultType="boardDTO" >
+ 		
+ 		<![CDATA[
+ 		SELECT * 
+ 		FROM (
+ 			SELECT rownum rnum,
+ 			a.*
+ 			FROM( 
+ 				SELECT * 
+ 				FROM tblboard
+ 				WHERE bno > 0 AND writer = #{search}
+ 				ORDER BY bno desc
+ 				) a
+ 		)
+ 		WHERE rnum BETWEEN #{pageStart} AND #{perPageNum}
+ 	]]>
  		
  	</select>
   

@@ -1,6 +1,5 @@
 package com.shose.DAO;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -23,16 +22,68 @@ public class SearchDAO {
 			return instance;
 		}
 		
-		public List<BoardDTO> searchTitle(String title) {
+		public List<BoardDTO> searchTitle(CriteriaDTO cDto) {
 			
 			sqlSession = sqlSessionFactory.openSession();
 			
 			List<BoardDTO> list = null;
 		
-			
 			try {
 				
-				list = sqlSession.selectList("searchTitle", title);
+				list = sqlSession.selectList("searchTitle", cDto);
+				
+				System.out.println(cDto.getSearch());
+				
+				for (BoardDTO boardDTO : list) {
+					System.out.print(boardDTO.getBno()+ " , ");
+					System.out.print(boardDTO.getTitle()+ " , ");
+					System.out.print(boardDTO.getContent()+ " , ");
+					System.out.print(boardDTO.getWriter()+ " , ");
+					System.out.print(boardDTO.getRegdate()+ " , ");
+					System.out.print(boardDTO.getViewont()+ " , ");
+					System.out.println();
+					System.out.println();
+				}
+				
+				
+				
+				
+				
+			} catch (Exception e) {
+				
+				e.printStackTrace();
+				
+			}finally {
+				
+				sqlSession.close();
+				
+			}
+			return list;
+		}
+		
+		public List<BoardDTO> searchContent(CriteriaDTO cDto) {
+			
+			sqlSession = sqlSessionFactory.openSession();
+			
+			List<BoardDTO> list = null;
+		
+			try {
+				
+				list = sqlSession.selectList("searchContent", cDto);
+				
+				System.out.println(cDto.getSearch());
+				
+				for (BoardDTO boardDTO : list) {
+					System.out.print(boardDTO.getBno()+ " , ");
+					System.out.print(boardDTO.getTitle()+ " , ");
+					System.out.print(boardDTO.getContent()+ " , ");
+					System.out.print(boardDTO.getWriter()+ " , ");
+					System.out.print(boardDTO.getRegdate()+ " , ");
+					System.out.print(boardDTO.getViewont()+ " , ");
+					System.out.println();
+					System.out.println();
+				}
+				
 				
 				
 				
@@ -49,4 +100,82 @@ public class SearchDAO {
 			return list;
 		}
 
+		
+		public List<BoardDTO> searchTitleContent(CriteriaDTO cDto) {
+			
+			sqlSession = sqlSessionFactory.openSession();
+			
+			List<BoardDTO> list = null;
+		
+			try {
+				
+				list = sqlSession.selectList("searchTitleContent", cDto);
+				
+				System.out.println(cDto.getSearch());
+				
+				for (BoardDTO boardDTO : list) {
+					System.out.print(boardDTO.getBno()+ " , ");
+					System.out.print(boardDTO.getTitle()+ " , ");
+					System.out.print(boardDTO.getContent()+ " , ");
+					System.out.print(boardDTO.getWriter()+ " , ");
+					System.out.print(boardDTO.getRegdate()+ " , ");
+					System.out.print(boardDTO.getViewont()+ " , ");
+					System.out.println();
+					System.out.println();
+				}
+				
+				
+				
+				
+				
+			} catch (Exception e) {
+				
+				e.printStackTrace();
+				
+			}finally {
+				
+				sqlSession.close();
+				
+			}
+			return list;
+		}
+		
+		public List<BoardDTO> searchWriter(CriteriaDTO cDto) {
+			
+			sqlSession = sqlSessionFactory.openSession();
+			
+			List<BoardDTO> list = null;
+		
+			try {
+				
+				list = sqlSession.selectList("searchWriter", cDto);
+				
+				System.out.println(cDto.getSearch());
+				
+				for (BoardDTO boardDTO : list) {
+					System.out.print(boardDTO.getBno()+ " , ");
+					System.out.print(boardDTO.getTitle()+ " , ");
+					System.out.print(boardDTO.getContent()+ " , ");
+					System.out.print(boardDTO.getWriter()+ " , ");
+					System.out.print(boardDTO.getRegdate()+ " , ");
+					System.out.print(boardDTO.getViewont()+ " , ");
+					System.out.println();
+					System.out.println();
+				}
+				
+				
+				
+				
+				
+			} catch (Exception e) {
+				
+				e.printStackTrace();
+				
+			}finally {
+				
+				sqlSession.close();
+				
+			}
+			return list;
+		}
 }

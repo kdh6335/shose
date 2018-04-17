@@ -12,35 +12,13 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="css/member.css">
 <script type="text/javascript">
-
-	/* $(document).on("click", "#idck_btn", function(){
-		
-		//새창의 크기
-		cw=550;
-		ch=300;
-		// 스크린의 크기
-		sw=screen.availWidth;
-		sh=screen.availHeight;
-		
-		// 열린 창의 포지션 가운데로 오게하기
-		px=(sw-cw)/2;
-		py=(sh-ch)/2
-		
-		var id = $("#reg_mb_id").val();
-		
-		var url = "id_olap_ck.bizpoll?memberid="+id;
-		
-		window.open(url, "_blank_1",
-					"toolbar=no, menubar=no, status=no, scrollbars=no, resizable=no, left="+px + ", top=" + py+ ", width="+cw +", height="+ch)
-	});
-	 */
 	
 		$(document).ready(function(){
 		
 			$(".btn13").on("click", function(){
 				
 			
-          	 var form = $('#frm_memeber'),
+          	 var form = $('#memberinsert'),
           	 uid = $('#reg_mb_id'),
           	 uname = $('#reg_mb_name'),
           	 upw = $('#reg_mb_password'),
@@ -78,16 +56,16 @@
 
 
                    
-                   if (id == ""){
+                    if (id == ""){
                   	 uid.focus();
-                  	 $("#span_id").css("display", "block");
+                  	 $("#span_id2").css("display", "block");
                   	 return false;
                   	 
                   	 }else if($("#hidden").val()=="N"){
                   	   
                   	   alert("중복 체크 해주세요.");
                   	   return false;
-                     }
+                     } 
                    
                    if (password == ""){
                   		 
@@ -211,7 +189,7 @@
                    
                   		
                    
-                   $("#frm_memeber").submit();
+                   $("#memberinsert").submit();
             	}
             
 			});
@@ -223,12 +201,12 @@
 
 				if(id2 == ""){
 					 $(this).focus();
-                 	 $("#span_id").css("display", "block");
+                 	 $("#span_id2").css("display", "block");
                  	 return false;
                  	
 				}else if(id2 != ""){
 					
-					$("#span_id").css("display", "none");
+					$("#span_id2").css("display", "none");
 					
 					$.ajax({
 						url:"memajax.bizpoll",
@@ -239,11 +217,11 @@
 							
 							if(data.flag == 0 ){
 								
-								$("#span_id").text("중복된 아이디 입니다.").css("display", "block");
+								$("#span_id2").text("중복된 아이디 입니다.").css("display", "block");
 								$("#hidden").val("N");
 							}else{
 								
-								$("#span_id").text("멋진 아이디 입니다.").css("display", "block").css("color","blue");
+								$("#span_id2").text("멋진 아이디 입니다.").css("display", "block").css("color", "blue");
 								$("#hidden").val("Y");
 							}
 						},
@@ -411,7 +389,7 @@
 		border-radius: 10px;
 		
 	}
-		#span_id{
+		#span_id2{
        		color: red;
        		display: none;
        }#span_name{
@@ -477,7 +455,7 @@
 
 <div id="conteiner2">
 <div id="conteiner">
-       <form name="frm_memeber" action="memberinsert.bizpoll" id="frm_memeber" method="post" >
+       <form name="memberinsert" action="memberinsert.bizpoll" id="memberinsert" method="post" >
       <div class="tbl_frm01 tbl_wrap">
         <table>
         <caption>회원가입</caption>
@@ -487,7 +465,7 @@
                         <td>
                             <span class="frm_info">영문자, 숫자, _ 만 입력 가능. 최소 5자이상 입력하세요.</span>
                             <input type="text" name="mb_id" value="" id="reg_mb_id" required  class="frm_input required " minlength="3" maxlength="20" size="10">
-                            <span id="span_id">아이디를 입력해주세요</span>
+                            <span id="span_id2">아이디를 입력해주세요</span>
                             <span id="msg_mb_id"></span></td>
                     </tr>
                     <tr>
@@ -524,8 +502,8 @@
             </th>
              
             <td id="sung">
-            <input type="radio" id="reg_mb_sung" name="reg_mb_sung" value="남자" class="required" checked="checked" >남자</input>
-            <input type="radio" id="reg_mb_sung" name="reg_mb_sung" value="여자" class="required">여자</input>
+            <input type="radio" id="reg_mb_sung" name="reg_mb_sung" value="남자" class="required" checked="checked" >남자
+            <input type="radio" id="reg_mb_sung2" name="reg_mb_sung" value="여자" class="required">여자
             </td>
         </tr>
           <tr>

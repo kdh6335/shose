@@ -29,7 +29,7 @@ public class BoardDAO {
 					
 					sqlSession = sqlSessionFactory.openSession();
 					
-					List<BoardDTO> list = new ArrayList<>();
+					List<BoardDTO> list = null;
 				
 					
 					try {

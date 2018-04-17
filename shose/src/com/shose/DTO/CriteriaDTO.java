@@ -6,6 +6,7 @@ public class CriteriaDTO {
 	
 	private int page; // 페이지번호(하단의 번호들 클릭)
 	private int perPageNum; //한페이지에 보여줄 게시글 수
+	private String search;
 
 	public CriteriaDTO() {
 		
@@ -13,7 +14,14 @@ public class CriteriaDTO {
 		this.perPageNum = 10;
 	}
 	
-	
+
+	public CriteriaDTO(String search) {
+		super();
+		this.search = search;
+	}
+
+
+
 
 	public int getPage() {
 		return page;
@@ -43,6 +51,18 @@ public class CriteriaDTO {
 
 	public void setPerPageNum(int perPageNum) {
 		this.perPageNum = perPageNum;
+	}
+
+
+
+	public String getSearch() {
+		return search;
+	}
+
+
+
+	public void setSearch(String search) {
+		this.search = search;
 	}
 	
 	
