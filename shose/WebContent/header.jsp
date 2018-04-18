@@ -215,6 +215,7 @@
 		padding: 8px 12px;
 		margin-bottom: 15px;
 		outline: none; /* input을 클릭하면 파란색 테두리가 사라진다.  */
+		margin-left: 12px;
 		
 	}
 	#login_form{
@@ -459,13 +460,12 @@
 					
 					alert("로그아웃 실패");
 					
-					
 				}else{
 					
 					alert("로그아웃 성공");
-					location.href = "index.bizpoll";
+					//location.href = "index.bizpoll";
 					//$("#frm_memeber").submit();
-					//location.reload();
+					location.reload();
 				} 
 			},
 			
@@ -474,20 +474,8 @@
 				
 				}
 			});
-		
-		
-		
-		
 		});
-		
-		
-	
-	
-	
-	
 	});
-	
-		
 
 </script>
 </head>
@@ -502,7 +490,7 @@
 			x
 		</a>
 		<a href="#">About</a>
-		<a href="Fboardlist.jsp">Free Board</a>
+		<a href="boardlist.bizpoll">Free Board</a>
 		<a href="#">Clients</a>
 		<a href="#">Contact</a>
 	</div>
@@ -547,14 +535,24 @@
                               <a href="#">마이페이지▼</a>
                               <div id = "dropdown">
                                     <ul>
-                                    <li><a href="#">주문/배송조회</a></li>
-                                    <li><a href="#">장바구니</a></li>
-                                    <li><a href="#">위시리스트</a></li>
-                                    <li><a href="#">쿠폰조회</a></li>
+	                                    <li><a href="#">주문/배송조회</a></li>
+	                                    <li><a href="#">장바구니</a></li>
+	                                    <li><a href="#">위시리스트</a></li>
+	                                    <li><a href="#">쿠폰조회</a></li>
                                     </ul>
                               </div>                        
                         </li>
-                        <li><a href="boardlist.bizpoll">고객지원센터</a></li>
+                        <li id = "li_drop">
+                        
+                        	<a href="#">고객지원센터▼</a>
+                        	<div id = "dropdown">
+                                    <ul>
+	                                    <li><a href="boardlist.bizpoll">고객지원</a></li>
+	                                    <li><a href="#">공지사항</a></li>
+	                                    <li><a href="#">FAQ 게시판</a></li>
+                                    </ul>
+                              </div> 
+                        	</li>
                   
                   </ul>
             </div>

@@ -103,12 +103,6 @@ public class BzipollFrontController extends HttpServlet {
 				forward = action.excute(request, respnse); // 공통 분기작업에 보낼 forward
 				
 				
-			}else if(command.equals("/sessionLogin.bizpoll")) {
-				
-				action = new SessionLoginAction();//action은 인터페이스: 다형성을 이용해서 해당 액션기능을 action에 넣는다
-				forward = action.excute(request, respnse); // 공통 분기작업에 보낼 forward
-				
-				
 			}else if(command.equals("/logout.bizpoll")) {
 				
 				action = new LoginOutAction();//action은 인터페이스: 다형성을 이용해서 해당 액션기능을 action에 넣는다

@@ -18,7 +18,7 @@ public class BoardListAction implements Action{
 	public ActionForward excute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-			String url = "Fboardlist.jsp";
+			String url = "board/Fboardlist.jsp";
 			
 			
 			CriteriaDTO criDto = new CriteriaDTO();
@@ -28,6 +28,12 @@ public class BoardListAction implements Action{
 			}
 			
 			System.out.println("페이지 번호" + page);
+			
+			
+			String search = "";
+			String select = "";
+			criDto.setSelect(select);
+			criDto.setSearch(search);
 			criDto.setPage(page);
 			BoardDAO bDao = BoardDAO.getInstance();
 			List<BoardDTO> list = null;
@@ -38,10 +44,15 @@ public class BoardListAction implements Action{
 			request.setAttribute("boardlist", list);
 			
 			PageMakerDTO pageMaker = new PageMakerDTO();
+			
+			
 			pageMaker.setCriDto(criDto);
-			pageMaker.setTotalCount(bDao.totalCount(criDto));
+			pageMaker.setTotalCount(bDao.totalCount(criDto)); // 게시글 전체 갯수를 찾아준다.
+			
+			String flag = "0";
 			
 			request.setAttribute("pageMaker", pageMaker);
+			request.setAttribute("flag", flag);
 			
 			
 		

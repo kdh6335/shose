@@ -97,11 +97,29 @@
  
 	 <!-- <![CDATA[]]> 쓰는 이유는 ">" 를 텍스트 파일로 인식하는 것을 방지 하기 위해서 사용 한다.  -->
 	 <select id="countPaging" resultType="int">
-	 	<![CDATA[
+	 
 	 		SELECT count(bno)
 	 		FROM tblboard
-	 		WHERE bno > 0
+	 		
+	 	<![CDATA[
+	 		WHERE bno > 0 
 	 	]]>
+	 	
+	 	<choose>
+	    	<when test="select.equals('제목')">
+	 			AND	 title LIKE '%'||#{search}||'%'
+	 		</when>
+	 		<when test="select.equals('내용')">
+	 			AND	 content LIKE '%'||#{search}||'%'
+	 		</when>
+	 		<when test="select.equals('제목내용')">
+	 			AND	 content LIKE '%'||#{search}||'%' OR title LIKE '%'||#{search}||'%'
+	 		</when>
+	 		<when test="select.equals('아이디')">
+	 			AND	 writer = #{search}
+	 		</when>
+ 		</choose>
+	 
 	 </select>
  
  <select id="listCriteria" resultType="boardDTO">
@@ -171,7 +189,7 @@
  	
  	<select id="searchTitle" resultType="boardDTO" >
  		
- 		<![CDATA[
+ 		
  		SELECT * 
  		FROM (
  			SELECT rownum rnum,
@@ -179,12 +197,28 @@
  			FROM( 
  				SELECT * 
  				FROM tblboard
- 				WHERE bno > 0 AND title LIKE '%'||#{search}||'%'
+ 				<![CDATA[
+ 				WHERE bno > 0 AND
+ 					]]>
+ 	<choose>
+    	<when test="select.equals('제목')">
+ 				 title LIKE '%'||#{search}||'%'
+ 		</when>
+ 		<when test="select.equals('내용')">
+ 				 content LIKE '%'||#{search}||'%'
+ 		</when>
+ 		<when test="select.equals('제목내용')">
+ 				 content LIKE '%'||#{search}||'%' OR title LIKE '%'||#{search}||'%'
+ 		</when>
+ 		<when test="select.equals('아이디')">
+ 				 writer = #{search}
+ 		</when>
+ 	</choose>
  				ORDER BY bno desc
  				) a
  		)
  		WHERE rnum BETWEEN #{pageStart} AND #{perPageNum}
- 	]]>
+ 
  		
  	</select>
  	

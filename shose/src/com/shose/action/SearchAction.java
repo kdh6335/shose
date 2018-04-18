@@ -18,6 +18,7 @@ public class SearchAction implements Action{
 	@Override
 	public ActionForward excute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		List<BoardDTO> list = null;
 		SearchDAO sDao = SearchDAO.getInstance();
 		//String url = "boardbody.bizpoll";
@@ -29,7 +30,7 @@ public class SearchAction implements Action{
 		
 		
 		
-		String url = "Fboardlist.jsp";
+		String url = "board/Fboardlist.jsp";
 		
 		
 		CriteriaDTO criDto = new CriteriaDTO();
@@ -41,35 +42,29 @@ public class SearchAction implements Action{
 		System.out.println("페이지 번호" + page);
 		criDto.setPage(page);
 		
-		if(select.equals("제목")){
-			
-			criDto.setSearch(search);
-			list = sDao.searchTitle(criDto); // = list (게시글 목록)
-		
-		}else if(select.equals("내용")) {
-			
-			criDto.setSearch(search);
-			list = sDao.searchContent(criDto); // = list (게시글 목록)
-			
-		}else if(select.equals("제목+내용")) {
-			
-			criDto.setSearch(search);
-			list = sDao.searchTitleContent(criDto); // = list (게시글 목록)
-			
-		}else if(select.equals("아이디")) {
-			
-			criDto.setSearch(search);
-			list = sDao.searchWriter(criDto); // = list (게시글 목록)
-			
-		}
+		criDto.setSelect(select);
+		criDto.setSearch(search);
+		list = sDao.searchTitle(criDto); // = list (게시글 목록)
 		
 		BoardDAO bDao = BoardDAO.getInstance();
 		request.setAttribute("boardlist", list);
 		
 		PageMakerDTO pageMaker = new PageMakerDTO();
 		pageMaker.setCriDto(criDto);
-		pageMaker.setTotalCount(bDao.totalCount(criDto));
+		int totalcount = bDao.totalCount(criDto);
 		
+		System.out.println("전체 카운트 " + totalcount);
+		
+		pageMaker.setTotalCount(totalcount);
+		
+		int count = list.size();
+		String flag = "1";
+		
+		request.setAttribute("sfl", select);
+		request.setAttribute("stx", search);
+		
+		request.setAttribute("flag", flag);
+		request.setAttribute("count", count);
 		request.setAttribute("pageMaker", pageMaker);
 		
 		ActionForward forward = new ActionForward();

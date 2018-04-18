@@ -17,7 +17,7 @@ public class BoardInsertViewAction implements Action{
 	public ActionForward excute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		String url = "newboard.jsp";
+		String url = "board/newboard.jsp";
 		
 		String id = request.getParameter("hidden_id");
 

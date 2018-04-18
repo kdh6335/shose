@@ -4,7 +4,7 @@
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>   <!-- prefix는 표기법  -->
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
     
-    <%@ include file="header.jsp" %>
+    <%@ include file="../header.jsp" %>
     
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -173,11 +173,21 @@
 	}
 	#detgl_count{
 		color: #ff050f;
+	}#count{
+		text-align: left;
 	}
 </style>
 <script type="text/javascript">
 $(document).ready(function() {
 	
+	var hidden = $("#hidden").val();
+	
+	if(hidden==0){
+		$("#stx").focus();
+		$("#count").css("height","60px").css("text-align" , "right");
+	}else{
+		$("#count").css("height","20px").css("text-align" , "left");
+	}
 	
 	// 게시글 등록 버튼을 클릭하면 이벤트 처리
 	$(".btn_submit").on("click", function() {
@@ -244,26 +254,63 @@ $(document).ready(function() {
 							</tr>
 								</c:forEach>
 							</tbody>
+							<c:if test="${flag eq '1' }">
+							<tr>
+								<td></td>
+								<td id="count">
+									<c:if test="${count ne 0 }">
+										${count}건 검색 되었습니다.
+									</c:if>
+									<c:if test="${count eq 0 }">
+										${count}건 검색 되었습니다. 다른 이름으로 검색해주세요.
+									</c:if> 
+										<input type="hidden" id="hidden" value="${count }">
+								</td>
+							
+							</tr>
+							</c:if>
 					</table>
 				
 				</div>
 				<div>
-					<ul id = "num_list">
-						<c:if test="${pageMaker.prev }">
-						<li><a href="boardlist.bizpoll?page=${pageMaker.startPage -1 }"><span>이전</span><span class="ico">◀</span></a></li>
-						</c:if>
+					  <c:if test="${flag eq '1' }">
+						<ul id = "num_list">
+							<c:if test="${pageMaker.prev }">
+							<li><a href="search.bizpoll?page=${pageMaker.startPage -1 }"><span>이전</span><span class="ico">◀</span></a></li>
+							</c:if>
+							
+							<!-- <li><a href="#">&laquo;</a></li> -->
+							<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
+							<li <c:out value="${pageMaker.criDto.page == idx? 'class=active':''}"/>>
+								<a href="search.bizpoll?page=${idx}&sfl=${sfl}&stx=${stx}">${idx}</a></li>
+							</c:forEach>
+							<!-- <li><a href="#">&raquo;</a></li> -->
+							
+							<c:if test="${pageMaker.next }">
+							<li><a href="search.bizpoll?page=${pageMaker.endPage+1}"><span>다음</span><span class="ico">▶</span></a></li>
+							</c:if>
+						</ul>
+					  </c:if>
 						
-						<!-- <li><a href="#">&laquo;</a></li> -->
-						<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
-						<li <c:out value="${pageMaker.criDto.page == idx? 'class=active':''}"/>>
-							<a href="boardlist.bizpoll?page=${idx}">${idx}</a></li>
-						</c:forEach>
-						<!-- <li><a href="#">&raquo;</a></li> -->
-						
-						<c:if test="${pageMaker.next }">
-						<li><a href="boardlist.bizpoll?page=${pageMaker.endPage+1}"><span>다음</span><span class="ico">▶</span></a></li>
-						</c:if>
-					</ul>
+					  <c:if test="${flag eq '0' }">
+						<ul id = "num_list">
+							<c:if test="${pageMaker.prev }">
+							<li><a href="boardlist.bizpoll?page=${pageMaker.startPage -1 }"><span>이전</span><span class="ico">◀</span></a></li>
+							</c:if>
+							
+							<!-- <li><a href="#">&laquo;</a></li> -->
+							<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
+							<li <c:out value="${pageMaker.criDto.page == idx? 'class=active':''}"/>>
+								<a href="boardlist.bizpoll?page=${idx}">${idx}</a></li>
+							</c:forEach>
+							<!-- <li><a href="#">&raquo;</a></li> -->
+							
+							<c:if test="${pageMaker.next }">
+							<li><a href="boardlist.bizpoll?page=${pageMaker.endPage+1}"><span>다음</span><span class="ico">▶</span></a></li>
+							</c:if>
+						</ul>
+					  </c:if>
+					
 					
 							<form id="insert" name="insert" action="boardInsertView.bizpoll"  method="post">
 								<input type="button" value="글쓰기" class="btn_submit" id="btn_submit">
@@ -276,7 +323,7 @@ $(document).ready(function() {
 				<select name ="sfl" id="sfl" class="select_s">
 					<option value="제목">제목</option>
 					<option value="내용">내용</option>
-					<option value="제목+내용">제목+내용</option>
+					<option value="제목내용">제목+내용</option>
 					<option value="아이디">회원아이디</option>
 				</select>
 				<input type="text" name="stx" id="stx" class="frm_input required" size="15" maxlength="20">

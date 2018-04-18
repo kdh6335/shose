@@ -12,7 +12,7 @@ import com.shose.DTO.NextPreDTO;
 import com.shose.mybatis.SqlMapConfig;
 
 public class BoardDAO {
-	// MyBatis 세팅값 호출
+				// MyBatis 세팅값 호출
 				SqlSessionFactory sqlSessionFactory = SqlMapConfig.getSqlSession();
 			
 				//mapper에 접근하기 위한 SqlSession
@@ -64,7 +64,6 @@ public class BoardDAO {
 					
 					sqlSession = sqlSessionFactory.openSession();
 					
-					List<BoardDTO> list = new ArrayList<>();
 					
 					int result = 0;
 					
