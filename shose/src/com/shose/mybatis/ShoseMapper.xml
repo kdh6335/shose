@@ -181,6 +181,12 @@
  		
  	</delete>
  	
+ 	<delete id="replyAllDelete">
+ 	
+ 		DELETE FROM tblreply WHERE bno = #{bno}
+ 		
+ 	</delete>
+ 	
  	<update id="countUpdate">
  	
  		UPDATE tblboard SET count = #{count}  WHERE bno = #{bno}

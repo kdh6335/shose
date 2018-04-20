@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.shose.DAO.BoardDAO;
+import com.shose.DAO.ReplyDAO;
 import com.shose.DTO.BoardDTO;
 
 public class ModifyDeleteAction implements Action{
@@ -25,6 +26,8 @@ public class ModifyDeleteAction implements Action{
 		
 		BoardDAO bDao = BoardDAO.getInstance();
 		int result = bDao.modifDelete(num);
+		ReplyDAO rDao = ReplyDAO.getInstance();
+		rDao.replyAllDelete(num);
 		
 		if (result > 0) {
 			

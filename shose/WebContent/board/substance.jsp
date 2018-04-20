@@ -484,18 +484,17 @@ img {
 	padding: 1px 8px 1px 8px;
 	margin-top: 5px;
 }
+	#redetgl{
+		display: none;
+	}
 </style>
 <script type="text/javascript">
 
+
 $(document).ready(function(){
 	
-	$("#comment_text").val("");
+	comment_list();
 	
-	
-	$("#list").on("click", function(){
-		
-		$("#boardlist").submit();
-	});
 	
 	// 게시글 등록 버튼을 클릭하면 이벤트 처리
 	$(".btn_submit").on("click", function() {
@@ -512,86 +511,133 @@ $(document).ready(function(){
 
 			}
 		});
+	
+	
+		$("#list").on("click", function(){
+			
+			$("#boardlist").submit();
+		});
+	
+	
+});
+	
+	function comment_list(){
+		
+		var bno = $("#hidden").val();
+		
+		$.ajax({
+			type : "POST",
+			url : "commentlist.bizpoll",
+			data : "bno=" + bno,
+			success : function(result) {
+
+				$("#commentlist").html(result);
+
+			}
+		});
+	}
+	
+	//$("#comment_text").val("");
+	
+	
+
+	
 
 		// 댓글 등록하기 위한 이벤트
-		$("#_submitCmt").on("click", function() {
+		$(document).on("click", "#_submitCmt",function() {
+			
+			
+		var bno = $("#bno").val();
+		var mid = $("#mid2").val();
+		var comment = $("#comment_text").val();
+			
+			
+			$.ajax({
+				url : "replyadd.bizpoll",
+				type : "POST",
+				dataType : "json",
+				data : "bno=" + bno +"&mid=" + mid +"&comment_text=" + comment,
+				success : function(data) {
+
+					alert("댓글 등록 성공");
+					$("#comment_text").val("");
+					comment_list();
+
+				},
+
+				error : function() {
+					alert("System Error!!!");
+
+				}
+			});
 
 			//alert("클릭");
-			$("#detgl").submit();
+			//$("#detgl").submit();
 
 		});
+	
+	
+	
+		$(document).on("click", ".delUrl2", function() {
+			
+				var Del = confirm("삭제 하시겠습니까?")
 
-		// 댓글 삭제 이벤트
-		$("#delUrl").on("click", function() {
+				if (Del == true) {
 
-			var Del = confirm("삭제 하시겠습니까?")
-			if (Del == true) {
-				// $("#resart").submit();
-				alert("삭제 되었습니다.")
+					var rno = $(this).attr("data_num");
 
-				// location.reload();
-			} else {
+					$.ajax({
+						url : "replydel.bizpoll",
+						type : "POST",
+						dataType : "json",
+						data : "rno=" + rno,
+						success : function(data) {
 
-				alert("취소 되었습니다.")
-				return false;
+							alert("댓글 삭제 성공");
+							comment_list();
 
-			}
+						},
 
-		});
+						error : function() {
+							alert("System Error!!!");
 
-		$(".delUrl2").on("click", function() {
+						}
+					});
 
-			var Del = confirm("삭제 하시겠습니까?")
+				} else {
 
-			if (Del == true) {
+					alert("취소 되었습니다.")
+					return false;
 
-				var rno = $(this).attr("data_num");
+				}
 
-				$.ajax({
-					url : "replydel.bizpoll",
-					type : "POST",
-					dataType : "json",
-					data : "rno=" + rno,
-					success : function(data) {
+			}); 
 
-						alert("댓글 삭제 성공");
-						location.reload();
+		 
 
-					},
-
-					error : function() {
-						alert("System Error!!!");
-
-					}
-				});
-
-			} else {
-
-				alert("취소 되었습니다.")
-				return false;
-
-			}
-
-		});
-	});
-
-	function delUrl() {
+	/* function delUrl() {
 
 		var Del = confirm("삭제 하시겠습니까?")
-		if (Del == true) {
+		var detgl = $("#command").val();
+		
+		 if (Del == true && detgl == null ) {
 
 			alert("삭제 되었습니다.")
 			$("#delete").submit();
 
-		} else {
+		} else if (Del == false) {
 
 			alert("취소 되었습니다.")
 			return false;
 			//location.href = "sessionLogin.bizpoll";
 			//alert($("#frm_memeber"));
 			//$("#frm_memeber").submit();
-		}
-	}
+		} else if( detgl != null ) {
+
+			alert("댓글 있는 글은 삭제 할 수 없습니다.")
+			
+		} 
+	} */
 </script>
 </head>
 <body>
@@ -726,52 +772,13 @@ $(document).ready(function(){
 
 		</div>
 		<div class="box-reply2 bg-color u_cbox" id="B9Jjf">
-			<ul class="cmlist" id="cmt_list">
-				<c:forEach items="${replylist}" var="bDto">
-					<%-- <form action="replydel.bizpoll" id="replydel" name="replydel" method="post">
-			                			<input type="hidden" id="redel" name="redel" value="${bDto.rno }">
-			     </form> --%>
-					<li class="">
-						<div class="comm_cont">
-							<div class="h">
-								<div class="pers_nick_area">
-									<table cellspacing="0" summary="퍼스나콘/아이디 영역">
-										<tbody>
-											<tr>
-												<td class="p-nick"><a href="#"
-													class="m-tcol-c _rosRestrict _nickUI" style="">${bDto.writer}</a>
-												</td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-								<span class="date m-tcol-c filter-50"><fmt:formatDate
-										pattern="yyyy-MM-dd" value="${bDto.regdata}" /></span>
-								<c:if
-									test="${fn:trim(sessionScope.loginUser.mid) eq fn:trim(bDto.writer) || fn:trim(sessionScope.loginUser.mid) eq 'chakim6' }">
-									<p class="btn_edit m-tcol-c">
-										| <a class="delUrl2" href="#" data_num="${bDto.rno }">삭제</a>
-									</p>
-									<%-- <p class="btn_edit m-tcol-c"> | <input type="button" value="삭제" class="rno" name ="rno" data_num="${bDto.rno }"> --%>
-									<%-- <p class="btn_edit m-tcol-c"> |  <a id="delUrl" href="replydel.bizpoll?rno=${bDto.rno }&bno=${bDto.bno}" class="filter-70 m-tcol-c _btnNoti">삭제</a></p> --%>
-								</c:if>
-								<p class="btn_edit m-tcol-c">
-									<a href="#" class="filter-70 m-tcol-c _btnNoti">신고</a>
-								</p>
-							</div>
-							<p class="comm m-tcol-c" style="">
-								<span class="comm_body">${fn:replace(bDto.content, cn, br)}</span>
-							</p>
-						</div>
-					</li>
-					<li class="filter-30 board-box-line-dashed"></li>
-				</c:forEach>
-			</ul>
-			<form action="replyadd.bizpoll" id="detgl" name="detgl" method="post">
-				<table cellspacing="0" class="cminput">
+		
+			<div id="commentlist"></div>
+			
+				<table id="redetgl2" cellspacing="0" class="cminput">
 					<%--  <c:if test="${fn:trim(sessionScope.loginUser.mid) eq fn:trim(bDto.writer) || fn:trim(sessionScope.loginUser.mid) eq 'chakim6' }"> --%>
 					<c:if test="${fn:trim(sessionScope.loginUser.mid) ne ''}">
-						<input type="hidden" name="mid" value="${sessionScope.loginUser.mid }" />
+						<input type="hidden" name="mid" id="mid2" value="${sessionScope.loginUser.mid }" />
 						<tbody>
 
 							<div id="detgl2">작성자 : ${sessionScope.loginUser.mid }</div>
@@ -783,13 +790,9 @@ $(document).ready(function(){
 							<tr>
 								<td class="i2">
 									<div class="comm_write_wrap border-sub skin-bgcolor">
-										<textarea id="comment_text" name="comment_text" cols="50"
-											rows="2" class="textarea m-tcol-c" maxlength="6000"
-											style="overflow: hidden; line-height: 14px; height: 39px;"
+										<textarea id="comment_text" name="comment_text" cols="50" rows="2" class="textarea m-tcol-c" style="overflow: hidden; line-height: 14px; height: 39px;"
 											title="댓글입력"></textarea>
 
-										<div class="u_cbox_upload_image" style="display: none">
-										</div>
 									</div>
 								</td>
 								<td class="i3">
@@ -802,7 +805,11 @@ $(document).ready(function(){
 							</tr>
 
 						</tbody>
+						
+						
 					</c:if>
+					
+					
 					<c:if test="${fn:trim(sessionScope.loginUser.mid) eq ''}">
 						<tr>
 							<td colspan="3"><a id="id02"
@@ -811,7 +818,7 @@ $(document).ready(function(){
 						</tr>
 					</c:if>
 				</table>
-			</form>
+			
 		</div>
 		<div id="nextpage">
 			<table id="nextprvtable">

@@ -128,5 +128,29 @@ public class ReplyDAO {
 			}
 			return result;
 		}
+		
+		public int replyAllDelete(int bno) {
+			
+			sqlSession = sqlSessionFactory.openSession();
+			
+			int result=0;
+		
+			try {
+				
+				result = sqlSession.delete("replyAllDelete", bno);
+				
+				sqlSession.commit();
+				
+			} catch (Exception e) {
+				
+				e.printStackTrace();
+				
+			}finally {
+				
+				sqlSession.close();
+				
+			}
+			return result;
+		}
 
 }

@@ -176,6 +176,12 @@
 	}#count{
 		text-align: left;
 	}
+	.search{
+		color: red;
+	}
+	#new{
+		color: red;
+	}
 </style>
 <script type="text/javascript">
 $(document).ready(function() {
@@ -240,15 +246,31 @@ $(document).ready(function() {
 						</thead>
 						<tbody>
 								<c:forEach items="${boardlist}" var="bDto">
+								<fmt:formatDate value="${today}" pattern="yyyy-MM-dd" var="today2"/>
+								<fmt:formatDate value="${bDto.regdate}" pattern="yyyy-MM-dd" var="regdate2"/>
 							<tr>
 								<td class="td_num">${bDto.bno}</td>
 								<td class="td_subject"><a href="boardbody.bizpoll?bno=${bDto.bno}">${bDto.title}</a>  
 									<c:if test="${bDto.count ne 0}">
 										<span id="detgl_count">[${bDto.count}]</span>
 									</c:if>
+									<c:if test="${today2 == regdate2}">
+										<span id="new">new!</span>
+									</c:if>
 								</td>
 								<td class="td_name sv_use">${bDto.writer}</td>
-								<td class="td_date"><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${bDto.regdate}"/></td>
+								
+								
+								
+							<c:choose>
+								<c:when test="${today2 == regdate2}">
+								<td class="td_date"><fmt:formatDate pattern="HH:mm" value="${bDto.regdate}"/></td>
+								</c:when>
+								<c:otherwise>
+								<td class="td_date"><fmt:formatDate pattern="yyyy-MM-dd" value="${bDto.regdate}"/></td>
+								</c:otherwise>
+							</c:choose>
+								
 								<td class="td_hit">${bDto.viewont}</td>
 								<td class="td_vote">${bDto.sweet}</td>
 							</tr>
@@ -259,10 +281,10 @@ $(document).ready(function() {
 								<td></td>
 								<td id="count">
 									<c:if test="${count ne 0 }">
-										${count}건 검색 되었습니다.
+										<span class="search">'${stx}'</span>으로 검색한 결과는 <span class="search">'${count}'</span>건 검색 되었습니다.
 									</c:if>
 									<c:if test="${count eq 0 }">
-										${count}건 검색 되었습니다. 다른 이름으로 검색해주세요.
+										<span class="search">'${stx}'</span>으로 검색한 결과는 <span class="search">'${count}'</span>건 검색 되었습니다. 다른 이름으로 검색해주세요.
 									</c:if> 
 										<input type="hidden" id="hidden" value="${count }">
 								</td>

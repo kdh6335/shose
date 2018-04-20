@@ -6,6 +6,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONObject;
+
 import com.shose.DAO.ReplyDAO;
 
 public class ReplyAddAction implements Action{
@@ -36,12 +38,18 @@ public class ReplyAddAction implements Action{
 			
 		}
 		
+		JSONObject jjb = new JSONObject();
+		
+		response.setContentType("application/x-json; charset=UTF-8");
+		response.getWriter().println(jjb);
+		
+		
 		ActionForward forward = new ActionForward();
 		
 		forward.setPath(url);
 		forward.setRedirect(false); 
 	
-		return forward;
+		return null;
 	}
 
 }
