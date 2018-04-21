@@ -170,7 +170,7 @@
       }
       .line3_li > a {
             height: 40px;
-            color: white;
+            color: white!important;
             text-decoration: none;
             font-family : 'Nanum Pen Script', serif;
             font-size: 30px;
@@ -201,7 +201,7 @@
       }
       .category_drop > a {
 	        display: block;
-	        color: white;
+	        color: white!important;
 	        text-decoration: none;
 	        padding: 10px 0;
 	        text-align: center;

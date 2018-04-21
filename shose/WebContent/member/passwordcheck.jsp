@@ -110,6 +110,12 @@
 		float: left;
 		color: red;
 	}
+	.category_drop > a{
+		color: white;
+	}
+	.line3_li > a{
+		color: white;
+	}
 </style>
 </head>
 <body>

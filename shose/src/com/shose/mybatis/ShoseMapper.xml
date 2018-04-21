@@ -306,5 +306,11 @@
  		WHERE mid = #{mid} 
  	
  	</update>
+ 	
+ 	<delete id="memDelete">
+ 	
+ 		DELETE FROM member WHERE mid = #{mid}
+ 	
+ 	</delete>
   
 </mapper>

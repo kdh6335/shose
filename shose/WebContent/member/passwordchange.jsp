@@ -38,36 +38,49 @@
 					$("#password").css("display","inline-block").text("새 비밀번호가 서로 맞지 않습니다.");
 					
 				}else{
+					var Del = confirm("비밀번호를 변경 하시겠습니까?")
+
+					if (Del == true) {
 					
-					
-					$.ajax({
-						url:"passwordupdate.bizpoll",
-						type: "POST",
-						dataType :"json",
-						data : "mid=" +mid +"&mpw=" +  new_password,
-						success : function(data){
+						$.ajax({
+							url:"passwordupdate.bizpoll",
+							type: "POST",
+							dataType :"json",
+							data : "mid=" +mid +"&mpw=" +  new_password,
+							success : function(data){
+								
+								if(data.flag == 0 ){
+									
+									alert("비밀번호 변경 실패");
+									
+								}else{
+									
+									alert("비밀번호 변경 성공");
+									location.href = "personal.bizpoll?mid="+mid;
+									
+								} 
+							},
 							
-							if(data.flag == 0 ){
+							error : function(){
+								alert("System Error!!!");
 								
-								alert("비밀번호 변경 실패");
-								
-							}else{
-								
-								alert("비밀번호 변경 성공");
-								location.href = "personal.bizpoll?mid="+mid;
-								
-							} 
-						},
+							}
+						});
+					}else{
 						
-						error : function(){
-							alert("System Error!!!");
-							
-						}
-					});
-					
+						return false;
+						
+					}
 				}
              });
              
+			$("#cancel").on("click", function(){
+				
+				var mid = $("#reg_mb_id").val();
+				
+				location.href = "personal.bizpoll?mid="+mid;
+				
+			});
 		});
 	
 </script>
@@ -142,6 +155,12 @@
 		display: inline-block;
 		float: left;
 	}
+	.category_drop > a{
+		color: white;
+	}
+	.line3_li > a{
+		color: white;
+	}
 </style>
 </head>
 <body>
@@ -184,6 +203,7 @@
 	         <div>   
 	         	<input type="hidden" id="sessionpw" value="${sessionScope.loginUser.mpw }">
 	         	<input type="button" class="danger btn btn13" value="확인">
+	         	<input type="button" class="danger btn" id="cancel" value="취소">
 	         </div>
 </div>
 

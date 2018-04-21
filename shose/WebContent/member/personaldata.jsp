@@ -20,6 +20,7 @@
 			var memail2 = $("#memail2").val();
 			var mmen = $("#mmen").val();
 			
+			
 			if (mbirthmonth == "01"){
 				$("#user_birth_month").val("02").attr("selected", "selected");
 			}else if(mbirthmonth == "02"){
@@ -132,9 +133,11 @@
 			// 성별 체크 기본값
 			
 			if(mmen == "남자"){
-				$("#reg_mb_sung").val("남자").attr("checked", "checked");
+				$("#reg_mb_sung").val("남자").attr("checked", "checked");// 값이 남자이면 기본값을 남자로 체크
+				$("#reg_mb_sung2").attr('disabled','disabled'); // 남자로 표시 되어있으면 여자는 비활성화 시킴
 			}else if(mmen == "여자"){
-				$("#reg_mb_sung2").val("여자").attr("checked", "checked");
+				$("#reg_mb_sung2").val("여자").attr("checked", "checked");// 값이 여자이면 기본값을 남자로 체크
+				$("#reg_mb_sung").attr('disabled','disabled');// 여자로 표시 되어있으면 여자는 비활성화 시킴
 			}
 			
 			$("#passwordchange").on("click", function(){
@@ -143,13 +146,16 @@
 				
 			});
 			
-			$(".btn13").on("click", function(){
+			$("#memdelete").on("click", function(){
 				
-				var Del = confirm("회원정보를 수정 하시겠습니까?")
+				var mid =$("#reg_mb_id").val();
+				
+				var Del = confirm("회원 탈퇴를 하시겠습니까?")
 
 				if (Del == true) {
 					
 					
+					location.href = "memdelete.bizpoll?mid="+mid;
 					
 				}else{
 					
@@ -157,6 +163,24 @@
 					return false;
 					
 				}
+			});
+			
+			$(".btn13").on("click", function(){
+				
+				var Del = confirm("회원정보를 수정 하시겠습니까?")
+
+				if (Del == true) {
+					
+					$("#memberupdate").submit();
+					
+				}else{
+					
+					alert("취소 되었습니다.");
+					return false;
+					
+				}
+				
+		
 				
 			
           	 var form = $('#memberinsert'),
@@ -270,10 +294,7 @@
                   	 	return false;
                   	 
                   	 }
-                   
-                   $("#memberinsert").submit();
             	}
-            
 			});
 			
              
@@ -464,13 +485,19 @@
       #buttonsize{
       		height: 53px;
       }
+      .category_drop > a{
+		color: white;
+	  }
+	 .line3_li > a{
+		color: white;
+	  }
 </style>
 </head>
 <body>
 
 <div id="conteiner2">
 	<div id="conteiner">
-	   <form name="memberinsert" action="memberinsert.bizpoll" id="memberinsert" method="post" >
+	   <form name="memberupdate" action="memupdate.bizpoll" id="memberupdate" method="post" >
 	        <table>
 	        <caption>개인정보</caption>
 	        <tbody>

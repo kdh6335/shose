@@ -6,11 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-<link rel="stylesheet" type="text/css" href="../css/index.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" type="text/css" href="../css/member.css">
 <script type="text/javascript">
 	
 		$(document).ready(function(){
@@ -449,6 +446,12 @@
       #sung{
       		float: left;
       }
+      .category_drop > a{
+		color: white;
+	  }
+	 .line3_li > a{
+		color: white;
+	  }
 </style>
 </head>
 <body>

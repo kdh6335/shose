@@ -188,6 +188,28 @@ public class MemberDAO {
 		return result;
 }
 	
+		public int memDelete(String mid) {
+		
+				sqlSession = sqlSessionFactory.openSession();
+			
+			try {
+				
+				result = sqlSession.delete("memDelete", mid);
+				
+				sqlSession.commit();
+				
+				
+			} catch (Exception e) {
+				
+				e.printStackTrace();
+				
+			}finally {
+				
+				sqlSession.close();
+			}
+			return result;
+	}
+	
 	//세션에 저장할 값들을 불러오기
 	public MemberDTO sessionLogin(MemberDTO mDto) {
 		
