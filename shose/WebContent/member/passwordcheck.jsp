@@ -21,13 +21,13 @@
 				
 				var sessionpw = $("#sessionpw").val();
 				var reg_mb_password = $("#reg_mb_password").val();
+				var mid = $("#reg_mb_id").val();
 				
-				alert(sessionpw);
-				alert(reg_mb_password);
 				
 				if(sessionpw == reg_mb_password ){
 					
 					alert("비번이 확인 되었습니다.");
+					location.href = "personal.bizpoll?mid="+mid;
 					
 				}else{
 					

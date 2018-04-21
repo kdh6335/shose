@@ -14,6 +14,133 @@
 <script type="text/javascript">
 	
 		$(document).ready(function(){
+			
+			
+			
+			//생년월일 값을 받아오면 받아온 값으로 기본값을 잡아주는 스크립트
+			var mbirthmonth = $("#mbirthmonth").val();
+			var mbirthday = $("#mbirthday").val();
+			var memail2 = $("#memail2").val();
+			var mmen = $("#mmen").val();
+			
+			if (mbirthmonth == "01"){
+				$("#user_birth_month").val("02").attr("selected", "selected");
+			}else if(mbirthmonth == "02"){
+				$("#user_birth_month").val("02").attr("selected", "selected");
+			}else if(mbirthmonth == "03"){
+				$("#user_birth_month").val("03").attr("selected", "selected");
+			}else if(mbirthmonth == "04"){
+				$("#user_birth_month").val("04").attr("selected", "selected");
+			}else if(mbirthmonth == "05"){
+				$("#user_birth_month").val("05").attr("selected", "selected");
+			}else if(mbirthmonth == "06"){
+				$("#user_birth_month").val("06").attr("selected", "selected");
+			}else if(mbirthmonth == "07"){
+				$("#user_birth_month").val("07").attr("selected", "selected");
+			}else if(mbirthmonth == "08"){
+				$("#user_birth_month").val("08").attr("selected", "selected");
+			}else if(mbirthmonth == "09"){
+				$("#user_birth_month").val("09").attr("selected", "selected");
+			}else if(mbirthmonth == "10"){
+				$("#user_birth_month").val("10").attr("selected", "selected");
+			}else if(mbirthmonth == "11"){
+				$("#user_birth_month").val("11").attr("selected", "selected");
+			}else if(mbirthmonth == "12"){
+				$("#user_birth_month").val("12").attr("selected", "selected");
+			}
+			
+			
+			
+			
+			if (mbirthday == "01"){
+				$("#user_birth_day").val("02").attr("selected", "selected");
+			}else if(mbirthday == "02"){
+				$("#user_birth_day").val("02").attr("selected", "selected");
+			}else if(mbirthday == "03"){
+				$("#user_birth_day").val("03").attr("selected", "selected");
+			}else if(mbirthday == "04"){
+				$("#user_birth_day").val("04").attr("selected", "selected");
+			}else if(mbirthday == "05"){
+				$("#user_birth_day").val("05").attr("selected", "selected");
+			}else if(mbirthday == "06"){
+				$("#user_birth_day").val("06").attr("selected", "selected");
+			}else if(mbirthday == "07"){
+				$("#user_birth_day").val("07").attr("selected", "selected");
+			}else if(mbirthday == "08"){
+				$("#user_birth_day").val("08").attr("selected", "selected");
+			}else if(mbirthday == "09"){
+				$("#user_birth_day").val("09").attr("selected", "selected");
+			}else if(mbirthday == "10"){
+				$("#user_birth_day").val("10").attr("selected", "selected");
+			}else if(mbirthday == "11"){
+				$("#user_birth_day").val("11").attr("selected", "selected");
+			}else if(mbirthday == "12"){
+				$("#user_birth_day").val("12").attr("selected", "selected");
+			}else if(mbirthday == "13"){
+				$("#user_birth_day").val("13").attr("selected", "selected");
+			}else if(mbirthday == "14"){
+				$("#user_birth_day").val("14").attr("selected", "selected");
+			}else if(mbirthday == "15"){
+				$("#user_birth_day").val("15").attr("selected", "selected");
+			}else if(mbirthday == "16"){
+				$("#user_birth_day").val("16").attr("selected", "selected");
+			}else if(mbirthday == "17"){
+				$("#user_birth_day").val("17").attr("selected", "selected");
+			}else if(mbirthday == "18"){
+				$("#user_birth_day").val("18").attr("selected", "selected");
+			}else if(mbirthday == "19"){
+				$("#user_birth_day").val("19").attr("selected", "selected");
+			}else if(mbirthday == "20"){
+				$("#user_birth_day").val("20").attr("selected", "selected");
+			}else if(mbirthday == "21"){
+				$("#user_birth_day").val("21").attr("selected", "selected");
+			}else if(mbirthday == "22"){
+				$("#user_birth_day").val("22").attr("selected", "selected");
+			}else if(mbirthday == "23"){
+				$("#user_birth_day").val("23").attr("selected", "selected");
+			}else if(mbirthday == "24"){
+				$("#user_birth_day").val("24").attr("selected", "selected");
+			}else if(mbirthday == "25"){
+				$("#user_birth_day").val("25").attr("selected", "selected");
+			}else if(mbirthday == "26"){
+				$("#user_birth_day").val("26").attr("selected", "selected");
+			}else if(mbirthday == "27"){
+				$("#user_birth_day").val("27").attr("selected", "selected");
+			}else if(mbirthday == "28"){
+				$("#user_birth_day").val("28").attr("selected", "selected");
+			}else if(mbirthday == "29"){
+				$("#user_birth_day").val("29").attr("selected", "selected");
+			}else if(mbirthday == "30"){
+				$("#user_birth_day").val("30").attr("selected", "selected");
+			}else if(mbirthday == "31"){
+				$("#user_birth_day").val("31").attr("selected", "selected");
+			}
+			
+			
+			// 메일 기본값 잡아는 스크립트
+			if (memail2 == "naver.com"){
+				$("#selmail").val("naver.com").attr("selected", "selected");
+			}else if (memail2 == "daum.net"){
+				$("#selmail").val("daum.net").attr("selected", "selected");
+			}else if (memail2 == "nate.com"){
+				$("#selmail").val("nate.com").attr("selected", "selected");
+			}else if (memail2 == "yahoo.com"){
+				$("#selmail").val("yahoo.com").attr("selected", "selected");
+			}else if (memail2 == "gmail.com"){
+				$("#selmail").val("gmail.com").attr("selected", "selected");
+			}else{
+				$("#selmail").val("directval").attr("selected", "selected");
+			}
+			
+			// 성별 체크 기본값
+			
+			if(mmen == "남자"){
+				$("#reg_mb_sung").val("남자").attr("checked", "checked");
+			}else if(mmen == "여자"){
+				$("#reg_mb_sung2").val("여자").attr("checked", "checked");
+			}
+			
+			
 		
 			$(".btn13").on("click", function(){
 				
@@ -194,46 +321,6 @@
             
 			});
 			
-			
-			 $("#reg_mb_id").blur(function(){
-				 
-     			var id2 =$(this).val();
-
-				if(id2 == ""){
-					 $(this).focus();
-                 	 $("#span_id2").css("display", "block");
-                 	 return false;
-                 	
-				}else if(id2 != ""){
-					
-					$("#span_id2").css("display", "none");
-					
-					$.ajax({
-						url:"memajax.bizpoll",
-						type: "POST",
-						dataType :"json",
-						data : "id2=" + id2,
-						success :function(data){
-							
-							if(data.flag == 0 ){
-								
-								$("#span_id2").text("중복된 아이디 입니다.").css("display", "block");
-								$("#hidden").val("N");
-							}else{
-								
-								$("#span_id2").text("멋진 아이디 입니다.").css("display", "block").css("color", "blue");
-								$("#hidden").val("Y");
-							}
-						},
-						
-						error : function(){
-							alert("System Error!!!");
-							
-						}
-					});
-				}
-				
-             });
              
              $("#reg_mb_password").blur(function(){
              	var upw = $('#reg_mb_password');
@@ -461,7 +548,7 @@
 	                        <th scope="row"><label for="reg_mb_id">아이디</label></th>
 	                        <td>
 	                            <span class="frm_info">영문자, 숫자, _ 만 입력 가능. 최소 5자이상 입력하세요.</span>
-	                            <input type="text" name="mb_id" value="" id="reg_mb_id" class="frm_input required " readonly="readonly" minlength="3" maxlength="20" size="10">
+	                            <input type="text" name="mb_id" value="${list.mid }" id="reg_mb_id" class="frm_input required " readonly="readonly" minlength="3" maxlength="20" size="10">
 	                            <span id="span_id2">아이디를 입력해주세요</span>
 	                            <span id="msg_mb_id"></span></td>
 	                    </tr>
@@ -483,21 +570,34 @@
 	    </div>
 	        <table>
 	        <tbody>
-	         <tr>
+	        <tr>
 	            <th scope="row"><label for="reg_mb_name">이름</label>       
 	            </th>
 	             
 	            <td>
-	            <input type="text" id="reg_mb_name" name="mb_name" value="" class="frm_input required " readonly="readonly" size="10" maxlength="4">
+	            <input type="text" id="reg_mb_name" name="mb_name" value="${list.mname }" class="frm_input required " readonly="readonly" size="10" maxlength="4">
 				<span id="span_name">이름을 입력해주세요</span>
 	            </td>
+	       </tr>
+	       <tr>
+	            <th scope="row"><label for="reg_mb_sung">성별</label>       
+	            </th>
+	             
+	            <td id="sung">
+	            <input type="hidden" id="mmen" value="${list.mmen }">
+	            <input type="radio" id="reg_mb_sung" name="reg_mb_sung" value="남자" class="required" checked="checked" >남자
+	            <input type="radio" id="reg_mb_sung2" name="reg_mb_sung" value="여자" class="required">여자
+	            </td>
 	        </tr>
-	          <tr>
+	        <tr>
 	            <th scope="row"><label for="reg_mb_sung">생년월일</label>       
 	            </th>
 	             
 	            <td id="sung">
-		            <input type="text" id="reg_mb_month" name="reg_mb_month" value="" class="required" maxlength="4" size="10">년
+		            <input type="text" id="reg_mb_month" name="reg_mb_month" value="${list.mbirthyear }" class="required" maxlength="4" size="10">년
+		            <input type="hidden" id="mbirthmonth" value="${list.mbirthmonth }">
+		            <input type="hidden" id="mbirthday" value="${list.mbirthday }">
+		            
 		            <select name="user_birth_month" id= "user_birth_month">
 	                     <option value="01">01</option>
 	                     <option value="02">02</option>
@@ -555,9 +655,10 @@
 	            
 	            		<td>
 	                
-			                <input type="text" name="mb_email" value="" id="reg_mb_email" class="frm_input email required" size="10"/>
+			                <input type="text" name="mb_email" value="${list.memail }" id="reg_mb_email" class="frm_input email required" size="10"/>
 			                <span id="span">@</span>
-			                <input type="text" name="mb_email2" value="" id="reg_mb_email2"  size="10"/><!-- class="frm_input email required" -->
+			                <input type="text" name="mb_email2" value="${list.memail2 }" id="reg_mb_email2"  size="10"/>
+			                <input type="hidden" id="memail2" value="${list.memail2 }">
 			                <select id="selmail">
 			               	    <option value="directval">직접입력</option>
 			                	<option value="naver.com">naver.com (네이버)</option>
@@ -574,7 +675,7 @@
 	                <tr>
 	            <th scope="row"><label for="reg_mb_hp">휴대폰번호</label></th>
 	            <td>
-	                <input type="text" name="mb_hp" value="" id="reg_mb_hp"  class="frm_input " maxlength="11" size="10">
+	                <input type="text" name="mb_hp" value="${list.mphone }" id="reg_mb_hp"  class="frm_input " maxlength="11" size="12">
 					<span id="span_phone">전화번호를 입력해주세요.</span>
 					
 					<input type="hidden" value="N" id="hidden" >
@@ -631,10 +732,10 @@
 	        }).open();
 	    }
 	</script> 
-	        <input type="text" name ="sample6_postcode" id="sample6_postcode" placeholder="우편번호">
+	        <input type="text" name ="sample6_postcode" id="sample6_postcode" value="${list.mjusonum}">
 			<input type="button" onclick="sample6_execDaumPostcode()" id="sample6" value="우편번호 찾기"><br>
-			<input type="text" name= "sample6_address" id="sample6_address" placeholder="도로명주소">
-			<input type="text" name = "sample6_address2" id="sample6_address2" placeholder="상세주소">
+			<input type="text" name= "sample6_address" id="sample6_address" value="${list.mjuso}">
+			<input type="text" name = "sample6_address2" id="sample6_address2" value="${list.mjuso2}">
 			<span id="guide" style="color:#999"></span>
 			<span id="span_juso">주소를 입력해주세요.</span>
 	
@@ -648,7 +749,7 @@
 	         <div>   
 	         
 	         		
-	         		<input type="button" class="danger btn btn13" value="회원가입">
+	         		<input type="button" class="danger btn btn13" value="회원수정">
 	         
 	         </div>
 	         </form>

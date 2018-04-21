@@ -31,9 +31,9 @@
   </select>
   
   
-  <select id="sessionLogin" resultType="java.util.HashMap" parameterType="String">
+  <select id="sessionLogin" resultType="mDto">
   
-  			SELECT * FROM member WHERE mid = #{id} AND mpw = #{pw}
+  			SELECT * FROM member WHERE mid = #{mid} AND mpw = #{mpw}
   		
   </select>
   
@@ -41,7 +41,8 @@
   
   <insert id="memIsert" >
   		
-  			INSERT INTO member (mid, mpw, mname, mphone, mjuso,  memail, mbirth, mmen) VALUES ( #{mid}, #{mpw}, #{mname}, #{mphone}, #{mjuso}, #{memail}, #{mbirth}, #{mmen} )
+  			INSERT INTO member (mid, mpw, mname, mphone, mjusonum, mjuso, mjuso2,  memail, memail2, mbirthyear, mbirthmonth, mbirthday, mmen) 
+  			VALUES ( #{mid}, #{mpw}, #{mname}, #{mphone}, #{mjusonum},#{mjuso}, #{mjuso2}, #{memail}, #{memail2}, #{mbirthyear}, #{mbirthmonth}, #{mbirthday}, #{mmen} )
   
   </insert>
   
@@ -282,6 +283,13 @@
  		)
  		WHERE rnum BETWEEN #{pageStart} AND #{perPageNum}
  	]]>
+ 		
+ 	</select>
+ 	
+ 	
+ 	<select id="personalSelect" resultType="mDto" parameterType="String">
+ 	
+ 		SELECT * FROM member WHERE mid = #{mid}
  		
  	</select>
   

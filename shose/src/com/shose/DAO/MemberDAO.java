@@ -166,81 +166,74 @@ public class MemberDAO {
 		return result;
 	}
 	
-	
-	
-	
-	
-public MemberDTO sessionLogin(MemberDTO mDto) {
+	//세션에 저장할 값들을 불러오기
+	public MemberDTO sessionLogin(MemberDTO mDto) {
 		
-		List<HashMap> list = null;
+		List<MemberDTO> list = null;
 		
 		sqlSession = sqlSessionFactory.openSession();
 		
 		
 		try {
 			
-			String id = mDto.getMid();
-			String pw = mDto.getMpw();
-			
-			System.out.println(id + " , " + pw);
-			
-			Map map = new HashMap();
-			map.put("id", id);
-			map.put("pw", pw);
 			
 			
-			list = sqlSession.selectList("sessionLogin", map);
+		
 			
 			
+			list = sqlSession.selectList("sessionLogin", mDto);
 			
-			for (int i = 0; i < list.size(); i++) {
+			for (MemberDTO memberDTO : list) {
+				String mid = memberDTO.getMid();
+				String mpw = memberDTO.getMpw();
+				String mname = memberDTO.getMname();
+				String mphone = memberDTO.getMphone();
+				String mjusonum = memberDTO.getMjusonum();
+				String mjuso = memberDTO.getMjuso();
+				String mjuso2 = memberDTO.getMjuso2();
+				String mbirthyear = memberDTO.getMbirthyear();
+				String mbirthmonth = memberDTO.getMbirthmonth();
+				String mbirthday = memberDTO.getMbirthday();
+				String memail = memberDTO.getMemail();
+				String memail2 = memberDTO.getMemail2();
+				String mmen = memberDTO.getMmen();
+				Date regdate = memberDTO.getRegdate();
 				
-				map = (HashMap)list.get(i);
+				mDto = new MemberDTO(mid, mpw, mname, mphone, mjusonum, mjuso, mjuso2, memail, memail2, mbirthyear, mbirthmonth, mbirthday, mmen, regdate);
+			
+			
+				System.out.println(" 이름 = " + mname);
+			
+			}
+			
+			
+			
+			/*for (int i = 0; i < list.size(); i++) {
+				
+				
 				
 				String mid = (String)map.get("MID");
 				String mpw = (String)map.get("MPW");
 				String mname = (String)map.get("MNAME");
 				String memail = (String)map.get("MEMAIL");
-				String mbirth = (String)map.get("MBIRTH");
+				String memail2 = (String)map.get("MEMAIL2");
+				String mbirthyear = (String)map.get("MBIRTHYEAR");
+				String mbirthmonth = (String)map.get("MBIRTHMONTH");
+				String mbirthday = (String)map.get("MBIRTHDAY");
+				String mjusonum = (String)map.get("MJSUONUM");
 				String mjuso = (String)map.get("MJSUO");
+				String mjuso2 = (String)map.get("MJSUO2");
 				String mphone = (String)map.get("MPHONE");
 				String mmen = (String)map.get("MMEN");
-				//Date regdate = (Date)map.get("REGDATE");
+				Date regdate = (Date)map.get("REGDATE");
 				
-				mDto = new MemberDTO(mid, mpw, mname, mphone, mjuso, memail, mbirth, mmen);
+				mDto = new MemberDTO(mid, mpw, mname, mphone, mjusonum, mjuso, mjuso2, memail, memail2, mbirthyear, mbirthmonth, mbirthday, mmen, regdate);
 				
-				System.out.println(mid+ " , " + mpw+ " , " + mname+ " , " + memail+ " , " + mjuso+ " , " + mphone+ " , " + mbirth+ " , " + mmen );
-			}
-			
-			/*for (MemberDTO memberDTO : list) {
-				
-				String mid = (String)memberDTO.getMid();
-				String mpw = (String)memberDTO.getMpw();
-				String mname = (String)memberDTO.getMname();
-				String memail = (String)memberDTO.getMemail();
-				String mbirth = (String)memberDTO.getMbirth();
-				String mjuso = (String)memberDTO.getMjuso();
-				String mphone = (String)memberDTO.getMphone();
-				Date regdate = (Date)memberDTO.getRegdate();
-				String mmen = (String)memberDTO.getMmen();
-				
-				mDto = new MemberDTO(mid, mpw, mname, mphone, mjuso, memail, mbirth, mmen, regdate);
-				
+				System.out.print(mid + " , ");
+				System.out.print(mpw + " , ");
+				System.out.print(mname + " , ");
+				System.out.println();
 			}*/
-			
-		
-			/*Iterator<String> iterator = map.keySet().iterator();
-		    while (iterator.hasNext()) {
-		        String key = (String) iterator.next();
-		        System.out.print("key="+key);
-		        System.out.println(" value="+map.get(key));
-		    }*/
-			
-			
-		
-			
-			
-			
 			
 		} catch (Exception e) {
 			
@@ -254,9 +247,49 @@ public MemberDTO sessionLogin(MemberDTO mDto) {
 		return mDto;
 	}
 
+	public MemberDTO personalSelect(String mid) {
+		
+	
+		sqlSession = sqlSessionFactory.openSession();
+		MemberDTO mDto = new MemberDTO();
+		List<MemberDTO> list = null;
+		
+		try {
+			
+			list = sqlSession.selectList("personalSelect", mid);
+			
+			for (MemberDTO memberDTO : list) {
+				mid = memberDTO.getMid();
+				String mpw = memberDTO.getMpw();
+				String mname = memberDTO.getMname();
+				String mphone = memberDTO.getMphone();
+				String mjusonum = memberDTO.getMjusonum();
+				String mjuso = memberDTO.getMjuso();
+				String mjuso2 = memberDTO.getMjuso2();
+				String mbirthyear = memberDTO.getMbirthyear();
+				String mbirthmonth = memberDTO.getMbirthmonth();
+				String mbirthday = memberDTO.getMbirthday();
+				String memail = memberDTO.getMemail();
+				String memail2 = memberDTO.getMemail2();
+				String mmen = memberDTO.getMmen();
+				Date regdate = memberDTO.getRegdate();
+				
+				mDto = new MemberDTO(mid, mpw, mname, mphone, mjusonum, mjuso, mjuso2, memail, memail2, mbirthyear, mbirthmonth, mbirthday, mmen, regdate);
+			}
+			
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			
+		}finally {
+			
+			sqlSession.close();
+			
+		}
+		return mDto;
 
-
-
+	}
 
 	
 
