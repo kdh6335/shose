@@ -292,5 +292,19 @@
  		SELECT * FROM member WHERE mid = #{mid}
  		
  	</select>
+ 	
+ 	<update id="passwordUpdate">
+ 	
+ 		UPDATE member SET mpw= #{mpw} WHERE mid = #{mid}
+ 	
+ 	</update>
+ 	
+ 	<update id="memUpdate">
+ 	
+ 		UPDATE member SET mphone = #{mphone}, mjusonum = #{mjusonum}, mjuso = #{mjuso}, mjuso2 = #{mjuso2}, memail =#{memail} , memail2 = #{memail2}, 
+ 		mbirthyear= #{mbirthyear}, mbirthmonth = #{mbirthmonth}, mbirthday = #{mbirthday}  
+ 		WHERE mid = #{mid} 
+ 	
+ 	</update>
   
 </mapper>

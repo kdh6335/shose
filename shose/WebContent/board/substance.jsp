@@ -606,7 +606,7 @@ $(document).ready(function(){
 
 				} else {
 
-					alert("취소 되었습니다.")
+					alert("취소 되었습니다.");
 					return false;
 
 				}

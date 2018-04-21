@@ -183,6 +183,21 @@ public class BzipollFrontController extends HttpServlet {
 				action = new PersonalAction();//action은 인터페이스: 다형성을 이용해서 해당 액션기능을 action에 넣는다
 				forward = action.excute(request, respnse); // 공통 분기작업에 보낼 forward
 				
+			}else if(command.equals("/passwordchange.bizpoll")) {
+				
+				action = new PasswordChangeAction();//action은 인터페이스: 다형성을 이용해서 해당 액션기능을 action에 넣는다
+				forward = action.excute(request, respnse); // 공통 분기작업에 보낼 forward
+				
+			}else if(command.equals("/passwordupdate.bizpoll")) {
+				
+				action = new PasswordUpdateAction();//action은 인터페이스: 다형성을 이용해서 해당 액션기능을 action에 넣는다
+				forward = action.excute(request, respnse); // 공통 분기작업에 보낼 forward
+				
+			}else if(command.equals("/memupdate.bizpoll")) {
+				
+				action = new MemberUpdateAction();//action은 인터페이스: 다형성을 이용해서 해당 액션기능을 action에 넣는다
+				forward = action.excute(request, respnse); // 공통 분기작업에 보낼 forward
+				
 			}
 			
 			

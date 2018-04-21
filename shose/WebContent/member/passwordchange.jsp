@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-    
-        <%@ include file="../header.jsp" %>
+            <%@ include file="../header.jsp" %>
+            
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -19,19 +18,52 @@
 				var sessionpw = $("#sessionpw").val();
 				var reg_mb_password = $("#reg_mb_password").val();
 				var mid = $("#reg_mb_id").val();
+				var new_password = $("#new_password").val();
+				var new_password_re = $("#new_password_re").val();
 				
-				if(reg_mb_password == "" ){
+				if(reg_mb_password == ""){
 					
-					$("#span_pw").css("display", "block");
+					$("#password").css("display","inline-block").text("비밀번호를 입력해주세요");
 					
-				}else if(sessionpw == reg_mb_password ){
+				}else if(sessionpw != reg_mb_password ){
 					
-					alert("비밀 번호가 확인 되었습니다.");
-					location.href = "personal.bizpoll?mid="+mid;
+					$("#password").css("display","inline-block").text("현재 비밀번호가 틀립니다.");
+					
+				}else if( new_password == "" || new_password_re == ""){
+					
+					$("#password").css("display","inline-block").text("새 비밀번호를 입력해주세요");
+					
+				}else if( new_password != new_password_re){
+					
+					$("#password").css("display","inline-block").text("새 비밀번호가 서로 맞지 않습니다.");
 					
 				}else{
 					
-					$("#span_pw").css("display", "block").text("비밀번호를 정확히 입력해주세요.");
+					
+					$.ajax({
+						url:"passwordupdate.bizpoll",
+						type: "POST",
+						dataType :"json",
+						data : "mid=" +mid +"&mpw=" +  new_password,
+						success : function(data){
+							
+							if(data.flag == 0 ){
+								
+								alert("비밀번호 변경 실패");
+								
+							}else{
+								
+								alert("비밀번호 변경 성공");
+								location.href = "personal.bizpoll?mid="+mid;
+								
+							} 
+						},
+						
+						error : function(){
+							alert("System Error!!!");
+							
+						}
+					});
 					
 				}
              });
@@ -102,13 +134,13 @@
 	#reg_mb_id{
 		width: 200px;
 	}
-	#reg_mb_password{
+	.reg_mb_password{
 		width: 200px;
 	}
-	#span_pw{
-		display: none;
-		float: left;
+	#password{
 		color: red;
+		display: inline-block;
+		float: left;
 	}
 </style>
 </head>
@@ -118,27 +150,31 @@
 	<div id="conteiner">
 	      <div class="tbl_frm01 tbl_wrap">
 	        <table id="pscheck">
-	        <caption>내 정보<h6>회원님의 회원정보를 수정할 수 있습니다.<br>개인정보 보호를 위해 비밀번호를 입력해주세요.</h6></caption>
-	        
-	        
+	        <caption>비밀 번호 변경</caption>
 	              <tbody>
+	                            <input type="hidden" name="mb_id" value="${sessionScope.loginUser.mid }" id="reg_mb_id"/>
 	                    <tr>
-	                        <th scope="row"><label for="reg_mb_id">아이디</label></th>
-	                        <td>
-	                            <input type="text" name="mb_id" value="${sessionScope.loginUser.mid }" id="reg_mb_id" class="frm_input required " readonly="readonly" minlength="3" maxlength="20">
-	                    </tr>
-	                    <tr>
-	                        <th scope="row"><label for="reg_mb_password">비밀번호</label></th>
+	                        <th scope="row"><label for="reg_mb_password">현재 비밀번호</label></th>
 	                        <td><input type="password" name="mb_password" id="reg_mb_password" class="frm_input required" minlength="3" maxlength="20">
 	                        </td>
 	                        
 	                    </tr>
 	                    <tr>
-	                        <th scope="row"></th>
+	                        <th scope="row"><label for="reg_mb_id">새 비밀번호</label></th>
 	                        <td>
-	                         <span id="span_pw">비밀번호를 입력해주세요</span>
-	                        </td>
-	                        
+	                            <input type="password" name="new_password" id="new_password" class="frm_input required reg_mb_password" minlength="3" maxlength="20">
+	                    </tr>
+	                    <tr>
+	                        <th scope="row"><label for="reg_mb_id">새 비밀번호 확인</label></th>
+	                        <td>
+	                            <input type="password" name="new_password_re"  id="new_password_re" class="frm_input required reg_mb_password" minlength="3" maxlength="20">
+	                            
+	                    </tr>
+	                    <tr>
+	                    	<th></th>
+	                    	<td>
+	                    	<span id="password" style="display: none;">비밀번호가 맞지 않습니다.</span>
+	                    	</td>
 	                    </tr>
 	                 
 	              </tbody>

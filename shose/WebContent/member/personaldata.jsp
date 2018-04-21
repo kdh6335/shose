@@ -6,11 +6,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-<link rel="stylesheet" type="text/css" href="../css/index.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" type="text/css" href="../css/member.css">
 <script type="text/javascript">
 	
 		$(document).ready(function(){
@@ -140,16 +137,30 @@
 				$("#reg_mb_sung2").val("여자").attr("checked", "checked");
 			}
 			
+			$("#passwordchange").on("click", function(){
+				
+				location.href = "passwordchange.bizpoll";
+				
+			});
 			
-		
 			$(".btn13").on("click", function(){
+				
+				var Del = confirm("회원정보를 수정 하시겠습니까?")
+
+				if (Del == true) {
+					
+					
+					
+				}else{
+					
+					alert("취소 되었습니다.");
+					return false;
+					
+				}
 				
 			
           	 var form = $('#memberinsert'),
-          	 uid = $('#reg_mb_id'),
           	 uname = $('#reg_mb_name'),
-          	 upw = $('#reg_mb_password'),
-          	 upwre = $('#reg_mb_password_re'),
           	 uphone = $('#reg_mb_hp'),
           	 uemail = $('#reg_mb_email'),
           	 uemail2 = $('#reg_mb_email2'),
@@ -168,65 +179,15 @@
            	 
                   	var id = $.trim(uid.val());
                   	var name = $.trim(uname.val());
-                  	var password = $.trim(upw.val());
-                  	var passwordre = $.trim(upwre.val());
                   	var email = $.trim(uemail.val());
                   	var email3 = $.trim(uemail2.val());
                     var phone = $.trim(uphone.val());
-                    var checkPass =/^[a-z0-9_-]{6,18}$/;
                     var brith = $.trim(ubrith.val());
                     var brith2 = $.trim(ubrith2.val());
                     var brith3 = $.trim(ubrith3.val());
                     var juso = $.trim(ujuso.val());
                     var juso2 = $.trim(ujuso2.val());
             
-
-
-                   
-                    if (id == ""){
-                  	 uid.focus();
-                  	 $("#span_id2").css("display", "block");
-                  	 return false;
-                  	 
-                  	 }else if($("#hidden").val()=="N"){
-                  	   
-                  	   alert("중복 체크 해주세요.");
-                  	   return false;
-                     } 
-                   
-                   if (password == ""){
-                  		 
-                   		upw.focus();
-                  	 	$("#span_pw").css("display", "block");
-                  	 	return false;
-                  	 	
-                  	 }else if (!checkPass.test(password)){
-                  		upw.focus();
-                   	 	$("#span_pw").text("6~20자 이내 숫자, 영문만 사용하세요.").css("display", "block");
-                   	 	return false;
-                  	 }else if ( passwordre == ""){
-                  		 
-                    	upwre.focus();
-                   	 	$("#span_pw").css("display", "block");
-                   	 	return false;
-                   	 	
-                   	 }else if( password != passwordre){
-                  		upwre.select();
-                  		$("#span_pw").text("비밀번호가 일치하지 않습니다.").css("display", "block");
-                  		return false;
-                  	 }
-                   
-                   
-                   
-                   
-                   	if (name == ""){
-                   		
-                      	 uname.focus();
-                     	 $("#span_name").css("display", "block");
-                     	 return false;
-                     }
-                   
-                
                    var regEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 
                    	
@@ -309,34 +270,12 @@
                   	 	return false;
                   	 
                   	 }
-                   		
-                  
-                   
-                   
-                   
-                  		
                    
                    $("#memberinsert").submit();
             	}
             
 			});
 			
-             
-             $("#reg_mb_password").blur(function(){
-             	var upw = $('#reg_mb_password');
-             	var pw = $.trim(upw.val());
-     			if(pw != ""){
-     				$("#span_pw").css("display", "none");
-     			}
-             });
-             
-             $("#reg_mb_password_re").blur(function(){
-              	var upwre = $('#reg_mb_password_re');
-              	var pwre = $.trim(upwre.val());
-      			if(pwre != ""){
-      				$("#span_pw").css("display", "none");
-      			}
-              });
              
              $("#reg_mb_name").blur(function(){
              	var uname = $('#reg_mb_name');
@@ -400,13 +339,7 @@
 		
 	});
 		
-	$(document).on("change", "#reg_mb_id", function(){
-			
-			$("#hidden").val("N");
-			return false;
-		});
-			
-	
+
 	$(document).on("change", "#selmail", function(){
 		var mail = $("#selmail").val();
 		
@@ -459,10 +392,13 @@
 	 .btn{
 		border: none;
 		color: white;
-		padding: 5px 5px;
+		padding: 5px 15px;
 		font-size: 12px;
 		cursor: pointer; /* pointer = 마우스가 손가락으로 바뀐다. */
 		border-radius: 10px;
+		margin-top: 10px;
+		margin-left: 10px;
+		
 	}
 	.btn2{
 		border: none;
@@ -485,12 +421,6 @@
        }#span_phone{
        		color: red;
        		display: none;
-       }#span_pw{
-       		color: red;
-       		display: none;
-       }#span_pw2{
-       		color: red;
-       		display: none;
        }#span_email{
        		color: red;
        		display: none;
@@ -503,12 +433,10 @@
        		color: red;
        		display: none;
        }
-      
        #idck_btn{
        		float: left;
        		margin-left : 25px; 
        }
-       
        #sample6_postcode{
        		float: left;
        }
@@ -533,43 +461,27 @@
       #sung{
       		float: left;
       }
+      #buttonsize{
+      		height: 53px;
+      }
 </style>
 </head>
 <body>
 
 <div id="conteiner2">
 	<div id="conteiner">
-	       <form name="memberinsert" action="memberinsert.bizpoll" id="memberinsert" method="post" >
-	      <div class="tbl_frm01 tbl_wrap">
+	   <form name="memberinsert" action="memberinsert.bizpoll" id="memberinsert" method="post" >
 	        <table>
 	        <caption>개인정보</caption>
-	              <tbody>
-	                    <tr>
-	                        <th scope="row"><label for="reg_mb_id">아이디</label></th>
-	                        <td>
-	                            <span class="frm_info">영문자, 숫자, _ 만 입력 가능. 최소 5자이상 입력하세요.</span>
-	                            <input type="text" name="mb_id" value="${list.mid }" id="reg_mb_id" class="frm_input required " readonly="readonly" minlength="3" maxlength="20" size="10">
-	                            <span id="span_id2">아이디를 입력해주세요</span>
-	                            <span id="msg_mb_id"></span></td>
-	                    </tr>
-	                    <tr>
-	                        <th scope="row"><label for="reg_mb_password">비밀번호</label></th>
-	                        <td><input type="password" name="mb_password" id="reg_mb_password" class="frm_input required" minlength="3" maxlength="20" size="10">
-	                         <span id="span_pw">비밀번호를 입력해주세요</span>
-	                        </td>
-	                        
-	                    </tr>
-	                    <tr>
-	                        <th scope="row"><label for="reg_mb_password_re">비밀번호 확인</label></th>
-	                        <td><input type="password" name="mb_password_re" id="reg_mb_password_re" class="frm_input required" minlength="3" maxlength="20" size="10">
-	                        <span id="span_pw2">비밀번호를 틀립니다.</span>
-	                        </td>
-	                    </tr>
-	              </tbody>
-	        </table>
-	    </div>
-	        <table>
 	        <tbody>
+	        <tr>
+                 <th scope="row"><label for="reg_mb_id">아이디</label></th>
+                 <td>
+                 <input type="text" name="mb_id" value="${list.mid }" id="reg_mb_id" class="frm_input required " readonly="readonly" minlength="3" maxlength="20" size="10">
+                 <span id="span_id2">아이디를 입력해주세요</span>
+                 <span id="msg_mb_id"></span>
+                 </td>
+            </tr>
 	        <tr>
 	            <th scope="row"><label for="reg_mb_name">이름</label>       
 	            </th>
@@ -746,11 +658,11 @@
 	        </tbody>
 			
 	        </table>
-	         <div>   
+	         <div id ="buttonsize">   
 	         
-	         		
-	         		<input type="button" class="danger btn btn13" value="회원수정">
-	         
+	         		<input type="button" id="passwordchange" class="danger btn" value="비밀번호 변경">
+	         		<input type="button" class="danger btn btn13" value="회원 수정">
+	        		<input type="button" id="memdelete" class="danger btn" value="회원 탈퇴">
 	         </div>
 	         </form>
 	        </div>

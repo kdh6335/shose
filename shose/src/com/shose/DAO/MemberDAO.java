@@ -166,6 +166,28 @@ public class MemberDAO {
 		return result;
 	}
 	
+	public int memUpdate(MemberDTO mDto) {
+		
+			sqlSession = sqlSessionFactory.openSession();
+		
+		try {
+			
+			result = sqlSession.insert("memUpdate", mDto);
+			
+			sqlSession.commit();
+			
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			
+		}finally {
+			
+			sqlSession.close();
+		}
+		return result;
+}
+	
 	//세션에 저장할 값들을 불러오기
 	public MemberDTO sessionLogin(MemberDTO mDto) {
 		
@@ -184,6 +206,7 @@ public class MemberDAO {
 			list = sqlSession.selectList("sessionLogin", mDto);
 			
 			for (MemberDTO memberDTO : list) {
+				
 				String mid = memberDTO.getMid();
 				String mpw = memberDTO.getMpw();
 				String mname = memberDTO.getMname();
@@ -290,6 +313,41 @@ public class MemberDAO {
 		return mDto;
 
 	}
+	
+	
+	public int passwordUpdate(MemberDTO mDto) {
+		
+			sqlSession = sqlSessionFactory.openSession();
+		
+		try {
+			
+			result = sqlSession.update("passwordUpdate", mDto);
+			
+			
+			
+			if(result > 0 ) {
+				
+				System.out.println("비번 변경 성공");
+				
+			} else {
+				
+				System.out.println("비번 변경 실패");
+			
+			}
+			
+			sqlSession.commit();
+			
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			
+		}finally {
+			
+			sqlSession.close();
+		}
+		return result;
+}
 
 	
 

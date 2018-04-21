@@ -68,6 +68,24 @@ public class MemberDTO {
 		this.mbirthday = mbirthday;
 		this.mmen = mmen;
 	}
+	
+	
+
+
+	public MemberDTO(String mid, String mphone, String mjusonum, String mjuso, String mjuso2, String memail,
+			String memail2, String mbirthyear, String mbirthmonth, String mbirthday) {
+		super();
+		this.mid = mid;
+		this.mphone = mphone;
+		this.mjusonum = mjusonum;
+		this.mjuso = mjuso;
+		this.mjuso2 = mjuso2;
+		this.memail = memail;
+		this.memail2 = memail2;
+		this.mbirthyear = mbirthyear;
+		this.mbirthmonth = mbirthmonth;
+		this.mbirthday = mbirthday;
+	}
 
 
 	public String getMjusonum() {
