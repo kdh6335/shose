@@ -43,7 +43,7 @@
             display: block;
             width: 540px;
             height: 100px;
-            background: url('image/logo2.png') 0 -106px;
+            background: url('../image/logo2.png') 0 -106px;
             margin: 0 auto;
             box-sizing: border-box;
       }
@@ -53,7 +53,6 @@
             right: 0px;
       }
       .lang > select{
-            background: url('image/sel_arr.gif') 100% 50% no-repeat;
             -webkit-appearance : none;
             width: 98px;
             height: 30px;
@@ -107,7 +106,7 @@
             position: relative;
       }
       .terms_span > label {
-            background: url('image/check_off.png') 100% 50% no-repeat;
+            background: url('../image/check_off.png') 100% 50% no-repeat;
             display: block;
             line-height: 20px;
             height: 58px;
@@ -116,7 +115,7 @@
             font-weight: 700;
       }
       .terms_span > input:checked + label{
-            background-image: url('image/check_on.gif');
+            background-image: url('../image/check_on.gif');
       }
       
       /* terms_li1 */
@@ -165,11 +164,11 @@
             top: 50%;
       }
       .ul_li_span > label{
-            background: url('image/check_off.png') 100% 50% no-repeat;
+            background: url('../image/check_off.png') 100% 50% no-repeat;
             display: black;
       }
       .ul_li_span > input:checked + label{
-            background-image: url('image/check_on.gif');
+            background-image: url('../image/check_on.gif');
       }
       
       .terms_box{
@@ -307,7 +306,6 @@
       #footer address .logo2{
             top: 2px;
             margin-left: 1px;
-            background: url('image/ci_naver.gif') 0 0 no-repeat;
             position: relative;
             display: inline-block;
             width: 63px;
@@ -337,7 +335,7 @@
             color: red;
             }           
 </style>
-<script type="text/javascript" src="js/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 
       $(document).ready(function(){
@@ -399,7 +397,7 @@
       </div>
 </div>
       <div id="container">
-            <form id="join_content" action="member.bizpoll" method="get">
+            <form id="join_content" action="../member.bizpoll" method="get">
                   <div class="terms">
                         <p class="terms_p">
                               <span class="terms_span">
@@ -492,7 +490,7 @@
                                     </span>
                               </li>
                         </ul>
-                        <span id="termsMsg" class="error" style="display:none">네이버 이용약관과 개인정보 수집 및 이용에 대한 안내 모두 동의해주세요.</span>
+                        <span id="termsMsg" class="error" style="display:none">CauseU 이용약관과 개인정보 수집 및 이용에 대한 안내 모두 동의해주세요.</span>
                   </div>
                   <div class="btn_double_area">
                         <span><a href="index.bizpoll" class="btn_type btn_default">비동의</a></span>

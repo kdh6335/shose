@@ -529,6 +529,7 @@
 		                    <c:otherwise>
 		                    	<li>${sessionScope.loginUser.mname }(${sessionScope.loginUser.mid })</li>
 		                    	<li><a href="#" id="logout">로그아웃</a></li>
+		                    	<li><a href="passwordcheck.bizpoll" id="personal">내 정보</a></li>
 		                    </c:otherwise>
                         </c:choose>
                         <li id = "li_drop">

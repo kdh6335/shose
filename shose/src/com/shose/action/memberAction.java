@@ -12,7 +12,7 @@ public class memberAction implements Action {
 	public ActionForward excute(HttpServletRequest request, HttpServletResponse respnse)
 			throws ServletException, IOException {
 		
-			String url = "member.jsp";
+			String url = "member/member.jsp";
 		
 		ActionForward forward = new ActionForward();
 		
