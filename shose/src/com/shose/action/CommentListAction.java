@@ -30,10 +30,10 @@ public class CommentListAction implements Action {
 		
 				List<ReplyDTO> list = null;
 				ReplyDAO rDao = ReplyDAO.getInstance();
-				int count = rDao.replyCount(num);
 				list = rDao.replyList(num);
 				request.setAttribute("replylist", list);
-				request.setAttribute("count", count);
+				
+				
 				ActionForward forward = new ActionForward();
 				
 				forward.setPath(url);

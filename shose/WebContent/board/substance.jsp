@@ -511,6 +511,8 @@ function comment_list(){
 		
 		comment_list();
 		
+		
+		
 		var comment2 = $("#comment2").val();
 		
 		if(comment2 == 'ture' ){
@@ -567,8 +569,8 @@ function comment_list(){
 				data : "bno=" + bno +"&mid=" + mid +"&comment_text=" + comment,
 				success : function(data) {
 
-					$("#comment_text").val("");
-					comment_list();
+					$("#comment_text").val("");// 댓글 등록후 내용 초기화 하는 코드
+					comment_list(); // 댓글을 다시 불러드리기 위한 호출 함수
 
 				},
 
@@ -577,7 +579,7 @@ function comment_list(){
 
 				}
 			}); 
-			return false;
+			return false; // false를 하면 등록할때 스크롤이 맨위로 올라가지 않는다.
 
 		});
 	
@@ -585,11 +587,11 @@ function comment_list(){
 	
 		$(document).on("click", ".delUrl2", function() {
 			
-				var Del = confirm("삭제 하시겠습니까?")
+				var Del = confirm("삭제 하시겠습니까?") // 클릭시 삭제할 것인지 물어보는 코드
 
 				if (Del == true) {
 
-					var rno = $(this).attr("data_num");
+					var rno = $(this).attr("data_num"); // 해당 댓글 값을 가져오는 코드
 
 					 $.ajax({
 						url : "replydel.bizpoll",
@@ -598,7 +600,7 @@ function comment_list(){
 						data : "rno=" + rno,
 						success : function(data) {
 
-							comment_list();
+							comment_list(); // 삭제 완료하면 댓글을 다시 불러드리기 위한 함수 호출
 
 						},
 
@@ -607,7 +609,7 @@ function comment_list(){
 
 						}
 					}); 
-					return false;
+					return false; // 리턴 false를 안하게 되면 스크롤이 맨위로 향하게 됨 그걸 방지하기 위함
 
 				} else {
 

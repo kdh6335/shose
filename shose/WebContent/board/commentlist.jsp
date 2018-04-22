@@ -10,45 +10,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<!-- <script type="text/javascript">
-$(document).ready(function(){
-	
-		$(".delUrl2").on("click", function() {
-		
-			var Del = confirm("삭제 하시겠습니까?")
-		
-			if (Del == true) {
-		
-				var rno = $(this).attr("data_num");
-		
-				$.ajax({
-					url : "replydel.bizpoll",
-					type : "POST",
-					dataType : "json",
-					data : "rno=" + rno,
-					success : function(data) {
-		
-						alert("댓글 삭제 성공");
-						comment_list();
-		
-					},
-		
-					error : function() {
-						alert("System Error!!!");
-		
-					}
-				});
-		
-			} else {
-		
-				alert("취소 되었습니다.")
-				return false;
-		
-			}
-		
-	});
-});
-</script> -->
 </head>
 <body>
 

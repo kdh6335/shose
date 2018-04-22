@@ -51,15 +51,6 @@ public class BoardBodyAction implements Action{
 		
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		// 상세페이지에서 댓글 갯수 구하기
 		ReplyDAO rDao = ReplyDAO.getInstance();
 		int count = rDao.replyCount(num);
