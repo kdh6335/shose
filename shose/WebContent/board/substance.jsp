@@ -490,58 +490,67 @@ img {
 </style>
 <script type="text/javascript">
 
+function comment_list(){
+	
+	var bno = $("#hidden").val();
+	
+	$.ajax({
+		type : "POST",
+		url : "commentlist.bizpoll",
+		data : "bno=" + bno,
+		success : function(result) {
 
-$(document).ready(function(){
-	
-	comment_list();
-	
-	
-	// 게시글 등록 버튼을 클릭하면 이벤트 처리
-	$(".btn_submit").on("click", function() {
+			$("#commentlist").html(result);
+
+		}
+	});
+} 
+
+
+	$(document).ready(function(){
 		
-		var dd = "<%=session.getAttribute("loginUser")%>"
-
-			if (dd != "null") {
-
-				$("#insert").submit();
-
-			} else {
-				alert("로그인 해주세요!!!!!!")
-				$("#id01").css("display", "block");
-
-			}
-		});
-	
-	
-		$("#list").on("click", function(){
+		comment_list();
+		
+		var comment2 = $("#comment2").val();
+		
+		if(comment2 == 'ture' ){
 			
-			$("#boardlist").submit();
-		});
-	
-	
-});
-	
-	function comment_list(){
+			$('html, body').animate({
+				
+				scrollTop: $('#commentlist').offset().top
+				
+			});
 		
-		var bno = $("#hidden").val();
+			
+		}
+	
 		
-		$.ajax({
-			type : "POST",
-			url : "commentlist.bizpoll",
-			data : "bno=" + bno,
-			success : function(result) {
-
-				$("#commentlist").html(result);
-
-			}
-		});
-	}
-	
-	//$("#comment_text").val("");
 	
 	
-
+		// 게시글 등록 버튼을 클릭하면 이벤트 처리
+		 $(".btn_submit").on("click", function() {
+			
+			var dd = "<%=session.getAttribute("loginUser")%>"
 	
+				if (dd != "null") {
+	
+					$("#insert").submit();
+	
+				} else {
+					alert("로그인 해주세요!!!!!!")
+					$("#id01").css("display", "block");
+	
+				}
+			});
+		
+		
+			$("#list").on("click", function(){
+				
+				$("#boardlist").submit();
+			});
+	
+	
+	});
 
 		// 댓글 등록하기 위한 이벤트
 		$(document).on("click", "#_submitCmt",function() {
@@ -551,15 +560,13 @@ $(document).ready(function(){
 		var mid = $("#mid2").val();
 		var comment = $("#comment_text").val();
 			
-			
-			$.ajax({
+			 $.ajax({
 				url : "replyadd.bizpoll",
 				type : "POST",
 				dataType : "json",
 				data : "bno=" + bno +"&mid=" + mid +"&comment_text=" + comment,
 				success : function(data) {
 
-					alert("댓글 등록 성공");
 					$("#comment_text").val("");
 					comment_list();
 
@@ -569,10 +576,8 @@ $(document).ready(function(){
 					alert("System Error!!!");
 
 				}
-			});
-
-			//alert("클릭");
-			//$("#detgl").submit();
+			}); 
+			return false;
 
 		});
 	
@@ -586,14 +591,13 @@ $(document).ready(function(){
 
 					var rno = $(this).attr("data_num");
 
-					$.ajax({
+					 $.ajax({
 						url : "replydel.bizpoll",
 						type : "POST",
 						dataType : "json",
 						data : "rno=" + rno,
 						success : function(data) {
 
-							alert("댓글 삭제 성공");
 							comment_list();
 
 						},
@@ -602,7 +606,8 @@ $(document).ready(function(){
 							alert("System Error!!!");
 
 						}
-					});
+					}); 
+					return false;
 
 				} else {
 
@@ -613,34 +618,14 @@ $(document).ready(function(){
 
 			}); 
 
-		 
 
-	/* function delUrl() {
 
-		var Del = confirm("삭제 하시겠습니까?")
-		var detgl = $("#command").val();
-		
-		 if (Del == true && detgl == null ) {
-
-			alert("삭제 되었습니다.")
-			$("#delete").submit();
-
-		} else if (Del == false) {
-
-			alert("취소 되었습니다.")
-			return false;
-			//location.href = "sessionLogin.bizpoll";
-			//alert($("#frm_memeber"));
-			//$("#frm_memeber").submit();
-		} else if( detgl != null ) {
-
-			alert("댓글 있는 글은 삭제 할 수 없습니다.")
-			
-		} 
-	} */
 </script>
 </head>
 <body>
+
+<input type="hidden" id="comment2" value="${comment }">
+
 	<div class="list-blog border-sub" id="post_164839">
 		<form action="boardlist.bizpoll" id="boardlist" name="boardlist">
 			<input type="button" id="list" value="목록">
@@ -735,8 +720,7 @@ $(document).ready(function(){
 						<tr style="vertical-align: top">
 
 							<td class="reply"><a href="javascript:;"
-								class="reply_btn b m-tcol-c m-tcol-p _totalCnt" id="comment">댓글
-									${count}</a></td>
+								class="reply_btn b m-tcol-c m-tcol-p _totalCnt" id="comment">댓글 ${count}</a></td>
 							<td class="m-tcol-c filter-30">|</td>
 							<td><c:forEach items="${bodylist}" var="bDto">
 									<span class="b m-tcol-c reply ">조회수 </span>

@@ -252,7 +252,7 @@ $(document).ready(function() {
 								<td class="td_num">${bDto.bno}</td>
 								<td class="td_subject"><a href="boardbody.bizpoll?bno=${bDto.bno}">${bDto.title}</a>  
 									<c:if test="${bDto.count ne 0}">
-										<span id="detgl_count">[${bDto.count}]</span>
+										<span id="detgl_count"><a href="boardbody.bizpoll?bno=${bDto.bno}&comment=ture">[${bDto.count}]</a></span>
 									</c:if>
 									<c:if test="${today2 == regdate2}">
 										<span id="new">new!</span>

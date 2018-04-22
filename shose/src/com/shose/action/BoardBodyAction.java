@@ -27,6 +27,8 @@ public class BoardBodyAction implements Action{
 		
 		String bno = request.getParameter("bno");
 		
+		String comment = request.getParameter("comment");
+		
 		System.out.println("bno : " + bno);
 		
 		
@@ -40,6 +42,7 @@ public class BoardBodyAction implements Action{
 		
 		request.setAttribute("bodylist", list);
 		request.setAttribute("bodynext", list2);
+		request.setAttribute("comment", comment);
 		
 		// 조회수 1 증가
 		// 섹션을 선언 하고 섹션값을 가져와서 섹션값도 같이 보내준다.
@@ -62,6 +65,8 @@ public class BoardBodyAction implements Action{
 		int count = rDao.replyCount(num);
 		BoardDTO bDto = new BoardDTO(num, count);
 		bDao.countUpdate(bDto);
+		
+		request.setAttribute("count", count);
 		
 		
 	
