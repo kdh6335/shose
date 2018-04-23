@@ -224,10 +224,12 @@ $(document).ready(function() {
 	<div id="bo_list">
 		<div class="bo_fx">
 			<div id="bo_list_total">
-				<span>날짜순 정렬</span>
-				<span>번호 정렬</span>
-				<span>번호 정렬</span>
-				
+			<select name ="sfl" id="sfl2" class="select_s">
+					<option value="번호">번호 정렬</option>
+					<option value="날짜순">날짜순 정렬</option>
+					<option value="조회수">조회수 정렬</option>
+					<option value="추천수">추천수 정렬</option>
+			</select>
 			</div>
 			
 		</div>
@@ -254,6 +256,7 @@ $(document).ready(function() {
 									<c:if test="${bDto.count ne 0}">
 										<span id="detgl_count"><a href="boardbody.bizpoll?bno=${bDto.bno}&comment=ture">[${bDto.count}]</a></span>
 									</c:if>
+									<a href="#"><i class="fa fa-save"></i></a>
 									<c:if test="${today2 == regdate2}">
 										<span id="new">new!</span>
 									</c:if>

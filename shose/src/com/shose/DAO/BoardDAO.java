@@ -300,7 +300,8 @@ public class BoardDAO {
 					return result;
 				}
 				
-				public int bodySweetAdd(int bno) {
+				
+				public int bodySweetAdd(int bno, HttpSession countSession, String mid) {
 					
 					sqlSession = sqlSessionFactory.openSession();
 						
@@ -310,9 +311,32 @@ public class BoardDAO {
 					
 					try {
 						
-						result = sqlSession.update("bodyseetadd", bno);
+						long update_time = 0;
 						
-						sqlSession.commit();
+						
+						// 조회수를 증가 할 때생기는 read_time_게시글번호가 없으면
+						// 현재 처음 조회수를 1증가하는 경우임
+						if(countSession.getAttribute("sessionid_"+mid) != null) {
+							
+							update_time = (long)countSession.getAttribute("sessionid_"+mid);
+						}
+						
+						long current_time = System.currentTimeMillis(); // 현재 시간을 읽어 온다.
+						
+						//현재시간과 좋아요 1증가한 시간을 비교해서 24시간(1일)이 지났으면
+						// 좋아요 1증가
+						if(current_time - update_time > 8640 * 1000) { // 5 * 1000 = 5초 5초 뒤에 조회수가 증가한다.
+							
+							result = sqlSession.update("bodyseetadd", bno);
+							
+							sqlSession.commit();
+							
+							
+							// 좋아요 1증가한 시간을 session에 담는다.
+							countSession.setAttribute("sessionid_"+mid, current_time);
+						}
+						
+						
 						
 					
 						

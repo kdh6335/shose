@@ -394,9 +394,9 @@ body, div, li, dd, dt, td, select, textarea, input {
 }
 
 #list:hover {
-	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0
-		rgba(0, 0, 0, 0.19);
-}
+	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 
+				0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			}
 
 #next {
 	float: left;
@@ -411,6 +411,10 @@ body, div, li, dd, dt, td, select, textarea, input {
 	padding: 1px 8px 1px 8px;
 	margin-top: 5px;
 }
+	#next:hover{
+			box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 
+				0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	}
 
 #prev {
 	float: left;
@@ -424,6 +428,11 @@ body, div, li, dd, dt, td, select, textarea, input {
 	padding: 1px 8px 1px 8px;
 	margin-top: 5px;
 }
+
+	#prev:hover{
+			box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 
+				0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	}
 
 .url a:hover {
 	text-decoration: underline;
@@ -483,9 +492,22 @@ img {
 	cursor: pointer;
 	padding: 1px 8px 1px 8px;
 	margin-top: 5px;
+	margin-bottom: 15px;
 }
+	#btn_submit:hover{
+			box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 
+				0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	}
 	#redetgl{
 		display: none;
+	}
+	#divfile{
+		border-top: 1px solid #ccc;
+		border-bottom: 1px solid #ccc;
+		margin-top: 16px;
+	}
+	#file_table{
+		padding: 5px;
 	}
 </style>
 <script type="text/javascript">
@@ -505,11 +527,29 @@ function comment_list(){
 		}
 	});
 } 
+	
+	
+	function sweet_count(){
+		var bno = $("#hidden").val();
+		
+		$.ajax({
+			type : "POST",
+			url : "sweetcount.bizpoll",
+			data : "bno=" + bno,
+			success : function(result) {
+
+				$("#cafe-menu").html(result);
+
+			}
+		});
+		
+	}
 
 
 	$(document).ready(function(){
 		
 		comment_list();
+		sweet_count();
 		
 		
 		
@@ -619,6 +659,47 @@ function comment_list(){
 				}
 
 			}); 
+		
+		$(document).on("click", "#likeItMemberBtn", function() {
+			
+			var bno = $("#hidden").val();
+			var id = "<%=session.getAttribute("loginUser")%>";4
+			var mid = $("#mid2").val();
+			
+			if (id != "null") {
+
+				$.ajax({
+					
+					url : "sweetadd.bizpoll",
+					type : "POST",
+					dataType : "json",
+					data : "bno=" + bno +"&mid=" + mid,
+					success : function(data) {
+
+						sweet_count(); // 삭제 완료하면 댓글을 다시 불러드리기 위한 함수 호출
+
+					},
+
+					error : function() {
+						alert("System Error!!!");
+
+					}
+				});
+				
+				return false;
+
+			} else {
+				
+				alert("로그인을 하셔야 '좋아요'를 올리수 있습니다.");
+				$("#id01").css("display", "block");
+
+			}
+			
+			
+			
+			
+		});
+		
 
 
 
@@ -680,6 +761,7 @@ function comment_list(){
 									<td class="m-tcol-c step"><span>작성자 : </span> <span
 										class="filter-50">${bDto.writer}</span></td>
 								</tr>
+
 							</tbody>
 						</table>
 					</div>
@@ -711,13 +793,29 @@ function comment_list(){
 				</div>
 				<div class="tbody m-tcol-c" id="tbody">${fn:replace(bDto.content, cn, br)}</div>
 			</c:forEach>
+			<div id="divfile">
+				<table id="file_table">
+					<tr>
+						<th >첨부파일 : </th>
+						<td>
+							<span class="filter-50">
+								<input type="file" id="files" style="display: none">
+								<a href="#"><i class="fa fa-save"></i></a>
+								<a href="#">KakaoTalk_20180422_160705634.jpg</a>
+							</span>
+						</td>
+					</tr>
+				</table>
+			</div>
 		</div>
 		<!-- 본문 끝 -->
 		<!-- 댓글 시작 -->
 		<div class="reply-box" id="cmtMenu">
 			<div class="fl reply_sort">
 				<table cellspacing="0" cellpadding="0" border="0">
+
 					<tbody>
+
 
 						<tr style="vertical-align: top">
 
@@ -729,15 +827,13 @@ function comment_list(){
 									<span class="b m-tcol-c reply">${bDto.viewont }</span>
 								</c:forEach></td>
 							<td class="m-tcol-c filter-30">|</td>
-							<td><c:forEach items="${bodylist}" var="bDto">
-									<a href="sweetadd.bizpoll?bno=${bDto.bno}" id="likeItMemberBtn">좋아요<span
-										id="cafe-menu"></span></a>
-									<div class="u_likeit_list_module _reactionModule"">
-										<a href="#" class="u_likeit_list_btn _button off"> <span
-											class="u_ico _icon"></span> <em class="u_cnt _count">${bDto.sweet}</em>
-										</a>
-									</div>
-								</c:forEach></td>
+							<td>
+						
+								<a href="#" id="likeItMemberBtn">
+									<span id="cafe-menu">
+									</span>
+								</a>
+							</td>
 						</tr>
 					</tbody>
 
@@ -841,8 +937,7 @@ function comment_list(){
 		<form id="insert" name="insert" action="boardInsertView.bizpoll"
 			method="post">
 			<input type="button" value="글쓰기" class="btn_submit" id="btn_submit">
-			<input type="hidden" value="${sessionScope.loginUser.mid }"
-				name="hidden_id">
+			<input type="hidden" value="${sessionScope.loginUser.mid }" name="hidden_id">
 		</form>
 	</div>
 

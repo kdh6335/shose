@@ -32,6 +32,8 @@ public class BoardListAction implements Action{
 			
 			
 			String search = "";
+			
+			
 			String select = "";
 			criDto.setSelect(select);
 			criDto.setSearch(search);
