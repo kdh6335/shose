@@ -123,7 +123,7 @@ $(document).ready(function() {
 <body>
 <div>
 	<div class="container">
-	        <form id ="insert" name="insert" action="modifyupdate.bizpoll" method="post" >
+	        <form id ="insert" name="insert" action="modifyupdate.bizpoll" method="post" enctype="multipart/form-data">
 	        <c:forEach items="${modifylist}" var="bDto">
 	<table class="table table-bordered">
 	    <thead>
@@ -143,8 +143,8 @@ $(document).ready(function() {
 					<th >첨부파일 : </th>
 					<td>
 						<span class="filter-50">
-						<input class="upload-name" value="파일선택" disabled="disabled">
-						<input type="file" id="files" style="display: none">
+						<input class="upload-name" value="파일선택" disabled="disabled" >
+						<input type="file" id="files" name="files" style="display: none">
 						<label for="files" id="label">파일 첨부</label>
 						</span>
 					</td>

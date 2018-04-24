@@ -23,7 +23,24 @@
 		width: 50%;
 	}
 	
-
+	.lsti{
+		float: right;
+		background-color: #f1404b;
+		border: none;
+		color: white;
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+		cursor: pointer;
+		padding: 1px 8px 1px 8px;
+		margin-top: 5px;
+		margin-right: 5px;
+	}
+	.list:hover{
+	
+		box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 
+					0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	}
 	.pull-right{
 	
 		float: right;
@@ -122,7 +139,7 @@ $(document).ready(function() {
 <body>
 	<div>
 		<div class="container">
-	      <form id ="insert" name="insert" action="boardinertsave.bizpoll" method="post" >
+	      <form id ="insert" name="insert" action="boardinertsave.bizpoll" method="post" enctype="multipart/form-data" >
 			<table class="table table-bordered">
 			   <thead>
 			    <caption> 글쓰기 </caption>
@@ -140,7 +157,7 @@ $(document).ready(function() {
 								<td>
 									<span class="filter-50">
 										<input class="upload-name" value="파일선택" disabled="disabled">
-										<input type="file" id="files" style="display: none">
+										<input type="file" name="files" id="files" style="display: none">
 										<label for="files" id="label">파일 첨부</label>
 									</span>
 								</td>
@@ -153,7 +170,7 @@ $(document).ready(function() {
 				                <td colspan="2">
 				                    <input type="button" value="등록" class="pull-right"/>
 				                    <input type="button" value="reset" class="pull-left"/>
-				                    <input type="button" value="글 목록" class="pull-right list" />
+				                    <input type="button" value="글 목록" class="list" />
 				                </td>
 				            </tr>
 				    </tbody>

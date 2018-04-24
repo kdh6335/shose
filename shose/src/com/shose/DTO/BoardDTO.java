@@ -12,6 +12,11 @@ public class BoardDTO {
 	private int viewont;
 	private int sweet;
 	private int count;
+	private String  filename;
+	private int filesize;
+	private int  ref;
+	private int  re_step;
+	private int  re_level;
 	
 	
 	
@@ -52,6 +57,69 @@ public class BoardDTO {
 		this.writer = writer;
 	}
 	
+	
+	
+
+	public BoardDTO(int bno, String title, String content, String writer, String filename, int filesize) {
+		super();
+		this.bno = bno;
+		this.title = title;
+		this.content = content;
+		this.writer = writer;
+		this.filename = filename;
+		this.filesize = filesize;
+	}
+
+	public BoardDTO(String title, String content, String writer, String filename, int filesize) {
+		super();
+		this.title = title;
+		this.content = content;
+		this.writer = writer;
+		this.filename = filename;
+		this.filesize = filesize;
+	}
+	
+	
+
+	public String getFilename() {
+		return filename;
+	}
+
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
+
+	public int getFilesize() {
+		return filesize;
+	}
+
+	public void setFilesize(int filesize) {
+		this.filesize = filesize;
+	}
+
+	public int getRef() {
+		return ref;
+	}
+
+	public void setRef(int ref) {
+		this.ref = ref;
+	}
+
+	public int getRe_step() {
+		return re_step;
+	}
+
+	public void setRe_step(int re_step) {
+		this.re_step = re_step;
+	}
+
+	public int getRe_levle() {
+		return re_level;
+	}
+
+	public void setRe_levle(int re_levle) {
+		this.re_level = re_levle;
+	}
 
 	public int getCount() {
 		return count;

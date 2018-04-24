@@ -187,6 +187,65 @@
 $(document).ready(function() {
 	
 	var hidden = $("#hidden").val();
+	var select_range = $("#select_range").val();
+	
+	
+	if (select_range == "번호순▼"){
+		
+		$("#sfl2").val("번호순▼").attr("selected", "selected");
+		
+	}else if(select_range == "날짜순▼"){
+		
+		$("#sfl2").val("날짜순▼").attr("selected", "selected");
+		
+	}else if(select_range == "조회순▼"){
+		
+		$("#sfl2").val("조회순▼").attr("selected", "selected");
+		
+	}else if(select_range == "제목순▼"){
+		
+		$("#sfl2").val("제목순▼").attr("selected", "selected");
+		
+	}else if(select_range == "추천순▼"){
+		
+		$("#sfl2").val("추천순▼").attr("selected", "selected");
+		
+	}else if(select_range == "번호순▲"){
+		
+		$("#sfl2").val("번호순▲").attr("selected", "selected");
+		
+	}else if(select_range == "날짜순▲"){
+		
+		$("#sfl2").val("날짜순▲").attr("selected", "selected");
+		
+	}else if(select_range == "조회순▲"){
+		
+		$("#sfl2").val("조회순▲").attr("selected", "selected");
+		
+	}else if(select_range == "제목순▲"){
+		
+		$("#sfl2").val("제목순▲").attr("selected", "selected");
+		
+	}else if(select_range == "추천순▲"){
+		
+		$("#sfl2").val("추천순▲").attr("selected", "selected");
+		
+	}else if(select_range == "제목"){
+		
+		$("#sfl").val("제목").attr("selected", "selected");
+		
+	}else if(select_range == "내용"){
+		
+		$("#sfl").val("내용").attr("selected", "selected");
+		
+	}else if(select_range == "제목내용"){
+		
+		$("#sfl").val("제목내용").attr("selected", "selected");
+		
+	}else if(select_range == "아이디"){
+		
+		$("#sfl").val("아이디").attr("selected", "selected");
+	}
 	
 	if(hidden==0){
 		$("#stx").focus();
@@ -215,6 +274,35 @@ $(document).ready(function() {
 	$(".btn_submit2").on("click", function(){
 		$("#fsearch").submit();
 	});
+	
+	$("#sfl2").on("change", function(){
+		
+		
+		
+		var select = $("#sfl2").val();
+		
+		$("#range").submit();
+		
+/* 		 $.ajax({
+				url : "boardlist.bizpoll",
+				type : "POST",
+				dataType : "json",
+				data : "select=" + select,
+				success : function(data) {
+
+					// 댓글 등록후 내용 초기화 하는 코드
+					// 댓글을 다시 불러드리기 위한 호출 함수
+
+				},
+
+				error : function() {
+					alert("System Error!!!");
+
+				}
+			});  */
+
+	});
+	
 });
 </script>
 </head>
@@ -224,12 +312,21 @@ $(document).ready(function() {
 	<div id="bo_list">
 		<div class="bo_fx">
 			<div id="bo_list_total">
-			<select name ="sfl" id="sfl2" class="select_s">
-					<option value="번호">번호 정렬</option>
-					<option value="날짜순">날짜순 정렬</option>
-					<option value="조회수">조회수 정렬</option>
-					<option value="추천수">추천수 정렬</option>
-			</select>
+				<form action="boardlist.bizpoll" method="get" id="range">
+					<select name ="sf2" id="sfl2" class="select_s">
+							<option value="번호순▲">번호순▲</option>
+							<option value="번호순▼">번호순▼</option>
+							<option value="제목순▲">제목순▲</option>
+							<option value="제목순▼">제목순▼</option>
+							<option value="날짜순▲">날짜순▲</option>
+							<option value="날짜순▼">날짜순▼</option>
+							<option value="조회순▲">조회순▲</option>
+							<option value="조회수▼">조회순▼</option>
+							<option value="추천순▲">추천순▲</option>
+							<option value="추천수▼">추천순▼</option>
+							<input type="hidden" id="select_range" value="${select }${sfl }" >
+					</select>
+				</form>
 			</div>
 			
 		</div>
@@ -256,7 +353,9 @@ $(document).ready(function() {
 									<c:if test="${bDto.count ne 0}">
 										<span id="detgl_count"><a href="boardbody.bizpoll?bno=${bDto.bno}&comment=ture">[${bDto.count}]</a></span>
 									</c:if>
-									<a href="#"><i class="fa fa-save"></i></a>
+									<c:if test="${bDto.filename != '-'}">
+										<a href="#"><i class="fa fa-save"></i></a>
+									</c:if>
 									<c:if test="${today2 == regdate2}">
 										<span id="new">new!</span>
 									</c:if>

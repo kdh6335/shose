@@ -676,7 +676,7 @@ function comment_list(){
 					data : "bno=" + bno +"&mid=" + mid,
 					success : function(data) {
 
-						sweet_count(); // 삭제 완료하면 댓글을 다시 불러드리기 위한 함수 호출
+						sweet_count(); // 좋아요를 누르면 올라가고 다시 생성 되게 한다.
 
 					},
 
@@ -724,9 +724,9 @@ function comment_list(){
 				<a href="boardbody.bizpoll?bno=${bDto.next_article_bno}" id="next">다음</a>
 			</c:if>
 		</c:forEach>
+	<c:forEach items="${bodylist}" var="bDto">
 		<div class="inbox">
 
-			<c:forEach items="${bodylist}" var="bDto">
 				<div class="tit-box">
 					<div class="fl">
 						<table cellspacing="0" cellpadding="0" border="0">
@@ -792,7 +792,7 @@ function comment_list(){
 					</div>
 				</div>
 				<div class="tbody m-tcol-c" id="tbody">${fn:replace(bDto.content, cn, br)}</div>
-			</c:forEach>
+			<c:if test="${bDto.filename != '-'}">
 			<div id="divfile">
 				<table id="file_table">
 					<tr>
@@ -801,13 +801,15 @@ function comment_list(){
 							<span class="filter-50">
 								<input type="file" id="files" style="display: none">
 								<a href="#"><i class="fa fa-save"></i></a>
-								<a href="#">KakaoTalk_20180422_160705634.jpg</a>
+								<a href="download.bizpoll?bno=${bDto.bno}">${bDto.filename }</a>
 							</span>
 						</td>
 					</tr>
 				</table>
 			</div>
+			</c:if>
 		</div>
+	</c:forEach>
 		<!-- 본문 끝 -->
 		<!-- 댓글 시작 -->
 		<div class="reply-box" id="cmtMenu">

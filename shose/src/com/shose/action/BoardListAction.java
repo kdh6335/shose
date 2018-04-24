@@ -8,6 +8,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONObject;
+
 import com.shose.DAO.BoardDAO;
 import com.shose.DTO.BoardDTO;
 import com.shose.DTO.CriteriaDTO;
@@ -30,11 +32,16 @@ public class BoardListAction implements Action{
 			
 			System.out.println("페이지 번호" + page);
 			
-			
+			 
 			String search = "";
+			String select = request.getParameter("sf2");
 			
+			if(select == null) {
+				select = "번호순▲";
+			}
 			
-			String select = "";
+			System.out.println("select = " + select);
+			
 			criDto.setSelect(select);
 			criDto.setSearch(search);
 			criDto.setPage(page);
@@ -56,12 +63,12 @@ public class BoardListAction implements Action{
 			
 			request.setAttribute("pageMaker", pageMaker);
 			request.setAttribute("flag", flag);
+			request.setAttribute("select", select);
 			
 			//오늘 날짜를 보내준다.
 			
 			Date today = new Date();
 			request.setAttribute("today", today);
-			
 			
 		
 		ActionForward forward = new ActionForward();
