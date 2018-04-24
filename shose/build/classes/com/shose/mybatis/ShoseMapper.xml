@@ -363,5 +363,11 @@
  	WHERE bno = #{bno}
  	
  	</select>
+ 	
+ 	<update id="downLoadCount">
+ 	
+ 		UPDATE tblboard SET downloadcnt = downloadcnt + 1 WHERE bno = #{bno}
+ 	
+ 	</update>
   
 </mapper>

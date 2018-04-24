@@ -2,9 +2,6 @@
     pageEncoding="UTF-8"%>
     
     
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>   <!-- prefix는 표기법  -->
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-    
     <%@ include file="header.jsp" %>
     
     <%@ page import="java.util.Date" %>

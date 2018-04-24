@@ -433,4 +433,33 @@ public class BoardDAO {
 					return rusult;
 				}
 				
+				
+				public int downLoadCount(int bno) {
+					
+					sqlSession = sqlSessionFactory.openSession();
+					
+					int rusult = 0;
+				
+					
+					try {
+						
+						rusult = sqlSession.update("downLoadCount", bno);
+						
+						sqlSession.commit();
+						
+						
+						
+					} catch (Exception e) {
+						
+						e.printStackTrace();
+						
+					}finally {
+						
+						sqlSession.close();
+						
+					}
+					return rusult;
+				}
+				
+				
 }

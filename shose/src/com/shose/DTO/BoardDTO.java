@@ -17,6 +17,7 @@ public class BoardDTO {
 	private int  ref;
 	private int  re_step;
 	private int  re_level;
+	private int downloadcnt;
 	
 	
 	
@@ -80,6 +81,22 @@ public class BoardDTO {
 	}
 	
 	
+
+	public int getRe_level() {
+		return re_level;
+	}
+
+	public void setRe_level(int re_level) {
+		this.re_level = re_level;
+	}
+
+	public int getDownloadcnt() {
+		return downloadcnt;
+	}
+
+	public void setDownloadcnt(int downloadcnt) {
+		this.downloadcnt = downloadcnt;
+	}
 
 	public String getFilename() {
 		return filename;

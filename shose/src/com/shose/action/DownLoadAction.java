@@ -22,6 +22,7 @@ public class DownLoadAction  implements Action {
 			// 다운로드할 파일 DB에서 가져옴
 			BoardDAO bDao = BoardDAO.getInstance();
 			String filename = bDao.getFileName(bno);
+			bDao.downLoadCount(bno); // 다운로드 하면 값을 1 증가 시켜준다.
 			
 			System.out.println("filename = " + filename);
 			
@@ -40,6 +41,11 @@ public class DownLoadAction  implements Action {
 				mimeType = "application/octet-stream; charset=utf-8";
 				
 			}
+			
+			//파일 이름에 한글이 포함된 경우
+			// new String (바이트배열, 변환할 인코딩) 8859_1 서유럽언어
+			// header에 특수문자 사용 못함, 서유럽언어로 변환
+			filename = new String(filename.getBytes("utf-8"),"8859_1");
 			
 			
 			//http header

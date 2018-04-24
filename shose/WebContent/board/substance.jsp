@@ -796,11 +796,11 @@ function comment_list(){
 			<div id="divfile">
 				<table id="file_table">
 					<tr>
-						<th >첨부파일 : </th>
+						<th >첨부파일 (내려받는 횟수 : ${bDto.downloadcnt } ) </th>
 						<td>
 							<span class="filter-50">
 								<input type="file" id="files" style="display: none">
-								<a href="#"><i class="fa fa-save"></i></a>
+								<a href="download.bizpoll?bno=${bDto.bno}"><i class="fa fa-save"></i></a>
 								<a href="download.bizpoll?bno=${bDto.bno}">${bDto.filename }</a>
 							</span>
 						</td>
