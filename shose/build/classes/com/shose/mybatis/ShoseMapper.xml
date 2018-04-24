@@ -355,5 +355,13 @@
  		DELETE FROM member WHERE mid = #{mid}
  	
  	</delete>
+ 	
+ 	<select id="getFileName" parameterType="int" resultType="String">
+ 	
+ 	SELECT filename 
+ 	FROM tblboard
+ 	WHERE bno = #{bno}
+ 	
+ 	</select>
   
 </mapper>

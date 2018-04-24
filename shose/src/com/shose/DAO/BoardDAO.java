@@ -405,4 +405,32 @@ public class BoardDAO {
 					return rusult;
 				}
 				
+				
+				public String getFileName(int bno) {
+					
+					sqlSession = sqlSessionFactory.openSession();
+					
+					String rusult = "";
+				
+					
+					try {
+						
+						rusult = sqlSession.selectOne("getFileName", bno);
+						
+						
+						
+						
+						
+					} catch (Exception e) {
+						
+						e.printStackTrace();
+						
+					}finally {
+						
+						sqlSession.close();
+						
+					}
+					return rusult;
+				}
+				
 }
