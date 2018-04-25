@@ -349,7 +349,14 @@ $(document).ready(function() {
 								<fmt:formatDate value="${bDto.regdate}" pattern="yyyy-MM-dd" var="regdate2"/>
 							<tr>
 								<td class="td_num">${bDto.bno}</td>
-								<td class="td_subject"><a href="boardbody.bizpoll?bno=${bDto.bno}">${bDto.title}</a>  
+								<td class="td_subject"><a href="boardbody.bizpoll?bno=${bDto.bno}">
+								
+									<c:forEach var = "i" begin="1" end="${bDto.re_level}">
+										&nbsp;&nbsp;
+									</c:forEach>
+									${bDto.title}
+								
+								</a>  
 									<c:if test="${bDto.count ne 0}">
 										<span id="detgl_count"><a href="boardbody.bizpoll?bno=${bDto.bno}&comment=ture">[${bDto.count}]</a></span>
 									</c:if>

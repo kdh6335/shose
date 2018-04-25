@@ -480,8 +480,12 @@ img {
 	margin-top: 7px;
 	font-weight: bold;
 }
+#answer_bnt{
 
-#btn_submit {
+	margin-left: 8px;
+	
+}
+.btn_submit {
 	float: right;
 	background-color: #f1404b;
 	border: none;
@@ -565,12 +569,31 @@ function comment_list(){
 		
 			
 		}
-	
+		
+		$("#answer_bnt").on("click", function(){
+			
+			
+			var bno = $("#hidden").val();
+			var dd = "<%=session.getAttribute("loginUser")%>"
+			
+			
+			
+			if (dd != "null") {
+				
+				location.href="answer.bizpoll?bno="+bno;
+
+			} else {
+				
+				alert("로그인 하셔야 답글을 달 수 있습니다.")
+				$("#id01").css("display", "block");
+
+			}
+		});
 		
 	
 	
 		// 게시글 등록 버튼을 클릭하면 이벤트 처리
-		 $(".btn_submit").on("click", function() {
+		 $("#btn_submit").on("click", function() {
 			
 			var dd = "<%=session.getAttribute("loginUser")%>"
 	
@@ -700,6 +723,42 @@ function comment_list(){
 			
 		});
 		
+		
+		$(document).on("click", "#bodydel", function() {
+			
+			var Del = confirm("삭제 하시겠습니까?") // 클릭시 삭제할 것인지 물어보는 코드
+
+			if (Del == true) {
+
+				var bno = $("#hidden").val(); 
+
+				 $.ajax({
+					url : "modifydelete.bizpoll",
+					type : "POST",
+					dataType : "json",
+					data : "bno=" + bno,
+					success : function(data) {
+
+						location.href="boardlist.bizpoll";
+						
+
+					},
+
+					error : function() {
+						alert("System Error!!!");
+
+					}
+				}); 
+
+			} else {
+
+				alert("취소 되었습니다.");
+				return false;
+
+			}
+
+		}); 
+		
 
 
 
@@ -776,8 +835,7 @@ function comment_list(){
 											<span class="filter-50">| <a
 												href="modify.bizpoll?bno=${bDto.bno}"
 												class="m-tcol-c url-txt">수정</a></span>
-											<span class="filter-50">| <a onclick="delUrl();"
-												href="#" class="m-tcol-c url-txt">삭제</a></span>
+											<span class="filter-50">| <a id="bodydel" href="#" class="m-tcol-c url-txt">삭제</a></span>
 										</c:if> <!-- <span class="filter-50"><a href="boardlist.bizpoll" class="m-tcol-c url-txt">목록</a></span> -->
 										<form action="modifydelete.bizpoll" id="delete" name="delete">
 											<input type="hidden" value="${bDto.bno}" id="hidden"
@@ -938,8 +996,9 @@ function comment_list(){
 		</div>
 		<form id="insert" name="insert" action="boardInsertView.bizpoll"
 			method="post">
+			<input type="button" value="답글" class="btn_submit" id="answer_bnt">
 			<input type="button" value="글쓰기" class="btn_submit" id="btn_submit">
-			<input type="hidden" value="${sessionScope.loginUser.mid }" name="hidden_id">
+			<input type="hidden" value="${sessionScope.loginUser.mid }" name="hidden_id" id="hidden_id">
 		</form>
 	</div>
 

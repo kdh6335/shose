@@ -138,43 +138,43 @@
  				]]>
  			<choose>
     			<when test="select.equals('번호순▼')">
- 				ORDER BY bno ASC
+ 				ORDER BY bno ASC, ref DESC, re_step ASC
  				</when>
  				<when test="select.equals('번호순▲')">
- 				ORDER BY bno DESC
+ 				ORDER BY ref DESC, re_step ASC
  				</when>
  				
  				<when test="select.equals('날짜순▼')">
- 				ORDER BY regdate DESC
+ 				ORDER BY regdate DESC, ref DESC, re_step ASC
  				</when>
  				
  				<when test="select.equals('날짜순▲')">
- 				ORDER BY regdate ASC
+ 				ORDER BY regdate ASC, ref DESC, re_step ASC
  				</when>
  				
  				<when test="select.equals('조회순▼')">
- 				ORDER BY viewont DESC
+ 				ORDER BY viewont DESC, ref DESC, re_step ASC
  				</when>
  				
  				<when test="select.equals('조회순▲')">
- 				ORDER BY viewont ASC
+ 				ORDER BY viewont ASC, ref DESC, re_step ASC
  				</when>
  				
  				<when test="select.equals('추천순▼')">
- 				ORDER BY sweet DESC
+ 				ORDER BY sweet DESC, ref DESC, re_step ASC
  				</when>
  				
  				<when test="select.equals('추천순▲')">
- 				ORDER BY sweet ASC
+ 				ORDER BY sweet ASC, ref DESC, re_step ASC
  				</when>
  				
  				
  				<when test="select.equals('제목순▼')">
- 				ORDER BY TITLE DESC
+ 				ORDER BY  ref DESC, re_step ASC, TITLE DESC
  				</when>
  				
  				<when test="select.equals('제목순▲')">
- 				ORDER BY TITLE ASC
+ 				ORDER BY TITLE ASC , ref DESC, re_step ASC
  				</when>
  			</choose>
  				) a
@@ -369,5 +369,20 @@
  		UPDATE tblboard SET downloadcnt = downloadcnt + 1 WHERE bno = #{bno}
  	
  	</update>
+ 	
+ 	<update id="updateStep">
+ 	
+ 		UPDATE tblboard SET re_step = re_step + 1
+ 		
+ 		WHERE ref = #{ref} AND re_step >= #{re_step}
+ 	
+ 	</update>
+ 	
+ 	<insert id="answerInsert" parameterType="boardDTO">
+ 	
+ 		INSERT INTO tblboard (bno, title, content, writer, filename, filesize, ref, re_step, re_level) 
+	  		VALUES((select nvl(max(bno)+1, 1) FROM tblboard), #{title} , #{content} ,#{writer}, #{filename}, #{filesize}, #{ref} , #{re_step} , #{re_level}  )
+ 	
+ 	</insert>
   
 </mapper>

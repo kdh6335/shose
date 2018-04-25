@@ -7,6 +7,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONObject;
+
 import com.shose.DAO.BoardDAO;
 import com.shose.DAO.ReplyDAO;
 import com.shose.DTO.BoardDTO;
@@ -19,7 +21,7 @@ public class ModifyDeleteAction implements Action{
 		
 		String url = null; //"boardlist.bizpoll";
 		
-		String bno = request.getParameter("hidden");
+		String bno = request.getParameter("bno");
 		Integer num = Integer.parseInt(bno);
 		
 		System.out.println(num);
@@ -40,6 +42,12 @@ public class ModifyDeleteAction implements Action{
 			url = "boardbody.bizpoll";
 			
 		}
+		
+		JSONObject jjb = new JSONObject();
+		
+		response.setContentType("application/x-json; charset=UTF-8");
+		response.getWriter().println(jjb);
+		
 		
 	
 		ActionForward forward = new ActionForward();

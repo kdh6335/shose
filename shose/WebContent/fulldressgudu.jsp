@@ -306,6 +306,8 @@
 				</div>
 			</li>
 		</ul>
+		
+		<!-- 2번째 줄  -->
 		<ul class="prdList">
 			<li id="anchorBoxId" class="item xans-record">
 				<div class="thumbnail">

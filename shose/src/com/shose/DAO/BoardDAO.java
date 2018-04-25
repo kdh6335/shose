@@ -461,5 +461,62 @@ public class BoardDAO {
 					return rusult;
 				}
 				
+				public void updateStep(int ref, int re_step) {
+					
+					sqlSession = sqlSessionFactory.openSession();
+					
+					int rusult = 0;
+				
+					
+					try {
+						
+						BoardDTO bDto = new BoardDTO();
+						bDto.setRef(ref);
+						bDto.setRe_step(re_step);
+						
+						rusult = sqlSession.update("updateStep", bDto);
+						
+						sqlSession.commit();
+						
+						
+						
+					} catch (Exception e) {
+						
+						e.printStackTrace();
+						
+					}finally {
+						
+						sqlSession.close();
+						
+					}
+				}
+				
+				public int answerInsert(BoardDTO bDto) {
+					
+					sqlSession = sqlSessionFactory.openSession();
+					
+					int rusult = 0;
+				
+					
+					try {
+						
+						rusult = sqlSession.insert("answerInsert", bDto);
+						
+						sqlSession.commit();
+						
+						
+						
+					} catch (Exception e) {
+						
+						e.printStackTrace();
+						
+					}finally {
+						
+						if(sqlSession != null)sqlSession.close();
+						
+					}
+					return rusult;
+				}
+				
 				
 }
