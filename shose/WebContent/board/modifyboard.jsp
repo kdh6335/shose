@@ -167,3 +167,5 @@ $(document).ready(function() {
 </div>
 </body>
 </html>
+
+<%@ include file="../footer.jsp" %>

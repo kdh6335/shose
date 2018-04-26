@@ -13,8 +13,12 @@
 
 		<%
     	// 줄바꿈을 위한 코딩
-    	pageContext.setAttribute("br", "<br/>");
-    	pageContext.setAttribute("cn", "\n");
+    	  pageContext.setAttribute("cr", "\r");
+		  pageContext.setAttribute("cn", "\n");
+		  pageContext.setAttribute("crcn", "\r\n");
+		  pageContext.setAttribute("sp", "&nbsp;");
+		  pageContext.setAttribute("br", "<br/>");
+
 		%> 
 
 
@@ -215,7 +219,7 @@
 		padding: 8px 12px;
 		margin-bottom: 15px;
 		outline: none; /* input을 클릭하면 파란색 테두리가 사라진다.  */
-		margin-left: 12px;
+		margin-left: 2px;
 		
 	}
 	#login_form{
@@ -449,7 +453,7 @@
          });
 		
 	
-	$("#logout").on("click", function(){
+	$(".logout").on("click", function(){
 		
 		$.ajax({
 			url:"logout.bizpoll",
@@ -528,7 +532,7 @@
 	                        </c:when>
 		                    <c:otherwise>
 		                    	<li>${sessionScope.loginUser.mname }(${sessionScope.loginUser.mid })</li>
-		                    	<li><a href="#" id="logout">로그아웃</a></li>
+		                    	<li><a href="#" class="logout">로그아웃</a></li>
 		                    	<li><a href="passwordcheck.bizpoll" id="personal">내 정보</a></li>
 		                    </c:otherwise>
                         </c:choose>
@@ -588,7 +592,7 @@
                   <li class="line3_li"><a href="#" class="category_a">구두</a>
                         <div class="category_drop">
                                           <a href="#">키높이 구두</a>
-                                          <a href="#">정장 구두</a>
+                                          <a href="fulldressgudu.jsp">정장 구두</a>
                              
                               </div>                        
                   </li>
@@ -675,5 +679,27 @@
  				</div>
 			</div>
 	</div>
+	
+	<!-- ScrollToTop -->
+	<button onclick="topFunction()" id="myBtn">Top</button>
+	
+	<script  type="text/javascript">
+	window.onscroll = function() {scrollFunction()};
+	
+	function scrollFunction(){
+			if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20){
+			document.getElementById("myBtn").style.display = "block";
+		} else {
+			document.getElementById("myBtn").style.display = "none";
+			
+			}
+	}
+	
+	function topFunction(){
+		
+		document.body.scrollTop.scrollTop = 0;
+		document.documentElement.scrollTop = 0;
+	}
+</script>
 </body>
 </html>

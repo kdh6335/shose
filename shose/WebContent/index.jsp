@@ -14,24 +14,7 @@
 <!-- 브라우저 타이틀바 로고 삽입(파비콘:favicon) -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="css/index.css">
-<script  type="text/javascript">
-window.onscroll = function() {scrollFunction()};
-	
-	function scrollFunction(){
-			if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20){
-			document.getElementById("myBtn").style.display = "block";
-		} else {
-			document.getElementById("myBtn").style.display = "none";
-			
-			}
-	}
-	
-	function topFunction(){
-		
-		document.body.scrollTop.scrollTop = 0;
-		document.documentElement.scrollTop = 0;
-	}
-</script>
+
 <style type="text/css">
        /* 4번째 줄 */
       .xans-element{
@@ -532,13 +515,61 @@ window.onscroll = function() {scrollFunction()};
 				</ul>
 			</div>
 		</li>
+		
+		
+		
+		<c:forEach items="${newProductlist}" var="pDto">
+		<li id="anchorBoxId" class="item xans-record">
+			<div class="thumbnail">
+				<a href="#">
+					<img src="${pDto.p_img}" id="eListPrdImage2906_1" alt="파이어트랩 크로이던 브라운" class="on -mov" onmouseover="this.src='image/2871_shop1_427310.jpg'" onmouseout="this.src='image/2871_shop1_472683.jpg'" border="0">"&nbsp;"
+
+				</a>	
+			</div>
+			<div class="info">
+				<p class="name -mov">
+					<a href="#">
+						<span style="font-size:12px;color:#555555;font-weight: bold;">${pDto.p_name}</span>
+					</a>
+				</p>
+				<div class="line -mov"></div>
+				<ul class="xans">
+					<li class="xans-record">
+						<strong class="title">
+						<span style="font-size: 13px;color:#d91818;font-weight: bold;">판매가</span>
+						:
+						</strong>
+						<span style="font-size:13px;color: #d91818;font-weight: bold;">
+						     <fmt:setLocale value="ko_kr"/>
+							  <!-- currency = 접속하는 현지의 화폐단위  -->
+							 <fmt:formatNumber value="${pDto.p_price2}" type ="currency"/>
+					    </span>
+						<span id="span_product_tax_type_text"></span>
+					</li>
+					<li class="xans-record">
+						<strong class="title">
+						<img src="image/shop1_569266.gif">
+						 :
+						</strong>
+						<span style="font-size:12px;color: #555555;font-weight: bold;">
+							<span id="span_product_tax_type_text">
+							<img src="image/icon_201802061008577300.gif" style="margin-bottom: -2px;">
+							3,420원</span>
+							(10%)
+						</span>
+					</li>
+				
+				</ul>
+			</div>
+		</li>
+	</c:forEach>
 	</ul>
 	</div>
 </div>
       
 </div>
-<!-- ScrollToTop -->
-	<button onclick="topFunction()" id="myBtn">Top</button>
+
+
 		
 <!-- 데이터베이스에서 값을 가져오기  -->	
 <div class="total">	
@@ -606,3 +637,5 @@ window.onscroll = function() {scrollFunction()};
 	</div>
 </body>
 </html>
+
+ 	<%@ include file="footer.jsp" %>

@@ -848,8 +848,15 @@ function comment_list(){
 							</tbody>
 						</table>
 					</div>
-				</div>
-				<div class="tbody m-tcol-c" id="tbody">${fn:replace(bDto.content, cn, br)}</div>
+				</div><%-- ${fn:replace(bDto.content, cr, br )} --%>
+				
+				<c:set var="cmt" value="${fn:replace(bDto.content,crcn,br)}" />
+				<c:set var="cmt" value="${fn:replace(cmt,cr,br)}" />
+				<c:set var="cmt" value="${fn:replace(cmt,cn,br)}" />
+				<c:set var="cmt" value="${fn:replace(cmt,' ',sp)}" />
+				<%-- <pre>${bDto.content }</pre> --%>
+				
+				<div class="tbody m-tcol-c" id="tbody"><c:out value="${cmt}" escapeXml="false"/> </div>
 			<c:if test="${bDto.filename != '-'}">
 			<div id="divfile">
 				<table id="file_table">
@@ -1007,3 +1014,5 @@ function comment_list(){
 
 </body>
 </html>
+
+<%@ include file="../footer.jsp" %>
