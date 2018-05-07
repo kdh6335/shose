@@ -37,7 +37,7 @@ public class ModifyUpdateAction implements Action{
 		// new MultipartRequest(request, 파일 디렉토리 , 업로드 용량 , 인코딩, 파일이름중복정책)
 		MultipartRequest multi = new MultipartRequest(request, Constants.UPLOAD_PATH, Constants.MAX_UPLOAD, "UTF-8" , new DefaultFileRenamePolicy());
 		
-		String bno = multi.getParameter("bno");
+		int bno = Integer.parseInt(multi.getParameter("bno"));
 		String title = multi.getParameter("title");
 		String content = multi.getParameter("content");
 		String writer = multi.getParameter("writer");
@@ -45,7 +45,6 @@ public class ModifyUpdateAction implements Action{
 		String filename = " ";//공백 한칸 뛰어야 한다.
 		int filesize = 0;
 		
-		int num = Integer.parseInt(bno);
 		
 		
 		
@@ -82,7 +81,7 @@ public class ModifyUpdateAction implements Action{
 		
 		
 		
-		BoardDTO bDto = new BoardDTO(num, title, content, writer, filename, filesize);
+		BoardDTO bDto = new BoardDTO(bno, title, content, writer, filename, filesize);
 		
 		BoardDAO bDAO = BoardDAO.getInstance();
 		
@@ -91,10 +90,10 @@ public class ModifyUpdateAction implements Action{
 		if(ruselt >0) {
 			
 			System.out.println("수정 성공");
-			url = "boardbody.bizpoll?bno="+num;
+			url = "boardbody.bizpoll?bno="+bno;
 		}else {
 			System.out.println("수정 실패");
-			url = "boardbody.bizpoll?bno="+num;
+			url = "boardbody.bizpoll?bno="+bno;
 		}
 		
 		

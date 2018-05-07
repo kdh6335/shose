@@ -413,10 +413,7 @@
 									
 								}else{
 									
-									//location.href = "sessionLogin.bizpoll";
 									alert("로그인성공");
-									//alert($("#frm_memeber"));
-									//$("#frm_memeber").submit();
 									location.reload();
 								} 
 							},
@@ -515,7 +512,7 @@
 			document.getElementById("main").style.marginLeft="0";
 			
 		}
-	</script>
+	</script> 
             <div class="head_inner">
             
                   <div id="link">
@@ -626,9 +623,6 @@
 </div>
 
 		<div class="w3-container">
-                 <!--  <li><a href="login.bizpoll"> 로그인 class="w3-button w3-black" -->
-
-		<!-- <button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-black">Open Modal</button> -->
 
 			<div id="id01" class="w3-modal">
  				<div class="w3-modal-content">
