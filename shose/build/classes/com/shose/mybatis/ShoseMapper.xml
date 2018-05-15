@@ -238,8 +238,6 @@
  	</update>
  	
  	<select id="searchTitle" resultType="boardDTO" >
- 		
- 		
  		SELECT * 
  		FROM (
  			SELECT rownum rnum,
@@ -268,8 +266,6 @@
  				) a
  		)
  		WHERE rnum BETWEEN #{pageStart} AND #{perPageNum}
- 
- 		
  	</select>
  	
  	<select id="searchContent" resultType="boardDTO" >

@@ -327,7 +327,7 @@
 		}else{
 			
 			$("#reg_mb_email2").val(mail);
-		}
+		} 
 		
 		return false;
 	});

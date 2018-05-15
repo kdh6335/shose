@@ -105,13 +105,13 @@ public class MemberDAO {
 			
 			if(list.size() > 0) {
 				
-				System.out.println("로그인 성공");
+				//System.out.println("로그인 성공");
 				
 				flag = 1;
 				
 			}else {
 				
-				System.out.println("로그인 실패");
+				//System.out.println("로그인 실패");
 				
 				flag = 0;
 			}

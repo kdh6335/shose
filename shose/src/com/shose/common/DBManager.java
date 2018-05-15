@@ -10,15 +10,29 @@ public class DBManager {
 
                     private static Connection conn;
 
-                  //  private final static String DRIVER = "oracle.jdbc.driver.OracleDriver";
-                   // private final static String URL = "jdbc:oracle:thin:@teno.homedns.tv:1521:XE";
-                  //  private final static String USER = "java";
-                  //  private final static String PASSWORD ="1234";
+                    //private final static String DRIVER = "oracle.jdbc.driver.OracleDriver";
+                    //private final static String URL = "jdbc:oracle:thin:@bigshort.homedns.tv:1521:XE";
+                    //private final static String USER = "java";
+                    //private final static String PASSWORD ="1234";
                     //teno.homedns.tv
                     //192.168.123.103
                     private DBManager(){
 
                     }
+                    
+                    /*public static Connection getConnection(){
+            			conn = null;
+            		
+            			if (conn == null){
+            				try {
+            					Class.forName(DRIVER);
+            					conn = DriverManager.getConnection(URL, USER, PASSWORD);
+            				} catch (Exception e) {
+            					e.printStackTrace();
+            				} 
+            			}
+            			return conn;
+            		}*/
 
                     public static Connection getConnection(){
                                  conn = null;
