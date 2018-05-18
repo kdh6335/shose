@@ -214,7 +214,7 @@
 							
 							if(data.flag == 0 ){
 								
-								$("#span_id2").text("중복된 아이디 입니다.").css("display", "block");
+								$("#span_id2").text("중복된 아이디 입니다.").css("display", "block").css("color", "red");
 								$("#hidden").val("N");
 							}else{
 								

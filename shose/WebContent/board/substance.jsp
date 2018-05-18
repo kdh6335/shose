@@ -886,8 +886,7 @@ function comment_list(){
 
 						<tr style="vertical-align: top">
 
-							<td class="reply"><a href="javascript:;"
-								class="reply_btn b m-tcol-c m-tcol-p _totalCnt" id="comment">댓글 ${count}</a></td>
+							<td class="reply"><a href="javascript:;" class="reply_btn b m-tcol-c m-tcol-p _totalCnt" id="comment">댓글 ${count}</a></td>
 							<td class="m-tcol-c filter-30">|</td>
 							<td><c:forEach items="${bodylist}" var="bDto">
 									<span class="b m-tcol-c reply ">조회수 </span>

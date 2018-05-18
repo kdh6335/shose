@@ -43,7 +43,7 @@ public class LoginCkAction implements Action {
 				
 				if(mDto != null) {
 					
-				session.removeAttribute("loginUser"); // 세션초기화(혹시 모'르 남아있는 값)
+				session.removeAttribute("loginUser"); // 세션초기화
 				session.setAttribute("loginUser", mDto); //세션 값 담기
 				
 				JSONObject jjb = new JSONObject();
